@@ -15,7 +15,7 @@ class ImportFile (Transformation):
 
     def __call__(self, filename):
         if self.type == 'csv':
-            return pd.from_csv(filename)
+            return pd.read_csv(filename, delimiter=';')
         else:
             return None
 
@@ -27,5 +27,7 @@ class Filter (Transformation):
     def __call__(self, data):
         if type is None:
             return data
+        elif type == "philippe":
+            return "Philippe is a nerd!"
         else:
             return None
