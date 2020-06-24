@@ -7,14 +7,27 @@ class DataVibes:
 
     """
 
-    def __init__(self, datafile, type='csv', funcfile=DEFAULT_HPTFX):
+    def __init__(self, datafile, type='csv', funcfile=None):
         """
         Initialise la classe de DataVibes
         :param tempfile: fichier des données temporelles
         :param funcfile: fichier des fonctions de transformation
         """
-        import_func = transform.ImportFile(type=type)
-        self.transformations = [[import_func, import_func(datafile)]]
+        if funcfile is None:
+            import_func = transform.ImportFile(type=type)
+            self.transformations = [[import_func, import_func(datafile)]]
+        else:
+            self.transformations = []
+            self.read_hptfx(funcfile, datafile)
+
+    def read_hptfx(self, funcfile, datafile=None):
+        """
+        Peupler la liste transformations à partir d'un fichier hptfx
+        :param funcfile: Path d'un fichier hptfx
+        :param datafile: Path d'un fichier de données
+        :return:
+        """
+        pass
 
     def add_transformation(self, cls, *args, **kwargs):
         """
