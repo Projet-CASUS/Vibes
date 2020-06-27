@@ -1,4 +1,4 @@
-import vibes.transform as transform
+import vibes.Controller.transform as transform
 DEFAULT_HPTFX = "default.hptfx"
 
 
@@ -66,5 +66,13 @@ class DataVibes:
         pass
 
     def export_func(self):
+        pass
+
+    def refreshGraphics(self):
+        """
+        mettre à jour les graphiques du view
+        design pattern observer
+        :return:
+        """
         pass
 

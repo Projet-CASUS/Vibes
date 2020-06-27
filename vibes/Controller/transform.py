@@ -23,11 +23,10 @@ class ImportFile (Transformation):
 class Filter (Transformation):
     def __init__(self, type=None):
         self.type = type
-
     def __call__(self, data):
         if type is None:
             return data
         elif type == "philippe":
-            return "Philippe is a nerd!"
+            return "Philippe is a stud!"
         else:
             return None
