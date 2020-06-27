@@ -1,6 +1,9 @@
 import vibes.transform as transform
 DEFAULT_HPTFX = "default.hptfx"
 
+# TODO: add del_transformation
+# TODO: add undo/redo system
+# TODO: load/save/export (strategy pattern)
 
 class DataVibes:
     """
@@ -28,6 +31,7 @@ class DataVibes:
         :return:
         """
         pass
+        # TODO: parser hptfx
 
     def add_transformation(self, cls, *args, **kwargs):
         """
