@@ -40,10 +40,10 @@ class RangeSelection(Transformation):
             self.NameArray = ["time", "x", "y", "z", "gforce"]
     def __call__(self,data):
         for x in range(0, len(self.NameArray)):
-            self.data_separation(x,data)
+            self.data_relocation(x,data)
         print(data)
         return data
 
-    def data_separation(self,i,data):
+    def data_relocation(self,i,data):
         for x in range(0, self.last - self.first):
              data.loc[:,self.NameArray[i]][x] = data.loc[:, self.NameArray[i]][x + self.first]
