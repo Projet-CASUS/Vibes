@@ -41,7 +41,6 @@ class Controller():
          :param self:
          :return:
          """
-         print(self.model.data.transformations[len(self.model.data.transformations)-1][1])
          self.model.data.add_transformation(vibes.RangeSelection,first,last)
 
     def generer_un_filtre(self):

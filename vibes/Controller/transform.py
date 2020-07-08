@@ -41,7 +41,6 @@ class RangeSelection(Transformation):
     def __call__(self,data):
         for x in range(0, len(self.NameArray)):
             self.data_relocation(x,data)
-        print(data)
         return data
 
     def data_relocation(self,i,data):
