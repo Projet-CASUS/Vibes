@@ -37,8 +37,13 @@ class DataVibes:
         :param kwargs: arguments pour l'initialisation de la classe cls
         :return:
         """
-        func = cls(*args, **kwargs)
-        self.transformations.append([func, func(self.transformations[-1][1])])
+        i = len(args)
+        if i == 2:
+            func = cls(args.__getitem__(0), **kwargs)
+            self.transformations.append([func, func(args.__getitem__(1))])
+        else :
+            func = cls(*args, **kwargs)
+            self.transformations.append([func, func(self.transformations[-1][1])])
 
     def insert_transformation(self, cls, idx, *args, **kwargs):
         """
