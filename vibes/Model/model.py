@@ -1,4 +1,4 @@
-import vibes.Model.modelclass as mc
+import vibes.Model.data as mc
 
 class Model:
     def __init__(self,dataFile):

@@ -16,23 +16,24 @@ class Controller():
         self.view = view.GraphicalInterface()
         self.model = models.Model(datafile)
 
-    def addData(self, datafile):
+    def add_data(self,type ,datafile):
         """
         instancier un objet de data dans le datavibes du model
         Note: is it useful if so we need to modify add_transformation to review the tuple
         :return: none
         """
-        self.model.data.add_transformation(vibes.ImportFile,None,datafile)
+        self.model.data.add_transformation(vibes.ImportFile,type,datafile)
 
 
-    def addTransform(self,type):
+    def add_transform(self,type):
         """
         ajouter une transformation dans l'objet datavibes du model
         """
         self.model.data.add_transformation(vibes.Filter,type)
         pass
 
-    def dataRangeSelections(self,first,last):
+    def data_range_selections(self,first,last):
+        # Philippe Boudreau
          """
          fait une selection de donnée dans la section des données temporelles.
          update le view en mettant en evidence les limites
@@ -40,23 +41,13 @@ class Controller():
          :param self:
          :return:
          """
-        # self.model.data.transformations[len(self.model.data.transformations) - 1].RangeMarkUp = True
-         #self.model.data.transformations[len(self.model.data.transformations) - 1].first = first
-         #self.model.data.transformations[len(self.model.data.transformations) - 1].last = last
          print(self.model.data.transformations[len(self.model.data.transformations)-1][1])
-         NameArray = ["time","x","y","z","gforce"]
-         for x in range(0,len(NameArray)):
-             self.DataSeparation(first, last, NameArray[x])
-         print(self.model.data.transformations[len(self.model.data.transformations)-1][1])
-         self.addData(self.model.data.transformations[len(self.model.data.transformations)-1][1])
-         self.model.data.transformations[len(self.model.data.transformations) - 1][1].first = first
+         self.model.data.add_transformation(vibes.RangeSelection,first,last)
 
-    def DataSeparation(self,first,last,Name):
-        for x in range(0, last - first):
-            self.model.data.transformations[len(self.model.data.transformations)-1][1].loc[:, Name][x] = self.model.data.transformations[len(self.model.data.transformations)-1][1].loc[:, Name][x + first]
+    def generer_un_filtre(self):
+        pass
 
-
-    def popUpGraphic(self):
+    def pop_up_graphic(self):
         """
         retire le graphics du model
         :return:
