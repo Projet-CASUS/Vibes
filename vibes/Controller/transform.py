@@ -25,6 +25,11 @@ class Filter(Transformation):
         self.type = type
 
     def __call__(self, data):
+        """
+        TODO Louis-Philippe
+        :param data:
+        :return:
+        """
         if self.type is None:
             return data
         elif type == "philippe":
@@ -33,7 +38,9 @@ class Filter(Transformation):
             return None
 
 class RangeSelection(Transformation):
-    #Philippe Boudreau
+    """
+    TODO philippe
+    """
     def __init__(self,first,last):
             self.first = first
             self.last = last
@@ -46,3 +53,9 @@ class RangeSelection(Transformation):
     def data_relocation(self,i,data):
         for x in range(0, self.last - self.first):
              data.loc[:,self.NameArray[i]][x] = data.loc[:, self.NameArray[i]][x + self.first]
+
+class FiltreParralèle():
+    """
+    TODO Louis-Philippe
+    """
+    pass

@@ -33,7 +33,14 @@ class DataVibes:
         pass
         # TODO: parser hptfx
 
-    def add_transformation(self, cls, *args, **kwargs):
+    def add_data(self):
+        """
+        todo Daniel Ajouter un importfile dans le transformation pipline
+        :return:
+        """
+        pass
+
+    def add_transformation(self, cls, index =-1 ,*args, **kwargs):
         """
         Ajoute une transformation à la fin de la liste de transformations
         :param cls: une classe de type Tranformation (mais pas ImportFile)
@@ -42,7 +49,7 @@ class DataVibes:
         :return:
         """
         func = cls(*args, **kwargs)
-        self.transformations.append([func, func(self.transformations[-1][1])])
+        self.transformations.append([func, func(self.transformations[index][1])])
 
     def insert_transformation(self, cls, idx, *args, **kwargs):
         """

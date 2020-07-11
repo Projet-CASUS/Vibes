@@ -18,6 +18,7 @@ class Controller():
 
     def add_data(self,type ,datafile):
         """
+        todo Daniel
         instancier un objet de data dans le datavibes du model
         Note: is it useful if so we need to modify add_transformation to review the tuple
         :return: none
@@ -25,29 +26,29 @@ class Controller():
         self.model.data.add_transformation(vibes.ImportFile,type,datafile)
 
 
-    def add_transform(self,type):
+    def add_transform(self, type,index =-1):
         """
+        TODO Vianney
         ajouter une transformation dans l'objet datavibes du model
         """
-        self.model.data.add_transformation(vibes.Filter,type)
+        self.model.data.add_transformation(vibes.Filter,index ,type)
         pass
 
     def data_range_selections(self,first,last):
-        # Philippe Boudreau
          """
+         TODO Philippe
          fait une selection de donnée dans la section des données temporelles.
          update le view en mettant en evidence les limites
          ***definire comment modifier datavibes en conséquence***
          :param self:
          :return:
          """
-         self.model.data.add_transformation(vibes.RangeSelection,first,last)
+         self.model.data.add_transformation(vibes.Controller.transform.RangeSelection,first,last)
 
-    def generer_un_filtre(self):
-        pass
 
     def pop_up_graphic(self):
         """
+        TODO philippe
         retire le graphics du model
         :return:
         """
