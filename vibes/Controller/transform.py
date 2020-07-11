@@ -11,6 +11,7 @@ class Transformation:
 
 class ImportFile(Transformation):
     def __init__(self, type='csv'):
+        super().__init__()
         self.type = type
 
     def __call__(self, filename):
@@ -22,6 +23,7 @@ class ImportFile(Transformation):
 
 class Filter(Transformation):
     def __init__(self, type=None):
+        super().__init__()
         self.type = type
 
     def __call__(self, data):
@@ -42,9 +44,10 @@ class RangeSelection(Transformation):
     TODO philippe
     """
     def __init__(self,first,last):
-            self.first = first
-            self.last = last
-            self.NameArray = ["time", "x", "y", "z", "gforce"]
+        super().__init__()
+        self.first = first
+        self.last = last
+        self.NameArray = ["time", "x", "y", "z", "gforce"]
     def __call__(self,data):
         for x in range(0, len(self.NameArray)):
             self.data_relocation(x,data)
@@ -54,7 +57,7 @@ class RangeSelection(Transformation):
         for x in range(0, self.last - self.first):
              data.loc[:,self.NameArray[i]][x] = data.loc[:, self.NameArray[i]][x + self.first]
 
-class FiltreParralèle():
+class FiltreParralele():
     """
     TODO Louis-Philippe
     """
