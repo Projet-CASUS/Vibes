@@ -1,2 +1,2 @@
-from vibes.Model.data import DataVibes
-from vibes.Controller.transform import *
+from vibes.model import DataVibes
+from vibes.transform import *
