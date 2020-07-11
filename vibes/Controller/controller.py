@@ -16,7 +16,7 @@ class Controller():
         self.view = view.GraphicalInterface()
         self.model = models.Model(datafile)
 
-    def add_data(self,type ,datafile):
+    def add_data(self, type, datafile):
         """
         todo Daniel
         instancier un objet de data dans le datavibes du model
@@ -31,10 +31,10 @@ class Controller():
         TODO Vianney
         ajouter une transformation dans l'objet datavibes du model
         """
-        self.model.data.add_transformation(vibes.Filter,index ,type)
+        self.model.data.add_transformation(vibes.Filter,index,type)
         pass
 
-    def data_range_selections(self,first,last):
+    def data_range_selections(self, first, last , index = -1):
          """
          TODO Philippe
          fait une selection de donnée dans la section des données temporelles.
@@ -43,7 +43,7 @@ class Controller():
          :param self:
          :return:
          """
-         self.model.data.add_transformation(vibes.Controller.transform.RangeSelection,first,last)
+         self.model.data.add_transformation(vibes.Controller.transform.RangeSelection,index,first,last)
 
 
     def pop_up_graphic(self):

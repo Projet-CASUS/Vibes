@@ -14,6 +14,7 @@ class Transformation:
 
 class ImportFile(Transformation):
     def __init__(self, type='csv'):
+        super().__init__()
         self.type = type
 
     def __call__(self, filename):
@@ -24,6 +25,7 @@ class ImportFile(Transformation):
 
 
 class Filter(Transformation):
+
     def __init__(self, sample_rate, numtaps = 5):
         self.sample_rate = sample_rate
         self.numtaps = numtaps
@@ -59,16 +61,15 @@ class Filter(Transformation):
         return signal.firwin(self.numtaps, cutoff, pass_zero=False)
 
 
-
-
 class RangeSelection(Transformation):
     """
     TODO philippe
     """
     def __init__(self,first,last):
-            self.first = first
-            self.last = last
-            self.NameArray = ["time", "x", "y", "z", "gforce"]
+        super().__init__()
+        self.first = first
+        self.last = last
+        self.NameArray = ["time", "x", "y", "z", "gforce"]
     def __call__(self,data):
         for x in range(0, len(self.NameArray)):
             self.data_relocation(x,data)

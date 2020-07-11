@@ -40,7 +40,7 @@ class DataVibes:
         """
         pass
 
-    def add_transformation(self, cls, index =-1 ,*args, **kwargs):
+    def add_transformation(self, cls,index = -1 ,*args, **kwargs, ):
         """
         Ajoute une transformation à la fin de la liste de transformations
         :param cls: une classe de type Tranformation (mais pas ImportFile)
