@@ -12,6 +12,7 @@ class Transformation:
 
 class ImportFile (Transformation):
     def __init__(self, type='csv'):
+        super().__init__()
         self.type = type
 
     def __call__(self, filename):
@@ -23,6 +24,7 @@ class ImportFile (Transformation):
 
 class Filter (Transformation):
     def __init__(self, type=None):
+        super().__init__()
         self.type = type
 
     def __call__(self, data):
