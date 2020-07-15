@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b746c4a2-4ad9-4d45-a780-71f7fc092808" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Vibes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Vibes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vibes/Controller/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vibes/Model/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Model/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/View/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/View/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +37,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/fr.dic" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Qt/MainWindowTest.py" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="S3_app4" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -110,43 +112,53 @@
       <screen x="0" y="0" width="1474" height="864" />
     </state>
     <state width="381" height="438" key="DebuggerActiveHint/0.0.1474.864@0.0.1474.864" timestamp="1594475257643" />
-    <state x="517" y="187" key="FileChooserDialogImpl" timestamp="1594470857680">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state x="-1662" y="225" key="FileChooserDialogImpl" timestamp="1594837815355">
+      <screen x="-2560" y="0" width="2560" height="1040" />
     </state>
     <state x="517" y="187" key="FileChooserDialogImpl/0.0.1474.864@0.0.1474.864" timestamp="1594470857680" />
-    <state width="1453" height="228" key="GridCell.Tab.0.bottom" timestamp="1594475669286">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state x="-1662" y="225" key="FileChooserDialogImpl/0.0.1536.824/-2560.0.2560.1040@-2560.0.2560.1040" timestamp="1594837815355" />
+    <state width="2539" height="281" key="GridCell.Tab.0.bottom" timestamp="1594846644461">
+      <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1453" height="228" key="GridCell.Tab.0.bottom/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
-    <state width="1453" height="228" key="GridCell.Tab.0.center" timestamp="1594475669285">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state width="1453" height="277" key="GridCell.Tab.0.bottom/0.0.1474.864@0.0.1474.864" timestamp="1594478195649" />
+    <state width="2539" height="347" key="GridCell.Tab.0.bottom/0.0.1536.824/-2560.0.2560.1040@-2560.0.2560.1040" timestamp="1594839516620" />
+    <state width="2539" height="281" key="GridCell.Tab.0.bottom/0.0.2560.1040@0.0.2560.1040" timestamp="1594846644461" />
+    <state width="2539" height="281" key="GridCell.Tab.0.center" timestamp="1594846644461">
+      <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1453" height="228" key="GridCell.Tab.0.center/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
-    <state width="1453" height="228" key="GridCell.Tab.0.left" timestamp="1594475669285">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state width="1453" height="277" key="GridCell.Tab.0.center/0.0.1474.864@0.0.1474.864" timestamp="1594478195649" />
+    <state width="2539" height="347" key="GridCell.Tab.0.center/0.0.1536.824/-2560.0.2560.1040@-2560.0.2560.1040" timestamp="1594839516620" />
+    <state width="2539" height="281" key="GridCell.Tab.0.center/0.0.2560.1040@0.0.2560.1040" timestamp="1594846644461" />
+    <state width="2539" height="281" key="GridCell.Tab.0.left" timestamp="1594846644461">
+      <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1453" height="228" key="GridCell.Tab.0.left/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
-    <state width="1453" height="228" key="GridCell.Tab.0.right" timestamp="1594475669286">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state width="1453" height="277" key="GridCell.Tab.0.left/0.0.1474.864@0.0.1474.864" timestamp="1594478195649" />
+    <state width="2539" height="347" key="GridCell.Tab.0.left/0.0.1536.824/-2560.0.2560.1040@-2560.0.2560.1040" timestamp="1594839516620" />
+    <state width="2539" height="281" key="GridCell.Tab.0.left/0.0.2560.1040@0.0.2560.1040" timestamp="1594846644461" />
+    <state width="2539" height="281" key="GridCell.Tab.0.right" timestamp="1594846644461">
+      <screen x="0" y="0" width="2560" height="1040" />
     </state>
-    <state width="1453" height="228" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
-    <state x="246" y="75" key="SettingsEditor" timestamp="1594470863867">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state width="1453" height="277" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" timestamp="1594478195649" />
+    <state width="2539" height="347" key="GridCell.Tab.0.right/0.0.1536.824/-2560.0.2560.1040@-2560.0.2560.1040" timestamp="1594839516620" />
+    <state width="2539" height="281" key="GridCell.Tab.0.right/0.0.2560.1040@0.0.2560.1040" timestamp="1594846644461" />
+    <state x="427" y="90" key="SettingsEditor" timestamp="1594846257086">
+      <screen x="0" y="0" width="2560" height="1040" />
     </state>
     <state x="246" y="75" key="SettingsEditor/0.0.1474.864@0.0.1474.864" timestamp="1594470863867" />
-    <state x="330" y="165" key="Vcs.Push.Dialog.v2" timestamp="1594472622240">
+    <state x="427" y="90" key="SettingsEditor/0.0.2560.1040@0.0.2560.1040" timestamp="1594846257086" />
+    <state x="330" y="165" key="Vcs.Push.Dialog.v2" timestamp="1594477669599">
       <screen x="0" y="0" width="1474" height="864" />
     </state>
-    <state x="330" y="165" key="Vcs.Push.Dialog.v2/0.0.1474.864@0.0.1474.864" timestamp="1594472622240" />
+    <state x="330" y="165" key="Vcs.Push.Dialog.v2/0.0.1474.864@0.0.1474.864" timestamp="1594477669599" />
+    <state x="775" y="298" key="com.intellij.ide.util.TipDialog" timestamp="1594852268823">
+      <screen x="0" y="0" width="2560" height="1040" />
+    </state>
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824/-2560.0.2560.1040@0.0.1536.824" timestamp="1594837223927" />
+    <state x="775" y="298" key="com.intellij.ide.util.TipDialog/0.0.2560.1040@0.0.2560.1040" timestamp="1594852268823" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>14</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vibes/Controller/transform.py</url>
           <line>48</line>
@@ -154,18 +166,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>45</line>
+          <line>49</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vibes/Model/data.py</url>
           <line>50</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/transform.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -180,6 +217,8 @@
       <configuration name="PythonConfigurationType">
         <watch expression="self.app" />
         <watch expression=" ContLivesMatter.Controller.data_range_selections(1,2)" />
+        <watch expression="self.model.data.transformations[-1][1].loc[:&quot;time&quot;]" />
+        <watch expression="data.loc[:, self.NameArray[i]]" />
       </configuration>
     </watches-manager>
   </component>
