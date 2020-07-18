@@ -10,6 +10,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QMainWindow
 from qwt.qt.QtGui import QApplication
 from qwt import QwtPlot, QwtPlotCurve
+from decimal import Decimal
 class Controller():
     def __init__(self,datafile):
         """
@@ -17,8 +18,7 @@ class Controller():
             reçois les argument sys.argv pour contruire un Qt application
 
         """
-        self.app = QApplication(sys.argv)
-        self.view = view.GraphicalInterface()
+        self.myinterface = view.graphical_interface()
         self.model = models.Model(datafile)
     def add_data(self, type, datafile):
         """
@@ -64,17 +64,21 @@ class Controller():
         afficher le graphique en temporelle du model
         :return:
         """
-        arrx = np.array(self.model.data.transformations[-1][1].loc[:, "time"])
-        arry = np.array(self.model.data.transformations[-1][1].loc[:, "x"])
-        x = np.array([2,3,4,5,8])
-        y =np.array(([1,2,3,4,5]))
-        my_plot = QwtPlot("Two curves")
+
+        x = [None]*len(self.model.data.transformations[-1][1])
+        y = [None]*len(self.model.data.transformations[-1][1])
+        for i in range(0, len(x)):
+            x[i] = float(self.model.data.transformations[-1][1].loc[:, "time"][i].replace(',', '.'))
+
+        for i in range(0, len(y)):
+            y[i] = float(self.model.data.transformations[-1][1].loc[:, "x"][i].replace(',', '.'))
         curve1 = QwtPlotCurve("Curve 1")
         curve1.setData(x, y)
-        curve1.attach(my_plot)
-        my_plot.resize(600, 300)
-        my_plot.replot()
-        my_plot.show()
+        curve1.attach(self.myinterface.mytimeplot)
+        self.myinterface.mytimeplot.resize(600, 300)
+        self.myinterface.mytimeplot.replot()
+        self.myinterface.mytimeplot.show()
+
 
 
 
