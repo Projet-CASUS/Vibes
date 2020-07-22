@@ -9,9 +9,11 @@ import numpy as np
 from qwt.qt.QtGui import QApplication
 app = QApplication(sys.argv)
 control = ContLivesMatter.Controller("./test_files/test00.csv")
+control.data_range_selections(2000,2500)
 control.show_of_time_graphic()
+control.show_of_pipeline()
 #control.addTransform(None)
-#control.data_range_selections(1,2)
+
 
 sys.exit(app.exec_())
 #control.app.exec_()

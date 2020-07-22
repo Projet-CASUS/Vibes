@@ -21,6 +21,9 @@ class ImportFile(Transformation):
             return filename
 
 
+class frenquency_transformation():
+    pass
+
 class Filter(Transformation):
     def __init__(self, type=None):
         super().__init__()
@@ -48,15 +51,24 @@ class RangeSelection(Transformation):
         self.first = first
         self.last = last
         self.NameArray = ["time", "x", "y", "z", "gforce"]
+        self.type = "RangeSelection"
+        self.savedUpData =[[0 for x in range(len(self.NameArray))] for i in range((self.last - self.first))]
     def __call__(self,data):
         for x in range(0, len(self.NameArray)):
             self.data_relocation(x,data)
-        return data
+        newData = pd.DataFrame(self.savedUpData, columns=['time','x','y','z','gforce'])
+        return newData
 
     def data_relocation(self,i,data):
         for x in range(0, self.last - self.first):
-             data.loc[:,self.NameArray[i]][x] = data.loc[:, self.NameArray[i]][x + self.first]
+             self.savedUpData[x][i] = data.loc[:, self.NameArray[i]][x + self.first]
 
+    def merge(self):
+        """
+        merge time together
+        :return:
+        """
+        pass
 class FiltreParralele():
     """
     TODO Louis-Philippe
