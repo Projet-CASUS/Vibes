@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b746c4a2-4ad9-4d45-a780-71f7fc092808" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vibes/Controller/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vibes/Model/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Model/data.py" afterDir="false" />
-    </list>
+    <list default="true" id="b746c4a2-4ad9-4d45-a780-71f7fc092808" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,6 +125,14 @@
       <screen x="0" y="0" width="1474" height="864" />
     </state>
     <state width="1453" height="228" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
+    <state x="-2258" y="117" width="2108" height="831" key="MergeDialog" timestamp="1595783812815">
+      <screen x="-2498" y="5" width="2498" height="1080" />
+    </state>
+    <state x="-2258" y="117" width="2108" height="831" key="MergeDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595783812815" />
+    <state x="-1537" y="261" key="MultipleFileMergeDialog" timestamp="1595783812821">
+      <screen x="-2498" y="5" width="2498" height="1080" />
+    </state>
+    <state x="-1537" y="261" key="MultipleFileMergeDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595783812821" />
     <state x="246" y="75" key="SettingsEditor" timestamp="1594470863867">
       <screen x="0" y="0" width="1474" height="864" />
     </state>
@@ -138,23 +141,27 @@
       <screen x="0" y="0" width="1474" height="864" />
     </state>
     <state x="330" y="165" key="Vcs.Push.Dialog.v2/0.0.1474.864@0.0.1474.864" timestamp="1594472622240" />
+    <state x="-1619" y="336" key="git4idea.merge.GitPullDialog" timestamp="1595783645959">
+      <screen x="-2498" y="5" width="2498" height="1080" />
+    </state>
+    <state x="-1619" y="336" key="git4idea.merge.GitPullDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595783645959" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>14</line>
+          <line>20</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vibes/Controller/transform.py</url>
-          <line>48</line>
+          <line>51</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>45</line>
+          <line>50</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
