@@ -6,7 +6,7 @@ import vibes.Controller.transform as trans
 from qwt.qt.QtGui import (QApplication)
 import pandas as pd
 class Controller():
-    def __init__(self,datafile):
+    def __init__(self, datafile):
         """
         Init:
             reçois les argument sys.argv pour contruire un Qt application
