@@ -1,9 +1,10 @@
 import numpy as np
 import scipy.signal as signal
 convolve = np.convolve
+import transform
 
 
-class FIR:
+class FIR (Filter):
     def __init__(self, sample_rate, numtaps = 5):
         super().__init__()
         self.sample_rate = sample_rate
