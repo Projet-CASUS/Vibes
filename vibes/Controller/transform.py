@@ -14,6 +14,10 @@ class ImportFile:
         else:
             return filename
 
+
+class frenquency_transformation():
+    pass
+
 class Filter:
 
     def __init__(self, sample_rate, numtaps = 5):
