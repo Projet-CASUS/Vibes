@@ -18,6 +18,7 @@ class Controller():
             reçois les argument sys.argv pour contruire un Qt application
 
         """
+        self.app = QApplication(sys.argv)
         self.myinterface = view.graphical_interface()
         self.model = models.Model(datafile)
     def add_data(self, type, datafile):
@@ -82,8 +83,8 @@ class Controller():
              self.myinterface.pipelineWidget.pipelineEntry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
              self.myinterface.pipelineWidget.pipelineEntry.setText(self.model.data.transformations[x][0].type)
              self.myinterface.pipelineWidget.pipelineEntry.setAlignment(Qt.AlignBottom | Qt.AlignRight)
-             self.myinterface.pipelineWidget.layout.addWidget( self.myinterface.pipelineWidget.pipelineEntry)
-        self.myinterface.mainWindow.setLayout(self.myinterface.pipelineWidget.layout)
+             self.myinterface.pipelineWidget.layout.addWidget(self.myinterface.pipelineWidget.pipelineEntry)
+
         self.myinterface.show_of_pipeline()
 
 
