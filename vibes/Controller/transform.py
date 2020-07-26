@@ -15,9 +15,6 @@ class ImportFile:
             return filename
 
 
-class frenquency_transformation():
-    pass
-
 class Filter:
 
     def __init__(self, sample_rate, numtaps = 5):
@@ -45,7 +42,7 @@ class RangeSelection:
         for x in range(0, self.last - self.first):
              data.loc[:,self.NameArray[i]][x] = data.loc[:, self.NameArray[i]][x + self.first]
 
-class FiltreParralele():
+class FiltreParralele:
     """
     TODO Louis-Philippe
     """
