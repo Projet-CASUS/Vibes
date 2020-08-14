@@ -22,6 +22,7 @@ class DataVibes:
         else:
             self.transformations = []
             self.read_hptfx(funcfile, datafile)
+            self.currentIndex =0;
 
     def read_hptfx(self, funcfile, datafile=None):
         """

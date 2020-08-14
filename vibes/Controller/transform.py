@@ -50,7 +50,6 @@ class Filter(Transformation):
         filtered_data = convolve(data, fir_filter, 'same')
         return filtered_data
 
-
     def passe_bas(self): # Définit le vecteur de filtre FIR pour un passe bas
         f = self.cutoff/self.sample_rate
         return signal.firwin(self.numtaps, f)
@@ -63,7 +62,6 @@ class Filter(Transformation):
         f1 = float(self.cutoff[0]/self.sample_rate)
         f2 = float(self.cutoff[1]/self.sample_rate)
         return signal.firwin(self.numtaps, self.cutoff, pass_zero=False)
-
 
 class RangeSelection(Transformation):
     """
