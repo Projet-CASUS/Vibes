@@ -2,7 +2,7 @@ import scipy.signal as signal
 import numpy as np
 convolve = np.convolve
 import pandas as pd
-mport scipy.signal as signal
+import scipy.signal as signal
 
 
 class ImportFile:
