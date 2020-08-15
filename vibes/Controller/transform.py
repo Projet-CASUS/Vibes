@@ -74,6 +74,7 @@ class RangeSelection(Transformation):
         self.NameArray = ["time", "x", "y", "z", "gforce"]
         self.type = "RangeSelection"
         self.savedUpData =[[0 for x in range(len(self.NameArray))] for i in range((self.last - self.first))]
+
     def __call__(self,data):
         for x in range(0, len(self.NameArray)):
             self.data_relocation(x,data)

@@ -63,20 +63,20 @@ class Controller():
         """
         pass
 
-    def show_of_time_graphic(self):
+    def show_of_time_graphic(self , w = -1):
         """
         TODO Philippe
         afficher le graphique en temporelle du model
         :return:
         """
         NameArray = ["time", "x", "y", "z", "gforce"]
-        x = [None]*len(self.model.data.transformations[-1][1])
+        x = [None]*len(self.model.data.transformations[w][1])
         for i in range(0, len(x)):
-            x[i] = float(self.model.data.transformations[-1][1].loc[:, NameArray[0]][i].replace(',', '.'))
+            x[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[0]][i].replace(',', '.'))
         for n in range(1,len(NameArray)-1):
-            y = [None]*len(self.model.data.transformations[-1][1])
+            y = [None]*len(self.model.data.transformations[w][1])
             for i in range(0, len(y)):
-                y[i] = float(self.model.data.transformations[-1][1].loc[:, NameArray[n]][i].replace(',', '.'))
+                y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
             curve = QwtPlotCurve(NameArray[n])
             curve.setData(x, y)
             curve.attach(self.myinterface.mytimeplot)
@@ -87,12 +87,21 @@ class Controller():
 
     def update_pipeline(self):
         for x in range(0,len(self.model.data.transformations[0])):
-            if(x < self.myinterface.mainWindow.widget.pipelineSlider.value()):
+            f= len(self.model.data.transformations[0]) - self.myinterface.mainWindow.widget.pipelineSlider.value()
+            if(x < f):
                 t = self.myinterface.mainWindow.layout.itemAt(x).widget().setEnabled(True)
             else:
                 t = self.myinterface.mainWindow.layout.itemAt(x).widget().setEnabled(False)
+        self.update_time_graphic()
+
+    def update_time_graphic(self):
+        NameArray = ["time", "x", "y", "z", "gforce"]
+        for x in range(0,len(self.model.data.transformations[0])):
+            if(self.myinterface.mainWindow.layout.itemAt(x).widget().isEnabled() == False and x > 0 ):
+                self.show_of_time_graphic(x-1)
+
+
     def show_of_pipeline(self):
-        LastValue =0;
         for x in range(0,len(self.model.data.transformations[0])):
             pipelineEntry = QLabel()
             pipelineEntry.setFixedSize(100, 20)
@@ -100,12 +109,12 @@ class Controller():
             pipelineEntry.setText(self.model.data.transformations[x][0].type)
             pipelineEntry.setAlignment(Qt.AlignCenter)
             self.myinterface.mainWindow.layout.addWidget(pipelineEntry)
-            self.myinterface.mainWindow.widget.pipelineSlider.setRange(0,x+1)
-            lastValue = x+1
+            self.myinterface.mainWindow.widget.pipelineSlider.setRange(0, x+1)
         self.myinterface.mainWindow.widget.pipelineSlider.setTickInterval(1)
         self.myinterface.mainWindow.layout1.addWidget(self.myinterface.mainWindow.widget.pipelineSlider)
         self.myinterface.mainWindow.layout1.addLayout(self.myinterface.mainWindow.layout)
         self.myinterface.show_of_pipeline()
+
 
     def modifyPipeline(self):
          self.model.data.currentIndex = self.myinterface.mainWindow.widget.pipelineSlider.value()
