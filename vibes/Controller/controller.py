@@ -79,18 +79,10 @@ class Controller():
         self.myinterface.show_of_time_plot()
 
     def show_of_pipeline(self):
-        for x in range(0,len(self.model.data.transformations)):
+        for x in range(0,len(self.model.data.transformations)-1):
              self.myinterface.pipelineWidget.pipelineEntry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
              self.myinterface.pipelineWidget.pipelineEntry.setText(self.model.data.transformations[x][0].type)
              self.myinterface.pipelineWidget.pipelineEntry.setAlignment(Qt.AlignBottom | Qt.AlignRight)
              self.myinterface.pipelineWidget.layout.addWidget(self.myinterface.pipelineWidget.pipelineEntry)
 
         self.myinterface.show_of_pipeline()
-
-
-
-
-
-
-
-
