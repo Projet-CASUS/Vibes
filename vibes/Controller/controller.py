@@ -12,7 +12,7 @@ from qwt.qt.QtGui import QApplication
 from qwt import QwtPlot, QwtPlotCurve
 from decimal import Decimal
 class Controller():
-    def __init__(self,datafile):
+    def __init__(self, datafile):
         """
         Init:
             reçois les argument sys.argv pour contruire un Qt application
