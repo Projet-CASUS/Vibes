@@ -11,6 +11,10 @@ class FIR (Filter):
         self.numtaps = numtaps
 
     def __call__(self, data, type, cutoff):
+    # data   = Vecteur de données à filtrer
+    # type   = Type de filtre [format texte] (passe_bas || passe_haut || passe_bande || coupe_bande)
+    # cutoff = Fréquence de coupure passe_bas   & passe_haut  =>[int || float] 
+    #                               passe_bande & coupe_bande =>[vect de 2 int || float]
         self.data = data
         self.cutoff = cutoff
 
@@ -23,6 +27,8 @@ class FIR (Filter):
             fir_filter = self.passe_haut()
         elif type == "passe_bande":
             fir_filter = self.passe_bande()
+        elif type == "coupe_bande":
+            fir_filter = self.coupe_bande()
 
         # On effectue la convolution du filtre FIR
         filtered_data = convolve(data, fir_filter, 'same')
@@ -39,4 +45,9 @@ class FIR (Filter):
     def passe_bande(self):  # Définit le vecteur de filtre FIR pour un passe bande
         f1 = float(self.cutoff[0] / self.sample_rate)
         f2 = float(self.cutoff[1] / self.sample_rate)
-        return signal.firwin(self.numtaps, self.cutoff, pass_zero=False)
+        return signal.firwin(self.numtaps, [f1, f2], pass_zero=False)
+
+    def coupe_bande(self):  # Définit le vecteur de filtre FIR pour un passe bande
+        f1 = float(self.cutoff[0] / self.sample_rate)
+        f2 = float(self.cutoff[1] / self.sample_rate)
+        return signal.firwin(self.numtaps, [f1, f2])
