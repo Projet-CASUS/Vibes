@@ -51,7 +51,7 @@ class Filter:
         f2 = float(self.cutoff[1]/self.sample_rate)
         return signal.firwin(self.numtaps, self.cutoff, pass_zero=False)
 
-class RangeSelection(Transformation):
+class RangeSelection:
     """
     TODO philippe
     """
