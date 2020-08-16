@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b746c4a2-4ad9-4d45-a780-71f7fc092808" name="Default Changelist" comment="" />
+    <list default="true" id="842639bc-8e10-474e-b260-896a72a6d126" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/Controller/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/Controller/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/transform.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +35,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/fr.dic" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="S3_app4" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -68,7 +72,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b746c4a2-4ad9-4d45-a780-71f7fc092808" name="Default Changelist" comment="" />
+      <changelist id="842639bc-8e10-474e-b260-896a72a6d126" name="Default Changelist" comment="" />
       <created>1593271991265</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -81,12 +85,20 @@
       <option name="project" value="LOCAL" />
       <updated>1594472615332</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="pipeline trash">
+      <created>1597422368447</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1597422368447</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Assignation de tâche" />
-    <option name="LAST_COMMIT_MESSAGE" value="Assignation de tâche" />
+    <MESSAGE value="pipeline trash" />
+    <option name="LAST_COMMIT_MESSAGE" value="pipeline trash" />
   </component>
   <component name="WindowStateProjectService">
     <state x="192" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594469569013">
@@ -97,34 +109,68 @@
       <screen x="0" y="0" width="1474" height="864" />
     </state>
     <state x="468" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1474.864@0.0.1474.864" timestamp="1594470513730" />
-    <state x="316" y="27" key="CommitChangelistDialog2" timestamp="1594472614814">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state x="-1959" y="39" key="CommitChangelistDialog2" timestamp="1597422367881">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state x="316" y="27" key="CommitChangelistDialog2/0.0.1474.864@0.0.1474.864" timestamp="1594472614814" />
-    <state width="381" height="438" key="DebuggerActiveHint" timestamp="1594475257643">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state x="-1959" y="39" key="CommitChangelistDialog2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597422367881" />
+    <state width="739" height="548" key="DebuggerActiveHint" timestamp="1597189369714">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state width="381" height="438" key="DebuggerActiveHint/0.0.1474.864@0.0.1474.864" timestamp="1594475257643" />
+    <state width="739" height="548" key="DebuggerActiveHint/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597189369714" />
     <state x="517" y="187" key="FileChooserDialogImpl" timestamp="1594470857680">
       <screen x="0" y="0" width="1474" height="864" />
     </state>
     <state x="517" y="187" key="FileChooserDialogImpl/0.0.1474.864@0.0.1474.864" timestamp="1594470857680" />
-    <state width="1453" height="228" key="GridCell.Tab.0.bottom" timestamp="1594475669286">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state width="2473" height="291" key="GridCell.Tab.0.bottom" timestamp="1597502552774">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state width="1453" height="228" key="GridCell.Tab.0.bottom/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
-    <state width="1453" height="228" key="GridCell.Tab.0.center" timestamp="1594475669285">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state width="2477" height="182" key="GridCell.Tab.0.bottom/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
+    <state width="2477" height="291" key="GridCell.Tab.0.bottom/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
+    <state width="2473" height="291" key="GridCell.Tab.0.bottom/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597272982831" />
+    <state width="2490" height="377" key="GridCell.Tab.0.bottom/64.0.2496.1080@64.0.2496.1080" timestamp="1597283165091" />
+    <state width="2473" height="291" key="GridCell.Tab.0.bottom/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597021361145" />
+    <state width="2477" height="363" key="GridCell.Tab.0.bottom/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
+    <state width="2473" height="291" key="GridCell.Tab.0.bottom/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597502552774" />
+    <state width="2477" height="182" key="GridCell.Tab.0.bottom/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
+    <state width="2473" height="291" key="GridCell.Tab.0.center" timestamp="1597502552774">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state width="1453" height="228" key="GridCell.Tab.0.center/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
-    <state width="1453" height="228" key="GridCell.Tab.0.left" timestamp="1594475669285">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state width="2477" height="182" key="GridCell.Tab.0.center/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
+    <state width="2477" height="291" key="GridCell.Tab.0.center/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
+    <state width="2473" height="291" key="GridCell.Tab.0.center/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597272982831" />
+    <state width="2490" height="377" key="GridCell.Tab.0.center/64.0.2496.1080@64.0.2496.1080" timestamp="1597283165091" />
+    <state width="2473" height="291" key="GridCell.Tab.0.center/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597021361145" />
+    <state width="2477" height="363" key="GridCell.Tab.0.center/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
+    <state width="2473" height="291" key="GridCell.Tab.0.center/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597502552774" />
+    <state width="2477" height="182" key="GridCell.Tab.0.center/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
+    <state width="2473" height="291" key="GridCell.Tab.0.left" timestamp="1597502552774">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state width="1453" height="228" key="GridCell.Tab.0.left/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
-    <state width="1453" height="228" key="GridCell.Tab.0.right" timestamp="1594475669286">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state width="2477" height="182" key="GridCell.Tab.0.left/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
+    <state width="2477" height="291" key="GridCell.Tab.0.left/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
+    <state width="2473" height="291" key="GridCell.Tab.0.left/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597272982830" />
+    <state width="2490" height="377" key="GridCell.Tab.0.left/64.0.2496.1080@64.0.2496.1080" timestamp="1597283165091" />
+    <state width="2473" height="291" key="GridCell.Tab.0.left/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597021361145" />
+    <state width="2477" height="363" key="GridCell.Tab.0.left/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
+    <state width="2473" height="291" key="GridCell.Tab.0.left/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597502552774" />
+    <state width="2477" height="182" key="GridCell.Tab.0.left/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
+    <state width="2473" height="291" key="GridCell.Tab.0.right" timestamp="1597502552774">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state width="1453" height="228" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
+    <state width="2477" height="182" key="GridCell.Tab.0.right/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
+    <state width="2477" height="291" key="GridCell.Tab.0.right/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
+    <state width="2473" height="291" key="GridCell.Tab.0.right/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597272982831" />
+    <state width="2490" height="377" key="GridCell.Tab.0.right/64.0.2496.1080@64.0.2496.1080" timestamp="1597283165091" />
+    <state width="2473" height="291" key="GridCell.Tab.0.right/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597021361145" />
+    <state width="2477" height="363" key="GridCell.Tab.0.right/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
+    <state width="2473" height="291" key="GridCell.Tab.0.right/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597502552774" />
+    <state width="2477" height="182" key="GridCell.Tab.0.right/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
     <state x="-2258" y="117" width="2108" height="831" key="MergeDialog" timestamp="1595783812815">
       <screen x="-2498" y="5" width="2498" height="1080" />
     </state>
@@ -133,46 +179,63 @@
       <screen x="-2498" y="5" width="2498" height="1080" />
     </state>
     <state x="-1537" y="261" key="MultipleFileMergeDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595783812821" />
-    <state x="246" y="75" key="SettingsEditor" timestamp="1594470863867">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state x="-1599" y="36" key="SettingsEditor" timestamp="1597502915846">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state x="246" y="75" key="SettingsEditor/0.0.1474.864@0.0.1474.864" timestamp="1594470863867" />
-    <state x="330" y="165" key="Vcs.Push.Dialog.v2" timestamp="1594472622240">
-      <screen x="0" y="0" width="1474" height="864" />
+    <state x="-1599" y="36" key="SettingsEditor/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597502915846" />
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2" timestamp="1597422428374">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state x="330" y="165" key="Vcs.Push.Dialog.v2/0.0.1474.864@0.0.1474.864" timestamp="1594472622240" />
-    <state x="-1619" y="336" key="git4idea.merge.GitPullDialog" timestamp="1595783645959">
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597422428374" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1597497797760">
+      <screen x="-2494" y="5" width="2494" height="1080" />
+    </state>
+    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596853429854" />
+    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498352792" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597269761728" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597002709028" />
+    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595880187603" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597497797760" />
+    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596916224021" />
+    <state x="-1623" y="90" width="747" height="909" key="find.popup" timestamp="1595805531516">
       <screen x="-2498" y="5" width="2498" height="1080" />
     </state>
-    <state x="-1619" y="336" key="git4idea.merge.GitPullDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595783645959" />
+    <state x="-1623" y="90" width="747" height="909" key="find.popup/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595805531516" />
+    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog" timestamp="1597422395645">
+      <screen x="-2494" y="5" width="2494" height="1080" />
+    </state>
+    <state x="-1619" y="336" key="git4idea.merge.GitPullDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595784589223" />
+    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597422395645" />
+    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1597500663611">
+      <screen x="-2494" y="5" width="2494" height="1080" />
+    </state>
+    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597270543702" />
+    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597500663611" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>20</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/transform.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>50</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>7</line>
+          <line>100</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Model/data.py</url>
-          <line>50</line>
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>99</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>82</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -185,8 +248,9 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="self.app" />
-        <watch expression=" ContLivesMatter.Controller.data_range_selections(1,2)" />
+        <watch expression="self.model.data.transformations[w][1]" />
+        <watch expression="x" />
+        <watch expression="y" />
       </configuration>
     </watches-manager>
   </component>

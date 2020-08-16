@@ -1,11 +1,11 @@
 import sys
 import numpy as np
-
+import vibes.Model.model as models
 from qwt.qt.QtGui import (QApplication, QPen, QBrush, QFrame, QFont, QWidget,
                           QMainWindow, QToolButton, QIcon, QPixmap, QToolBar,
                           QHBoxLayout, QLabel, QPrinter, QPrintDialog,
-                          QFontDatabase, QWindow, QVBoxLayout, QRubberBand, QPalette)
-from qwt.qt.QtCore import QSize, QRect
+                          QFontDatabase, QWindow, QVBoxLayout, QRubberBand, QPalette, QSlider)
+from qwt.qt.QtCore import QSize, QRect, QPoint
 from qwt.qt.QtCore import Qt
 from qwt import (QwtPlot, QwtPlotMarker, QwtSymbol, QwtLegend, QwtPlotGrid,
                  QwtPlotCurve, QwtPlotItem, QwtLogScaleEngine, QwtText,
@@ -24,47 +24,37 @@ class graphical_interface():
         TODO Philippe Créer une fenêtre vide.
         """
         self.mytimeplot = time_plot()
-        self.mainWindow = QMainWindow()
-        self.pipelineWidget = pipeline_widget()
-        self.mainWindow.setCentralWidget(self.pipelineWidget)
+        self.mainWindow = pipeline()
+
     def show_of_time_plot(self):
         self.mytimeplot.resize(600, 300)
         self.mytimeplot.replot()
         self.mytimeplot.show()
 
     def show_of_pipeline(self):
-        self.mainWindow.setLayout(self.pipelineWidget.layout)
+        self.mainWindow.widget.setLayout(self.mainWindow.layout1)
+        self.mainWindow.setCentralWidget(self.mainWindow.widget)
         self.mainWindow.show()
 
 
+class pipeline(QMainWindow):
+    def __init__(self,*args,**kwargs):
+        super(pipeline, self).__init__(*args,**kwargs)
+        self.layout = QVBoxLayout()
+        self.layout1 = QHBoxLayout()
+        self.widget = pipeline_widget()
+
 class pipeline_widget(QWidget):
     def __init__(self):
-        super(pipeline_widget, self).__init__()
-        self.layout = QVBoxLayout()
-        self.pipelineEntry = QLabel()
-
-
-class QBrush(object):
-    pass
-
+        super(pipeline_widget,self).__init__()
+        self.pipelineIndex = None
+        self.pipelineSlider = None
 
 class time_plot(QwtPlot):
     def __init__(self):
-        super(time_plot, self).__init__("Two curve")
-        self.origin = None
-        self.rubberBand = None
-    def mousePressEvent(self, event):
-        origin = event.pos()
-        if not self.rubberBand:
-            self.rubberBand = QRubberBand(QRubberBand.Rectangle, self)
-            palette = QPalette()
-            palette.setBrush()
-            self.rubberBand.setPalette(palette)
-        self.rubberBand.setGeometry(QRect(origin, QSize()))
-        self.rubberBand.show()
-
-    def mouseMoveEvent(self, event):
-        self.rubberBand.setGeometry(QRect(self.origin, event.pos()).normalized())
+        super(time_plot, self).__init__()
+        self.firstSelection = QwtPlotCurve("First Selection")
+        self.lastSelection = QwtPlotCurve("Last Selection")
 
     def mouseReleaseEvent(self, event):
         self.rubberBand.show()
@@ -89,3 +79,4 @@ class spectrogram(QwtPlot):
     def define(self, values, sampling_freq):
         f, t, Sxx = signal.spectrogram(values, sampling_freq)
         return f, t, Sxx
+
