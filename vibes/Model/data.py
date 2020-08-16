@@ -1,4 +1,5 @@
 import vibes.Controller.transform as transform
+import wave, struct
 DEFAULT_HPTFX = "default.hptfx"
 
 # TODO: add del_transformation
@@ -74,8 +75,18 @@ class DataVibes:
         for i in range(idx, len(self.transformations)):
             self.transformations[i][1] = self.transformations[i][0](self.transformations[i-1][1])
 
-    def export_data(self):
-        pass
+    def export_data(self, data, freq):
+        filename = QtGui.QFileDialog.getSaveFileName(self, 'Save File')
+        wavef = wave.open(filename + '.wav','w')
+        wavef.setnchannels(1) # mono
+        wavef.setsampwidth(2)
+        wavef.setframerate((1/freq))
+        for i in range(len(data)):
+            wavefile = struct.pack('<h', data[i])
+            wavef.writeframesraw(wavefile)
+        wavef.close()
+        print('Fichier wav généré au répertoire: ' + mon_repertoire)
+
 
     def export_func(self):
         pass
