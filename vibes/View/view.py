@@ -10,7 +10,14 @@ from qwt.qt.QtCore import Qt
 from qwt import (QwtPlot, QwtPlotMarker, QwtSymbol, QwtLegend, QwtPlotGrid,
                  QwtPlotCurve, QwtPlotItem, QwtLogScaleEngine, QwtText,
                  QwtPlotRenderer)
+from scipy import fftpack
+from scipy import signal
+from scipy.fft import fftshift
+
 #TODO fenetre pipline browser
+
+
+
 class graphical_interface():
     def __init__(self):
         """
@@ -48,4 +55,28 @@ class time_plot(QwtPlot):
         super(time_plot, self).__init__()
         self.firstSelection = QwtPlotCurve("First Selection")
         self.lastSelection = QwtPlotCurve("Last Selection")
+
+    def mouseReleaseEvent(self, event):
+        self.rubberBand.show()
+
+class fourier(QwtPlot):
+    def __init__(self):
+        super(fourier, self).__init__("Chuba_Hawk")
+        self.origin = None
+        self.rubberBand = None
+
+    def define(self, data, key, sample_rate):
+        fourier = fftpack.fft(data[key])
+        freq = fftpack.fftfreq(len(data[key])) * sample_rate
+        return fourier, freq
+
+class spectrogram(QwtPlot):
+    def __init__(self):
+        super(spectrogram, self).__init__("Old_dirty_V")
+        self.origin = None
+        self.rubberBand = None
+
+    def define(self, values, sampling_freq):
+        f, t, Sxx = signal.spectrogram(values, sampling_freq)
+        return f, t, Sxx
 
