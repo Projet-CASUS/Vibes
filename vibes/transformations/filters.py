@@ -15,6 +15,7 @@ class FIR (Filter):
     # type   = Type de filtre [format texte] (passe_bas || passe_haut || passe_bande || coupe_bande)
     # cutoff = Fréquence de coupure passe_bas   & passe_haut  =>[int || float] 
     #                               passe_bande & coupe_bande =>[vect de 2 int || float]
+    # ref: https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firwin.html
         self.data = data
         self.cutoff = cutoff
 
