@@ -97,9 +97,8 @@ class Controller():
     def update_time_graphic(self):
         NameArray = ["time", "x", "y", "z", "gforce"]
         for x in range(0,len(self.model.data.transformations[0])):
-            if(self.myinterface.mainWindow.layout.itemAt(x).widget().isEnabled() == False and x > 0 ):
-                self.show_of_time_graphic(x-1)
-
+            if(self.myinterface.mainWindow.layout.itemAt(x).widget().isEnabled() == True):
+                self.show_of_time_graphic(x)
 
     def show_of_pipeline(self):
         for x in range(0,len(self.model.data.transformations[0])):
