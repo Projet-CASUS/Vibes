@@ -51,7 +51,7 @@ class Filter:
         f2 = float(self.cutoff[1]/self.sample_rate)
         return signal.firwin(self.numtaps, self.cutoff, pass_zero=False)
 
-class RangeSelection(Transformation):
+class RangeSelection:
     """
     TODO philippe
     """
@@ -71,7 +71,6 @@ class RangeSelection(Transformation):
     def data_relocation(self,i,data):
         for x in range(0, self.last - self.first):
              data.loc[:,self.NameArray[i]][x] = data.loc[:, self.NameArray[i]][x + self.first]
-
 class FiltreParralele:
     """
     TODO Louis-Philippe

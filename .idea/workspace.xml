@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="842639bc-8e10-474e-b260-896a72a6d126" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Vibes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Vibes.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/Controller/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/Controller/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/View/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/View/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,10 +23,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Phil_Cheeba_Hawk" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1eXYEgbF3l1BbieCRsVzv4t6i4X" />
   <component name="ProjectViewState">
@@ -33,7 +38,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/fr.dic" />
-    <property name="settings.editor.selected.configurable" value="project.scopes" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="S3_app4" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -59,6 +64,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.S3_app4" />
         <item itemvalue="Python.S3_app4" />
         <item itemvalue="Python.S3_app4" />
       </list>
@@ -129,11 +135,12 @@
     <state x="316" y="27" key="CommitChangelistDialog2/0.0.1474.864@0.0.1474.864" timestamp="1594472614814" />
     <state x="-1959" y="39" key="CommitChangelistDialog2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503107189" />
     <state x="-1959" y="39" key="CommitChangelistDialog2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583082778" />
-    <state width="739" height="548" key="DebuggerActiveHint" timestamp="1597189369714">
+    <state width="1586" height="548" key="DebuggerActiveHint" timestamp="1597620547986">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state width="381" height="438" key="DebuggerActiveHint/0.0.1474.864@0.0.1474.864" timestamp="1594475257643" />
     <state width="739" height="548" key="DebuggerActiveHint/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597189369714" />
+    <state width="1586" height="548" key="DebuggerActiveHint/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597620547986" />
     <state x="-1835" y="182" key="DiffContextDialog" timestamp="1597583574817">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
@@ -142,9 +149,10 @@
       <screen x="0" y="0" width="1474" height="864" />
     </state>
     <state x="517" y="187" key="FileChooserDialogImpl/0.0.1474.864@0.0.1474.864" timestamp="1594470857680" />
-    <state width="2473" height="375" key="GridCell.Tab.0.bottom" timestamp="1597503911286">
+    <state width="1223" height="290" key="GridCell.Tab.0.bottom" timestamp="1597968750417">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
+    <state width="1223" height="290" key="GridCell.Tab.0.bottom/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597968750417" />
     <state width="1453" height="228" key="GridCell.Tab.0.bottom/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
     <state width="2477" height="182" key="GridCell.Tab.0.bottom/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
     <state width="2477" height="291" key="GridCell.Tab.0.bottom/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
@@ -154,9 +162,12 @@
     <state width="2477" height="363" key="GridCell.Tab.0.bottom/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
     <state width="2473" height="375" key="GridCell.Tab.0.bottom/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503911286" />
     <state width="2477" height="182" key="GridCell.Tab.0.bottom/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
-    <state width="2473" height="375" key="GridCell.Tab.0.center" timestamp="1597503911286">
+    <state width="1223" height="290" key="GridCell.Tab.0.bottom/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
+    <state width="2473" height="374" key="GridCell.Tab.0.bottom/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
+    <state width="1223" height="290" key="GridCell.Tab.0.center" timestamp="1597968750417">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
+    <state width="1223" height="290" key="GridCell.Tab.0.center/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597968750417" />
     <state width="1453" height="228" key="GridCell.Tab.0.center/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
     <state width="2477" height="182" key="GridCell.Tab.0.center/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
     <state width="2477" height="291" key="GridCell.Tab.0.center/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
@@ -166,9 +177,12 @@
     <state width="2477" height="363" key="GridCell.Tab.0.center/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
     <state width="2473" height="375" key="GridCell.Tab.0.center/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503911286" />
     <state width="2477" height="182" key="GridCell.Tab.0.center/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
-    <state width="2473" height="375" key="GridCell.Tab.0.left" timestamp="1597503911286">
+    <state width="1223" height="290" key="GridCell.Tab.0.center/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
+    <state width="2473" height="374" key="GridCell.Tab.0.center/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
+    <state width="1223" height="290" key="GridCell.Tab.0.left" timestamp="1597968750417">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
+    <state width="1223" height="290" key="GridCell.Tab.0.left/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597968750417" />
     <state width="1453" height="228" key="GridCell.Tab.0.left/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
     <state width="2477" height="182" key="GridCell.Tab.0.left/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
     <state width="2477" height="291" key="GridCell.Tab.0.left/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
@@ -178,9 +192,12 @@
     <state width="2477" height="363" key="GridCell.Tab.0.left/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
     <state width="2473" height="375" key="GridCell.Tab.0.left/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503911286" />
     <state width="2477" height="182" key="GridCell.Tab.0.left/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
-    <state width="2473" height="375" key="GridCell.Tab.0.right" timestamp="1597503911286">
+    <state width="1223" height="290" key="GridCell.Tab.0.left/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
+    <state width="2473" height="374" key="GridCell.Tab.0.left/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
+    <state width="1223" height="290" key="GridCell.Tab.0.right" timestamp="1597968750417">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
+    <state width="1223" height="290" key="GridCell.Tab.0.right/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597968750417" />
     <state width="1453" height="228" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
     <state width="2477" height="182" key="GridCell.Tab.0.right/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
     <state width="2477" height="291" key="GridCell.Tab.0.right/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
@@ -190,6 +207,8 @@
     <state width="2477" height="363" key="GridCell.Tab.0.right/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
     <state width="2473" height="375" key="GridCell.Tab.0.right/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503911286" />
     <state width="2477" height="182" key="GridCell.Tab.0.right/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
+    <state width="1223" height="290" key="GridCell.Tab.0.right/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
+    <state width="2473" height="374" key="GridCell.Tab.0.right/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
     <state x="-2258" y="117" width="2108" height="831" key="MergeDialog" timestamp="1595783812815">
       <screen x="-2498" y="5" width="2498" height="1080" />
     </state>
@@ -198,24 +217,26 @@
       <screen x="-2498" y="5" width="2498" height="1080" />
     </state>
     <state x="-1537" y="261" key="MultipleFileMergeDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595783812821" />
-    <state x="-1599" y="36" key="SettingsEditor" timestamp="1597503284482">
+    <state x="-1599" y="36" key="SettingsEditor" timestamp="1597584568634">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state x="246" y="75" key="SettingsEditor/0.0.1474.864@0.0.1474.864" timestamp="1594470863867" />
     <state x="-1599" y="36" key="SettingsEditor/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503284482" />
-    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2" timestamp="1597583611854">
+    <state x="-1599" y="36" key="SettingsEditor/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597584568634" />
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2" timestamp="1597583738849">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state x="330" y="165" key="Vcs.Push.Dialog.v2/0.0.1474.864@0.0.1474.864" timestamp="1594472622240" />
     <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503125047" />
-    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583611854" />
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583738849" />
     <state width="1255" height="548" key="XDebugger.FullValuePopup" timestamp="1597503575412">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
     <state width="1255" height="548" key="XDebugger.FullValuePopup/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503575412" />
-    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1597580766709">
-      <screen x="-2494" y="5" width="2494" height="1080" />
+    <state x="936" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1598226641815">
+      <screen x="0" y="0" width="2476" height="1080" />
     </state>
+    <state x="936" y="364" key="com.intellij.ide.util.TipDialog/0.0.2476.1080@0.0.2476.1080" timestamp="1598226641815" />
     <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596853429854" />
     <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498352792" />
     <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597269761728" />
@@ -223,11 +244,20 @@
     <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595880187603" />
     <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597510628718" />
     <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596916224021" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967494444" />
     <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597580766709" />
+    <state x="-1438" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597586483770">
+      <screen x="-2494" y="5" width="2494" height="1080" />
+    </state>
+    <state x="-1438" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597586483770" />
     <state x="-1623" y="90" width="747" height="909" key="find.popup" timestamp="1595805531516">
       <screen x="-2498" y="5" width="2498" height="1080" />
     </state>
     <state x="-1623" y="90" width="747" height="909" key="find.popup/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595805531516" />
+    <state x="-1620" y="258" key="git4idea.branch.GitSmartOperationDialog" timestamp="1597586468215">
+      <screen x="-2494" y="5" width="2494" height="1080" />
+    </state>
+    <state x="-1620" y="258" key="git4idea.branch.GitSmartOperationDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597586468215" />
     <state x="-1616" y="336" key="git4idea.merge.GitPullDialog" timestamp="1597583585374">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
@@ -242,6 +272,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>119</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -258,6 +295,17 @@
         <watch expression="self.myinterface.mainWindow.layout.itemAt(x).widget().isEnabled() " />
         <watch expression="minValue" />
         <watch expression="maxValue" />
+        <watch expression="__py_debug_temp_var_1745836594" />
+        <watch expression="len(self.NameArray)" />
+        <watch expression="(self.last - self.first)" />
+        <watch expression="self.savedUpData " />
+        <watch expression="  data.loc[:,self.NameArray[i]][x]" />
+        <watch expression="data.loc[:, self.NameArray[i]][x + self.first]" />
+        <watch expression="self.model.data.transformations[w]" />
+        <watch expression="self.model.data.transformations[w][0]" />
+        <watch expression="self.model.data.transformations[w][0].type" />
+        <watch expression="self.model.data.transformations[x][0].type" />
+        <watch expression="len(self.model.data.transformations[0])" />
       </configuration>
     </watches-manager>
   </component>

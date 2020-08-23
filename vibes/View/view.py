@@ -12,7 +12,7 @@ from qwt import (QwtPlot, QwtPlotMarker, QwtSymbol, QwtLegend, QwtPlotGrid,
                  QwtPlotRenderer)
 from scipy import fftpack
 from scipy import signal
-from scipy.fft import fftshift
+
 
 #TODO fenetre pipline browser
 
@@ -24,6 +24,7 @@ class graphical_interface():
         TODO Philippe Créer une fenêtre vide.
         """
         self.mytimeplot = time_plot()
+        self.myfourierplot =fourier()
         self.mainWindow = pipeline()
 
     def show_of_time_plot(self):

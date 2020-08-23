@@ -70,11 +70,22 @@ class Controller():
         :return:
         """
         NameArray = ["time", "x", "y", "z", "gforce"]
-        x = [None]*len(self.model.data.transformations[w][1])
+        if(w == -2):
+            x = [None]
+            y = [None]
+            curve = QwtPlotCurve(NameArray[0])
+            curve.setData(x, y)
+            curve.attach(self.myinterface.mytimeplot)
+            self.myinterface.show_of_time_plot()
+
+        length =len(self.model.data.transformations[w][1])
+        if(self.model.data.transformations[w][0].type == "RangeSelection"):
+            length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
+        x = [None]*length
         for i in range(0, len(x)):
             x[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[0]][i].replace(',', '.'))
         for n in range(1,len(NameArray)-1):
-            y = [None]*len(self.model.data.transformations[w][1])
+            y = [None]*length
             for i in range(0, len(y)):
                 y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
             curve = QwtPlotCurve(NameArray[n])
@@ -86,22 +97,23 @@ class Controller():
         self.update_pipeline()
 
     def update_pipeline(self):
+        isNull = True
+        plotIndex = 0
         for x in range(0,len(self.model.data.transformations[0])):
             f= len(self.model.data.transformations[0]) - self.myinterface.mainWindow.widget.pipelineSlider.value()
             if(x < f):
                 t = self.myinterface.mainWindow.layout.itemAt(x).widget().setEnabled(True)
+                isNull = False
+                plotIndex = x
             else:
                 t = self.myinterface.mainWindow.layout.itemAt(x).widget().setEnabled(False)
-        self.update_time_graphic()
-
-    def update_time_graphic(self):
-        NameArray = ["time", "x", "y", "z", "gforce"]
-        for x in range(0,len(self.model.data.transformations[0])):
-            if(self.myinterface.mainWindow.layout.itemAt(x).widget().isEnabled() == True):
-                self.show_of_time_graphic(x)
+        if(isNull):
+            self.show_of_time_graphic(-2)
+        else:
+            self.show_of_time_graphic(plotIndex)
 
     def show_of_pipeline(self):
-        for x in range(0,len(self.model.data.transformations[0])):
+        for x in range(0,len(self.model.data.transformations)):
             pipelineEntry = QLabel()
             pipelineEntry.setFixedSize(100, 20)
             pipelineEntry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
