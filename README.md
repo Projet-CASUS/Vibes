@@ -9,6 +9,8 @@ Modules python:<br />
  * PyQt5
  * qwt
  * scipy
+ * struct
+ * wave
 
 ## Description
 Ce code est un interpréteur/générateur de signaux ayant pour but de produire
