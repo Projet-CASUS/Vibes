@@ -3,12 +3,11 @@ import vibes
 import vibes.View.view as view
 import vibes.Model.model as models
 import vibes.Controller.transform as trans
-from qwt.qt.QtGui import (QApplication)
 import pandas as pd
 import numpy as np
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QFrame, QSlider, QHBoxLayout
-from qwt.qt.QtGui import QApplication
+from PyQt5.Qt import QApplication
 from qwt import QwtPlot, QwtPlotCurve
 from decimal import Decimal
 class Controller():

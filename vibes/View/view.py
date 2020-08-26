@@ -1,12 +1,12 @@
 import sys
 import numpy as np
 import vibes.Model.model as models
-from qwt.qt.QtGui import (QApplication, QPen, QBrush, QFrame, QFont, QWidget,
+from PyQt5.Qt import (QApplication, QPen, QBrush, QFrame, QFont, QWidget,
                           QMainWindow, QToolButton, QIcon, QPixmap, QToolBar,
                           QHBoxLayout, QLabel, QPrinter, QPrintDialog,
                           QFontDatabase, QWindow, QVBoxLayout, QRubberBand, QPalette, QSlider)
-from qwt.qt.QtCore import QSize, QRect, QPoint
-from qwt.qt.QtCore import Qt
+from PyQt5.Qt import QSize, QRect, QPoint
+from PyQt5.Qt import Qt
 from qwt import (QwtPlot, QwtPlotMarker, QwtSymbol, QwtLegend, QwtPlotGrid,
                  QwtPlotCurve, QwtPlotItem, QwtLogScaleEngine, QwtText,
                  QwtPlotRenderer)
