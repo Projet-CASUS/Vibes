@@ -17,7 +17,7 @@ control = ContLivesMatter.Controller("./test_files/test00.csv")
 control.show_of_time_graphic()
 control.data_range_selections(2000,2500)
 control.show_of_time_graphic()
-#control.show_of_freq_graphic()
+control.show_of_freq_graphic()
 control.show_of_pipeline()
 #control.addTransform(None)
 

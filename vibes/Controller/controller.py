@@ -64,7 +64,16 @@ class Controller():
         pass
 
     def show_of_freq_graphic(self, w=-1):
-        self.myinterface.myfourierplot.define(self.model.data.transformations[w][1],w,5000)
+        NameArray = ["time", "x", "y", "z", "gforce"]
+        length = len(self.model.data.transformations[w][1])
+        if (self.model.data.transformations[w][0].type == "RangeSelection"):
+            length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
+        y = [None] * length
+        for i in range(0, len(y)):
+            y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[1]][i].replace(',', '.'))
+        fourier, freq = self.myinterface.myfourierplot.define(y,200)
+        print('phil est fucking stud')
+
 
     def show_of_time_graphic(self , w = -1):
         """
@@ -92,6 +101,7 @@ class Controller():
                 curve = QwtPlotCurve(NameArray[n])
                 curve.setData(x, y)
                 curve.attach(self.myinterface.mytimeplot)
+
             self.myinterface.show_of_time_plot()
 
     def value_changed(self):

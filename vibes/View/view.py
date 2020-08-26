@@ -54,9 +54,6 @@ class pipeline_widget(QWidget):
 class time_plot(QwtPlot):
     def __init__(self):
         super(time_plot, self).__init__()
-        self.firstSelection = QwtPlotCurve("First Selection")
-        self.lastSelection = QwtPlotCurve("Last Selection")
-
 
 class fourier(QwtPlot):
     def __init__(self):
@@ -64,9 +61,9 @@ class fourier(QwtPlot):
         self.origin = None
         self.rubberBand = None
 
-    def define(self, data, key, sample_rate):
-        fourier = fftpack.fft(data[key])
-        freq = fftpack.fftfreq(len(data[key])) * sample_rate
+    def define(self, data, sample_rate):
+        fourier = fftpack.fft(data)
+        freq = fftpack.fftfreq(len(data)) * sample_rate
         return fourier, freq
 
 class spectrogram(QwtPlot):
