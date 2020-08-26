@@ -58,19 +58,19 @@ class RangeSelection:
     def __init__(self,first,last):
         self.first = first
         self.last = last
-        self.NameArray = ["time", "x", "y", "z", "gforce"]
-
         self.type = "RangeSelection"
-        self.savedUpData =[[0 for x in range(len(self.NameArray))] for i in range((self.last - self.first))]
-
+        self.NameArray = ["time", "x", "y", "z", "gforce"]
+        self.savedUpData = [[0 for x in range(len(self.NameArray))] for i in range((self.last - self.first))]
+        data = {'time':[None] , 'x':[None], 'y':[None], 'z':[None], 'gforce':[None]}
+        self.newPanda = pd.DataFrame(data)
     def __call__(self,data):
         for x in range(0, len(self.NameArray)):
             self.data_relocation(x,data)
-        return data
+        return self.newPanda
 
     def data_relocation(self,i,data):
         for x in range(0, self.last - self.first):
-             data.loc[:,self.NameArray[i]][x] = data.loc[:, self.NameArray[i]][x + self.first]
+             self.newPanda.loc[:,self.NameArray[i]][x] = data.loc[:, self.NameArray[i]][x + self.first]
 class FiltreParralele:
     """
     TODO Louis-Philippe

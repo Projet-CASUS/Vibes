@@ -24,7 +24,7 @@ class graphical_interface():
         TODO Philippe Créer une fenêtre vide.
         """
         self.mytimeplot = time_plot()
-        self.myfourierplot =fourier()
+        self.myfourierplot = fourier()
         self.mainWindow = pipeline()
 
     def show_of_time_plot(self):
@@ -57,8 +57,6 @@ class time_plot(QwtPlot):
         self.firstSelection = QwtPlotCurve("First Selection")
         self.lastSelection = QwtPlotCurve("Last Selection")
 
-    def mouseReleaseEvent(self, event):
-        self.rubberBand.show()
 
 class fourier(QwtPlot):
     def __init__(self):
