@@ -3,12 +3,11 @@ import vibes
 import vibes.View.view as view
 import vibes.Model.model as models
 import vibes.Controller.transform as trans
-from qwt.qt.QtGui import (QApplication)
 import pandas as pd
 import numpy as np
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QFrame, QSlider, QHBoxLayout
-from qwt.qt.QtGui import QApplication
+from PyQt5.Qt import QApplication
 from qwt import QwtPlot, QwtPlotCurve
 from decimal import Decimal
 class Controller():
@@ -63,6 +62,18 @@ class Controller():
         """
         pass
 
+    def show_of_freq_graphic(self, w=-1):
+        NameArray = ["time", "x", "y", "z", "gforce"]
+        length = len(self.model.data.transformations[w][1])
+        if (self.model.data.transformations[w][0].type == "RangeSelection"):
+            length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
+        y = [None] * length
+        for i in range(0, len(y)):
+            y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[1]][i].replace(',', '.'))
+        fourier, freq = self.myinterface.myfourierplot.define(y,200)
+        print('phil est fucking stud')
+
+
     def show_of_time_graphic(self , w = -1):
         """
         TODO Philippe
@@ -71,27 +82,26 @@ class Controller():
         """
         NameArray = ["time", "x", "y", "z", "gforce"]
         if(w == -2):
-            x = [None]
-            y = [None]
-            curve = QwtPlotCurve(NameArray[0])
-            curve.setData(x, y)
-            curve.attach(self.myinterface.mytimeplot)
-            self.myinterface.show_of_time_plot()
+            self.myinterface.mytimeplot.close()
+        else:
 
-        length =len(self.model.data.transformations[w][1])
-        if(self.model.data.transformations[w][0].type == "RangeSelection"):
-            length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
-        x = [None]*length
-        for i in range(0, len(x)):
-            x[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[0]][i].replace(',', '.'))
-        for n in range(1,len(NameArray)-1):
-            y = [None]*length
-            for i in range(0, len(y)):
-                y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
-            curve = QwtPlotCurve(NameArray[n])
-            curve.setData(x, y)
-            curve.attach(self.myinterface.mytimeplot)
-        self.myinterface.show_of_time_plot()
+            self.myinterface.mytimeplot.close()
+            self.myinterface.mytimeplot = view.time_plot()
+            length =len(self.model.data.transformations[w][1])
+            if(self.model.data.transformations[w][0].type == "RangeSelection"):
+                length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
+            x = [None]*length
+            for i in range(0, len(x)):
+                x[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[0]][i].replace(',', '.'))
+            for n in range(1,len(NameArray)-1):
+                y = [None]*length
+                for i in range(0, len(y)):
+                    y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
+                curve = QwtPlotCurve(NameArray[n])
+                curve.setData(x, y)
+                curve.attach(self.myinterface.mytimeplot)
+
+            self.myinterface.show_of_time_plot()
 
     def value_changed(self):
         self.update_pipeline()
@@ -117,7 +127,7 @@ class Controller():
             pipelineEntry = QLabel()
             pipelineEntry.setFixedSize(100, 20)
             pipelineEntry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
-            pipelineEntry.setText(self.model.data.transformations[x][0].type)
+            pipelineEntry.setText(self.model.data.transformations[x][0].type)  
             pipelineEntry.setAlignment(Qt.AlignCenter)
             self.myinterface.mainWindow.layout.addWidget(pipelineEntry)
             self.myinterface.mainWindow.widget.pipelineSlider.setRange(0, x+1)

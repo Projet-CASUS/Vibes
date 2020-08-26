@@ -4,7 +4,7 @@ convolve = np.convolve
 import transform
 
 
-class FIR (Filter):
+class FIR:
     def __init__(self, sample_rate, numtaps = 5):
         super().__init__()
         self.sample_rate = sample_rate

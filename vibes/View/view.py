@@ -1,12 +1,12 @@
 import sys
 import numpy as np
 import vibes.Model.model as models
-from qwt.qt.QtGui import (QApplication, QPen, QBrush, QFrame, QFont, QWidget,
+from PyQt5.Qt import (QApplication, QPen, QBrush, QFrame, QFont, QWidget,
                           QMainWindow, QToolButton, QIcon, QPixmap, QToolBar,
                           QHBoxLayout, QLabel, QPrinter, QPrintDialog,
                           QFontDatabase, QWindow, QVBoxLayout, QRubberBand, QPalette, QSlider)
-from qwt.qt.QtCore import QSize, QRect, QPoint
-from qwt.qt.QtCore import Qt
+from PyQt5.Qt import QSize, QRect, QPoint
+from PyQt5.Qt import Qt
 from qwt import (QwtPlot, QwtPlotMarker, QwtSymbol, QwtLegend, QwtPlotGrid,
                  QwtPlotCurve, QwtPlotItem, QwtLogScaleEngine, QwtText,
                  QwtPlotRenderer)
@@ -24,7 +24,7 @@ class graphical_interface():
         TODO Philippe Créer une fenêtre vide.
         """
         self.mytimeplot = time_plot()
-        self.myfourierplot =fourier()
+        self.myfourierplot = fourier()
         self.mainWindow = pipeline()
 
     def show_of_time_plot(self):
@@ -54,11 +54,6 @@ class pipeline_widget(QWidget):
 class time_plot(QwtPlot):
     def __init__(self):
         super(time_plot, self).__init__()
-        self.firstSelection = QwtPlotCurve("First Selection")
-        self.lastSelection = QwtPlotCurve("Last Selection")
-
-    def mouseReleaseEvent(self, event):
-        self.rubberBand.show()
 
 class fourier(QwtPlot):
     def __init__(self):
@@ -66,9 +61,9 @@ class fourier(QwtPlot):
         self.origin = None
         self.rubberBand = None
 
-    def define(self, data, key, sample_rate):
-        fourier = fftpack.fft(data[key])
-        freq = fftpack.fftfreq(len(data[key])) * sample_rate
+    def define(self, data, sample_rate):
+        fourier = fftpack.fft(data)
+        freq = fftpack.fftfreq(len(data)) * sample_rate
         return fourier, freq
 
 class spectrogram(QwtPlot):
