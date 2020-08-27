@@ -1,3 +1,5 @@
+from IPython.external.qt_for_kernel import QtGui
+
 import vibes.Controller.transform as transform
 import wave, struct
 DEFAULT_HPTFX = "default.hptfx"
@@ -85,7 +87,7 @@ class DataVibes:
             wavefile = struct.pack('<h', data[i])
             wavef.writeframesraw(wavefile)
         wavef.close()
-        print('Fichier wav généré au répertoire: ' + mon_repertoire)
+        print('Fichier wav généré au répertoire: ')
 
 
     def export_func(self):
