@@ -27,6 +27,11 @@ class graphical_interface():
         self.myfourierplot = fourier()
         self.mainWindow = pipeline()
 
+    def show_of_freq_plot(self):
+        self.myfourierplot.resize(600,300)
+        self.myfourierplot.replot()
+        self.myfourierplot.show()
+
     def show_of_time_plot(self):
         self.mytimeplot.resize(600, 300)
         self.mytimeplot.replot()
@@ -55,16 +60,20 @@ class time_plot(QwtPlot):
     def __init__(self):
         super(time_plot, self).__init__()
 
+
 class fourier(QwtPlot):
     def __init__(self):
         super(fourier, self).__init__("Chuba_Hawk")
         self.origin = None
         self.rubberBand = None
 
-    def define(self, data, sample_rate):
-        fourier = fftpack.fft(data)
+    def defineX(self,data,sample_rate):
         freq = fftpack.fftfreq(len(data)) * sample_rate
-        return fourier, freq
+        return freq
+
+    def defineY(self, data, sample_rate):
+        fourier = fftpack.fft(data)
+        return fourier
 
 class spectrogram(QwtPlot):
     def __init__(self):

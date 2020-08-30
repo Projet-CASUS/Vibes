@@ -20,12 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="842639bc-8e10-474e-b260-896a72a6d126" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Vibes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Vibes.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vibes/Controller/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vibes/Model/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Model/data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vibes/View/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/View/view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vibes/transformations/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/transformations/filters.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +40,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Phil_Cheeba_Hawk" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,9 +63,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Anaconda3\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
@@ -86,13 +84,13 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="1" Folder0="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Downloads" CustomDictionaries="1" CustomDictionary0="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Downloads\fr.dic" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="1" Folder0="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Downloads" CustomDictionaries="1" CustomDictionary0="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Downloads\fr.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="568fc507-6cbf-4a36-9f70-4e5e9d59b4cf" name="Default Changelist" comment="" />
+      <changelist id="842639bc-8e10-474e-b260-896a72a6d126" name="Default Changelist" comment="" />
       <created>1593271991265</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -134,7 +132,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -148,6 +148,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Pipeline almost not trash" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="-1528" y="159" key="#S3_app4" timestamp="1598809463988">
+      <screen x="-2494" y="5" width="2494" height="1080" />
+    </state>
+    <state x="-1528" y="159" key="#S3_app4/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598809463988" />
     <state x="200" y="83" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598493100089">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -157,9 +161,10 @@
       <screen x="0" y="0" width="1474" height="864" />
     </state>
     <state x="468" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1474.864@0.0.1474.864" timestamp="1594470513730" />
-    <state x="-1959" y="39" key="CommitChangelistDialog2" timestamp="1597583082778">
+    <state x="-1959" y="39" key="CommitChangelistDialog2" timestamp="1598485572252">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
+    <state x="-1959" y="39" key="CommitChangelistDialog2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598485572252" />
     <state x="316" y="27" key="CommitChangelistDialog2/0.0.1474.864@0.0.1474.864" timestamp="1594472614814" />
     <state x="-1959" y="39" key="CommitChangelistDialog2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503107189" />
     <state x="-1959" y="39" key="CommitChangelistDialog2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583082778" />
@@ -178,10 +183,10 @@
     </state>
     <state x="517" y="187" key="FileChooserDialogImpl/0.0.1474.864@0.0.1474.864" timestamp="1594470857680" />
     <state x="539" y="178" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1598493092992" />
-    <state width="1515" height="191" key="GridCell.Tab.0.bottom" timestamp="1598493042363">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2473" height="518" key="GridCell.Tab.0.bottom" timestamp="1598811493233">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
-    <state width="2473" height="379" key="GridCell.Tab.0.bottom/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598480170719" />
+    <state width="2473" height="518" key="GridCell.Tab.0.bottom/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598811493233" />
     <state width="1453" height="228" key="GridCell.Tab.0.bottom/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
     <state width="1515" height="191" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598493042363" />
     <state width="2470" height="373" key="GridCell.Tab.0.bottom/0.0.2476.1080@0.0.2476.1080" timestamp="1598313623151" />
@@ -195,10 +200,10 @@
     <state width="2477" height="182" key="GridCell.Tab.0.bottom/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
     <state width="1223" height="290" key="GridCell.Tab.0.bottom/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
     <state width="2473" height="374" key="GridCell.Tab.0.bottom/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
-    <state width="1515" height="191" key="GridCell.Tab.0.center" timestamp="1598493042363">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2473" height="518" key="GridCell.Tab.0.center" timestamp="1598811493233">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
-    <state width="2473" height="379" key="GridCell.Tab.0.center/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598480170719" />
+    <state width="2473" height="518" key="GridCell.Tab.0.center/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598811493233" />
     <state width="1453" height="228" key="GridCell.Tab.0.center/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
     <state width="1515" height="191" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598493042363" />
     <state width="2470" height="373" key="GridCell.Tab.0.center/0.0.2476.1080@0.0.2476.1080" timestamp="1598313623151" />
@@ -212,10 +217,10 @@
     <state width="2477" height="182" key="GridCell.Tab.0.center/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
     <state width="1223" height="290" key="GridCell.Tab.0.center/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
     <state width="2473" height="374" key="GridCell.Tab.0.center/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
-    <state width="1515" height="191" key="GridCell.Tab.0.left" timestamp="1598493042363">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2473" height="518" key="GridCell.Tab.0.left" timestamp="1598811493233">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
-    <state width="2473" height="379" key="GridCell.Tab.0.left/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598480170719" />
+    <state width="2473" height="518" key="GridCell.Tab.0.left/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598811493233" />
     <state width="1453" height="228" key="GridCell.Tab.0.left/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
     <state width="1515" height="191" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598493042363" />
     <state width="2470" height="373" key="GridCell.Tab.0.left/0.0.2476.1080@0.0.2476.1080" timestamp="1598313623151" />
@@ -229,10 +234,10 @@
     <state width="2477" height="182" key="GridCell.Tab.0.left/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
     <state width="1223" height="290" key="GridCell.Tab.0.left/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
     <state width="2473" height="374" key="GridCell.Tab.0.left/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
-    <state width="1515" height="191" key="GridCell.Tab.0.right" timestamp="1598493042363">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="2473" height="518" key="GridCell.Tab.0.right" timestamp="1598811493233">
+      <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
-    <state width="2473" height="379" key="GridCell.Tab.0.right/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598480170719" />
+    <state width="2473" height="518" key="GridCell.Tab.0.right/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598811493233" />
     <state width="1453" height="228" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
     <state width="1515" height="191" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598493042363" />
     <state width="2470" height="373" key="GridCell.Tab.0.right/0.0.2476.1080@0.0.2476.1080" timestamp="1598313623151" />
@@ -314,26 +319,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>132</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>90</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>81</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>79</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
           <line>68</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
@@ -341,6 +326,11 @@
           <url>file://$PROJECT_DIR$/main.py</url>
           <line>21</line>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
+          <line>79</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -375,6 +365,9 @@
         <watch expression="self.savedUpData[0]" />
         <watch expression="self.savedUpData[0][0]" />
         <watch expression="len(x)" />
+        <watch expression="fourier" />
+        <watch expression="NameArray[n]" />
+        <watch expression="freq" />
       </configuration>
     </watches-manager>
   </component>
