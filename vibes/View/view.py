@@ -13,16 +13,9 @@ from qwt import (QwtPlot, QwtPlotMarker, QwtSymbol, QwtLegend, QwtPlotGrid,
 from scipy import fftpack
 from scipy import signal
 
-
-#TODO fenetre pipline browser
-
-
-
 class graphical_interface():
     def __init__(self):
-        """
-        TODO Philippe Créer une fenêtre vide.
-        """
+
         self.mytimeplot = time_plot()
         self.myfourierplot = fourier()
         self.mainWindow = pipeline()

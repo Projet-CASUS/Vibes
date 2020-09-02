@@ -76,7 +76,6 @@ class Controller():
             x = [None] * length
             for i in range(0, len(x)):
                 x[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[0]][i].replace(',', '.'))
-
             freq = self.myinterface.myfourierplot.defineX(x, 200)
             for n in range(1, len(NameArray)):
                 y = [None] * length
