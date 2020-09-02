@@ -34,8 +34,8 @@ class graphical_interface():
 
     def show_of_time_plot(self):
         self.mytimeplot.resize(600, 300)
-        self.mytimeplot.replot()
-        self.mytimeplot.show()
+        self.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.replot()
+        self.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.show()
 
     def show_of_pipeline(self):
         self.mainWindow.widget.setLayout(self.mainWindow.layout1)
@@ -56,10 +56,34 @@ class pipeline_widget(QWidget):
         self.pipelineIndex = None
         self.pipelineSlider = None
 
-class time_plot(QwtPlot):
-    def __init__(self):
-        super(time_plot, self).__init__()
+class time_plot(QMainWindow):
+    def __init__(self,*args,**kwargs):
+        super(time_plot, self).__init__(*args,**kwargs)
+        self.widget = widget_time_plot()
+        self.setCentralWidget(self.widget)
 
+class widget_time_plot(QWidget):
+    def __init__(self):
+        super(widget_time_plot, self).__init__()
+        self.widgetWrapperForQWTplot = wrapper_qwt_time_plot()
+        self.layoutV = QVBoxLayout()
+        self.layoutH = QHBoxLayout()
+        self.FirstTime = QLabel("First Time")
+        self.LastTime = QLabel("Last Time")
+        self.layoutH.addWidget(self.FirstTime)
+        self.layoutH.addWidget(self.LastTime)
+        self.layoutV.addWidget(self.widgetWrapperForQWTplot)
+        self.layoutV.addLayout(self.layoutH)
+        self.setLayout(self.layoutV)
+
+class wrapper_qwt_time_plot(QWidget):
+    def __init__(self):
+        super(wrapper_qwt_time_plot, self).__init__()
+        self.qwtPlot = qwt_time_plot()
+
+class qwt_time_plot(QwtPlot):
+    def __init__(self):
+        super(qwt_time_plot, self).__init__()
 
 class fourier(QwtPlot):
     def __init__(self):
