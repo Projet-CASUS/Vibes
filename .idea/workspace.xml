@@ -19,10 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="842639bc-8e10-474e-b260-896a72a6d126" name="Default Changelist" comment="new type of plot">
+    <list default="true" id="842639bc-8e10-474e-b260-896a72a6d126" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vibes/Controller/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vibes/View/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/View/view.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,10 +291,10 @@
     <state x="246" y="75" key="SettingsEditor/0.0.1474.864@0.0.1474.864" timestamp="1594470863867" />
     <state x="-1599" y="36" key="SettingsEditor/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503284482" />
     <state x="-1599" y="36" key="SettingsEditor/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597584568634" />
-    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2" timestamp="1599088735992">
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2" timestamp="1599090714682">
       <screen x="-2494" y="5" width="2494" height="1080" />
     </state>
-    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599088735992" />
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599090714682" />
     <state x="330" y="165" key="Vcs.Push.Dialog.v2/0.0.1474.864@0.0.1474.864" timestamp="1594472622240" />
     <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503125047" />
     <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583738849" />
