@@ -1,9 +1,9 @@
 import vibes.Model.data as mc
 
 class Model:
-    def __init__(self,dataFile):
+    def __init__(self, data_file):
         pass
-        self.data = mc.data(dataFile)
+        self.data = mc.data(data_file)
 
     def undo(self):
         pass
