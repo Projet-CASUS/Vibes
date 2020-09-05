@@ -68,10 +68,10 @@ class Controller():
 
         name_array = ["time","gforce"]
         if(w == -2):
-            self.my_interface.fourier_window.close()
+            self.my_interface.fourier_window.widget.wrapper_widget_qwt.qwtPlot.close()
         else:
-            self.my_interface.fourier_window.close()
-            self.my_interface.fourier_window = view.fourier()
+            self.my_interface.fourier_window.widget.wrapper_widget_qwt.qwtPlot.close()
+            self.my_interface.fourier_window.widget.wrapper_widget_qwt.qwtPlot = view.qwt()
             length = len(self.model.data.transformations[w][1])
             if (self.model.data.transformations[w][0].type == "range_selection"):
                 length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
@@ -86,7 +86,7 @@ class Controller():
                 fourier = self.my_interface.fourier_window.defineY(y, 200)
                 curve = QwtPlotCurve(name_array[n])
                 curve.setData(freq, fourier)
-                curve.attach(self.my_interface.fourier_window)
+                curve.attach(self.my_interface.fourier_window.widget.wrapper_widget_qwt.qwtPlot)
             self.my_interface.show_of_freq()
 
     def define_time_graphic(self, w = -1):
@@ -97,10 +97,10 @@ class Controller():
         """
         NameArray = ["time", "x", "y", "z", "gforce"]
         if(w == -2):
-            self.my_interface.time_window.widget.widgetWrapperForQWTplot.qwtPlot.close()
+            self.my_interface.time_window.widget.wrapper_widget_qwt.qwtPlot.close()
         else:
-            self.my_interface.time_window.widget.widgetWrapperForQWTplot.qwtPlot.close()
-            self.my_interface.time_window.widget.widgetWrapperForQWTplot.qwtPlot = view.qwt()
+            self.my_interface.time_window.widget.wrapper_widget_qwt.qwtPlot.close()
+            self.my_interface.time_window.widget.wrapper_widget_qwt.qwtPlot = view.qwt()
             length =len(self.model.data.transformations[w][1])
             if(self.model.data.transformations[w][0].type == "range_selection"):
                 length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
@@ -113,7 +113,7 @@ class Controller():
                     y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
                 curve = QwtPlotCurve(NameArray[n])
                 curve.setData(x, y)
-                curve.attach(self.my_interface.time_window.widget.widgetWrapperForQWTplot.qwtPlot)
+                curve.attach(self.my_interface.time_window.widget.wrapper_widget_qwt.qwtPlot)
 
             self.my_interface.show_of_time()
 
