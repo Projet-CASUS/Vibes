@@ -1,26 +1,20 @@
 import sys
 
-from qwt import QwtPlot, QwtPlotCurve
-
-import vibes
-import vibes.Controller.controller as ContLivesMatter
-import pandas as pd
-import numpy as np
+import vibes.Controller.controller as cont
 import os
 
 # Lance le programme à son emplacement
 program_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(program_folder)
 
+control = cont.Controller("./test_files/100.0Hz_20.0sec.csv")
 
-control = ContLivesMatter.Controller("./test_files/test00.csv")
 control.show_of_time_graphic()
-control.data_range_selections(2490,2500)
+control.data_range_selections(2490, 2500)
 control.show_of_time_graphic()
 control.show_of_freq_graphic()
 control.show_of_pipeline()
 #control.addTransform(None)
-
 
 sys.exit(control.app.exec_())
 #control.app.exec_()

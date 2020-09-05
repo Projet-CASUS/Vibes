@@ -3,7 +3,7 @@ import vibes.Model.data as mc
 class Model:
     def __init__(self,dataFile):
         pass
-        self.data = mc.DataVibes(dataFile)
+        self.data = mc.data(dataFile)
 
     def undo(self):
         pass

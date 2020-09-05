@@ -8,23 +8,23 @@ DEFAULT_HPTFX = "default.hptfx"
 # TODO: add undo/redo system
 # TODO: load/save/export (strategy pattern)
 
-class DataVibes:
+class data:
     """
 
     """
 
-    def __init__(self, datafile, type='csv', funcfile=None):
+    def __init__(self, data_file, type='csv', func_file=None):
         """
         Initialise la classe de DataVibes
         :param tempfile: fichier des données temporelles
-        :param funcfile: fichier des fonctions de transformation
+        :param func_file: fichier des fonctions de transformation
         """
-        if funcfile is None:
+        if func_file is None:
             import_func = transform.ImportFile(type=type)
-            self.transformations = [[import_func, import_func(datafile)]]
+            self.transformations = [[import_func, import_func(data_file)]]
         else:
             self.transformations = []
-            self.read_hptfx(funcfile, datafile)
+            self.read_hptfx(func_file, data_file)
             self.currentIndex =0;
 
     def read_hptfx(self, funcfile, datafile=None):
