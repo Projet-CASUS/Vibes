@@ -13,13 +13,13 @@ class graphical_interface():
 
     def show_of_freq(self):
         self.fourier_window.resize(600, 300)
-        self.fourier_window.replot()
-        self.fourier_window.show()
+        self.fourier_window.widget.wrapper_widget_qwt.qwtPlot.replot()
+        self.fourier_window.widget.wrapper_widget_qwt.qwtPlot.show()
 
     def show_of_time(self):
         self.time_window.resize(600, 300)
-        self.time_window.widget.widgetWrapperForQWTplot.qwtPlot.replot()
-        self.time_window.widget.widgetWrapperForQWTplot.qwtPlot.show()
+        self.time_window.widget.wrapper_widget_qwt.qwtPlot.replot()
+        self.time_window.widget.wrapper_widget_qwt.qwtPlot.show()
 
     def show_of_pipeline(self):
         self.main_window.widget.setLayout(self.main_window.layout1)
@@ -49,31 +49,24 @@ class time_plot(QMainWindow):
 class time_plot_content(QWidget):
     def __init__(self):
         super(time_plot_content, self).__init__()
-        self.widgetWrapperForQWTplot = wrapper_qwt()
+        self.wrapper_widget_qwt = wrapper_qwt()
         self.layoutV = QVBoxLayout()
         self.layoutH = QHBoxLayout()
         self.FirstTime = QLabel("First Time")
         self.LastTime = QLabel("Last Time")
         self.layoutH.addWidget(self.FirstTime)
         self.layoutH.addWidget(self.LastTime)
-        self.layoutV.addWidget(self.widgetWrapperForQWTplot)
+        self.layoutV.addWidget(self.wrapper_widget_qwt)
         self.layoutV.addLayout(self.layoutH)
         self.setLayout(self.layoutV)
 
-class wrapper_qwt(QWidget):
-    def __init__(self):
-        super(wrapper_qwt, self).__init__()
-        self.qwtPlot = qwt()
 
-class qwt(QwtPlot):
-    def __init__(self):
-        super(qwt, self).__init__()
 
-class fourier(QwtPlot):
+class fourier(QMainWindow):
     def __init__(self):
         super(fourier, self).__init__()
-        self.origin = None
-        self.rubberBand = None
+        self.widget = fourier_content()
+        self.setCentralWidget(self.widget)
 
     def defineX(self,data,sample_rate):
         freq = fftpack.fftfreq(len(data)) * sample_rate
@@ -83,7 +76,21 @@ class fourier(QwtPlot):
         fourier = fftpack.fft(data)
         return fourier
 
-class spectrogram(QwtPlot):
+class fourier_content(QWidget):
+    def __init__(self):
+        super(fourier_content, self).__init__()
+        self.wrapper_widget_qwt = wrapper_qwt()
+        self.layoutV = QVBoxLayout()
+        self.layoutH = QHBoxLayout()
+        self.FirstTime = QLabel("First Time")
+        self.LastTime = QLabel("Last Time")
+        self.layoutH.addWidget(self.FirstTime)
+        self.layoutH.addWidget(self.LastTime)
+        self.layoutV.addWidget(self.wrapper_widget_qwt)
+        self.layoutV.addLayout(self.layoutH)
+        self.setLayout(self.layoutV)
+
+class spectrogram(QMainWindow):
     def __init__(self):
         super(spectrogram, self).__init__()
         self.origin = None
@@ -93,3 +100,26 @@ class spectrogram(QwtPlot):
         f, t, Sxx = signal.spectrogram(values, sampling_freq)
         return f, t, Sxx
 
+class spectrogram_content(QWidget):
+    def __init__(self):
+        super(spectrogram_content, self).__init__()
+        self.wrapper_widget_qwt = wrapper_qwt()
+        self.layoutV = QVBoxLayout()
+        self.layoutH = QHBoxLayout()
+        self.FirstTime = QLabel("First Time")
+        self.LastTime = QLabel("Last Time")
+        self.layoutH.addWidget(self.FirstTime)
+        self.layoutH.addWidget(self.LastTime)
+        self.layoutV.addWidget(self.wrapper_widget_qwt)
+        self.layoutV.addLayout(self.layoutH)
+        self.setLayout(self.layoutV)
+
+
+class wrapper_qwt(QWidget):
+    def __init__(self):
+        super(wrapper_qwt, self).__init__()
+        self.qwtPlot = qwt()
+
+class qwt(QwtPlot):
+    def __init__(self):
+        super(qwt, self).__init__()
