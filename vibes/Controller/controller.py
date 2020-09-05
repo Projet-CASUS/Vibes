@@ -3,8 +3,6 @@ import vibes
 import vibes.View.view as view
 import vibes.Model.model as models
 import vibes.Controller.transform as trans
-import pandas as pd
-import numpy as np
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QFrame, QSlider, QHBoxLayout
 from PyQt5.Qt import QApplication
@@ -33,15 +31,15 @@ class Controller():
         Note: is it useful if so we need to modify add_transformation to review the tuple
         :return: none
         """
-        self.model.data.add_transformation(vibes.ImportFile, type, data_file)
+        self.model.data.add_transformation(trans.import_file, type, data_file)
 
 
     def add_transform(self, type,index =-1):
         """
         TODO Vianney
-        ajouter une transformation dans l'objet datavibes du model
+        ajouter une transformation dans l'objet data du model
         """
-        self.model.data.add_transformation(vibes.Filter,index,type)
+        self.model.data.add_transformation(trans.Filter,index,type)
         pass
 
     def data_range_selections(self, first, last , index = -1):
@@ -53,7 +51,7 @@ class Controller():
          :param self:
          :return:
          """
-         self.model.data.add_transformation(vibes.Controller.transform.RangeSelection,index,first,last)
+         self.model.data.add_transformation(vibes.Controller.transform.Range_selection, index, first, last)
 
 
     def pop_up_graphic(self):
@@ -95,7 +93,7 @@ class Controller():
         afficher le graphique en temporelle du model
         :return:
         """
-        NameArray = ["time", "x", "y", "z", "gforce"]
+        name_array = ["time", "x", "y", "z", "gforce"]
         if(w == -2):
             self.my_interface.time_window.widget.wrapper_widget_qwt.qwtPlot.close()
         else:
@@ -106,12 +104,12 @@ class Controller():
                 length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
             x = [None]*length
             for i in range(0, len(x)):
-                x[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[0]][i].replace(',', '.'))
-            for n in range(1,len(NameArray)-1):
+                x[i] = float(self.model.data.transformations[w][1].loc[:, name_array[0]][i].replace(',', '.'))
+            for n in range(1,len(name_array)-1):
                 y = [None]*length
                 for i in range(0, len(y)):
-                    y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
-                curve = QwtPlotCurve(NameArray[n])
+                    y[i] = float(self.model.data.transformations[w][1].loc[:, name_array[n]][i].replace(',', '.'))
+                curve = QwtPlotCurve(name_array[n])
                 curve.setData(x, y)
                 curve.attach(self.my_interface.time_window.widget.wrapper_widget_qwt.qwtPlot)
 
@@ -121,22 +119,22 @@ class Controller():
         self.update_pipeline()
 
     def update_pipeline(self):
-        isNull = True
-        plotIndex = 0
+        is_null = True
+        plot_index = 0
         for x in range(0,len(self.model.data.transformations[0])):
             f= len(self.model.data.transformations[0]) - self.my_interface.main_window.widget.pipeline_slider.value()
             if(x < f):
                 t = self.my_interface.main_window.layout.itemAt(x).widget().setEnabled(True)
-                isNull = False
-                plotIndex = x
+                is_null = False
+                plot_index = x
             else:
                 t = self.my_interface.main_window.layout.itemAt(x).widget().setEnabled(False)
-        if(isNull):
+        if(is_null):
             self.define_time_graphic(-2)
             self.define_freq_graphic(-2)
         else:
-            self.define_time_graphic(plotIndex)
-            self.define_freq_graphic(plotIndex)
+            self.define_time_graphic(plot_index)
+            self.define_freq_graphic(plot_index)
 
     def show_of_pipeline(self):
         for x in range(0,len(self.model.data.transformations)):

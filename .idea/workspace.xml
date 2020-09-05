@@ -20,13 +20,118 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="842639bc-8e10-474e-b260-896a72a6d126" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/Controller/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/Controller/transform.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Controller/transform.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/Model/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Model/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/Model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/Model/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vibes/View/view.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/View/view.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/transformations/differentiel.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/transformations/differentiel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vibes/transformations/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/vibes/transformations/filters.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/Controller/transform.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-784">
+              <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/Model/data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/Model/model.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/transformations/filters.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/transformations/modif_raw_data.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/transformations/range_selection.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/View/view.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-859">
+              <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#77#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/transformations/differentiel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vibes/Controller/controller.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
+              <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -35,16 +140,87 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>file</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/vibes/Controller/controller.py" />
+        <option value="$PROJECT_DIR$/vibes/Controller/transform.py" />
+        <option value="$PROJECT_DIR$/vibes/Model/data.py" />
+        <option value="$PROJECT_DIR$/vibes/transformations/differentiel.py" />
+        <option value="$PROJECT_DIR$/vibes/Model/model.py" />
+        <option value="$PROJECT_DIR$/vibes/transformations/filters.py" />
+        <option value="$PROJECT_DIR$/vibes/View/view.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="width" value="1390" />
+    <option name="height" value="1756" />
   </component>
   <component name="ProjectId" id="1eXYEgbF3l1BbieCRsVzv4t6i4X" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Vibes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vibes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vibes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="vibes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vibes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vibes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vibes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="transformations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Vibes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="vibes" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,6 +229,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="S3_app4" type="PythonConfigurationType" factoryName="Python">
@@ -83,7 +271,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="1" Folder0="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Downloads" CustomDictionaries="1" CustomDictionary0="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Downloads\fr.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Downloads" CustomDictionaries="1" CustomDictionary0="C:\Users\PHODMAN.DESKTOP-1VM7GFC\Downloads\fr.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -175,14 +363,58 @@
     <option name="localTasksCounter" value="12" />
     <servers />
   </component>
+  <component name="ToolWindowManager">
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
+    <layout>
+      <window_info id="DB Browser" weight="0.3298585" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24944155" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="DB Execution Console" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32934928" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32934928" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
           </value>
         </entry>
       </map>
@@ -201,205 +433,139 @@
     <option name="LAST_COMMIT_MESSAGE" value="hierarchy refactor" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1528" y="159" key="#S3_app4" timestamp="1598809463988">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1528" y="159" key="#S3_app4/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598809463988" />
-    <state x="-2169" y="114" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598814336726">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-2169" y="114" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598814336726" />
-    <state x="192" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1474.864@0.0.1474.864" timestamp="1594469569013" />
-    <state x="200" y="83" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1598493100089" />
-    <state x="468" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594470513730">
-      <screen x="0" y="0" width="1474" height="864" />
-    </state>
-    <state x="468" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1474.864@0.0.1474.864" timestamp="1594470513730" />
-    <state x="-1959" y="39" key="CommitChangelistDialog2" timestamp="1599335961244">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1959" y="39" key="CommitChangelistDialog2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599335961244" />
-    <state x="316" y="27" key="CommitChangelistDialog2/0.0.1474.864@0.0.1474.864" timestamp="1594472614814" />
-    <state x="-1959" y="39" key="CommitChangelistDialog2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503107189" />
-    <state x="-1959" y="39" key="CommitChangelistDialog2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583082778" />
-    <state width="1586" height="548" key="DebuggerActiveHint" timestamp="1597620547986">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state width="381" height="438" key="DebuggerActiveHint/0.0.1474.864@0.0.1474.864" timestamp="1594475257643" />
-    <state width="739" height="548" key="DebuggerActiveHint/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597189369714" />
-    <state width="1586" height="548" key="DebuggerActiveHint/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597620547986" />
-    <state x="-1835" y="182" key="DiffContextDialog" timestamp="1598813770296">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1835" y="182" key="DiffContextDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598813770296" />
-    <state x="-1835" y="182" key="DiffContextDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583574817" />
-    <state x="539" y="178" key="FileChooserDialogImpl" timestamp="1598493092992">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="517" y="187" key="FileChooserDialogImpl/0.0.1474.864@0.0.1474.864" timestamp="1594470857680" />
-    <state x="539" y="178" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1598493092992" />
-    <state width="2473" height="172" key="GridCell.Tab.0.bottom" timestamp="1599336310252">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state width="2473" height="172" key="GridCell.Tab.0.bottom/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599336310252" />
-    <state width="1453" height="228" key="GridCell.Tab.0.bottom/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
-    <state width="1515" height="191" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598493042363" />
-    <state width="2470" height="373" key="GridCell.Tab.0.bottom/0.0.2476.1080@0.0.2476.1080" timestamp="1598313623151" />
-    <state width="2477" height="182" key="GridCell.Tab.0.bottom/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
-    <state width="2477" height="291" key="GridCell.Tab.0.bottom/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
-    <state width="2473" height="291" key="GridCell.Tab.0.bottom/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597272982831" />
-    <state width="2490" height="377" key="GridCell.Tab.0.bottom/64.0.2496.1080@64.0.2496.1080" timestamp="1597283165091" />
-    <state width="2473" height="291" key="GridCell.Tab.0.bottom/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597021361145" />
-    <state width="2477" height="363" key="GridCell.Tab.0.bottom/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
-    <state width="2473" height="375" key="GridCell.Tab.0.bottom/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503911286" />
-    <state width="2477" height="182" key="GridCell.Tab.0.bottom/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
-    <state width="1223" height="290" key="GridCell.Tab.0.bottom/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
-    <state width="2473" height="374" key="GridCell.Tab.0.bottom/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
-    <state width="2473" height="172" key="GridCell.Tab.0.center" timestamp="1599336310251">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state width="2473" height="172" key="GridCell.Tab.0.center/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599336310251" />
-    <state width="1453" height="228" key="GridCell.Tab.0.center/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
-    <state width="1515" height="191" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598493042363" />
-    <state width="2470" height="373" key="GridCell.Tab.0.center/0.0.2476.1080@0.0.2476.1080" timestamp="1598313623151" />
-    <state width="2477" height="182" key="GridCell.Tab.0.center/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
-    <state width="2477" height="291" key="GridCell.Tab.0.center/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
-    <state width="2473" height="291" key="GridCell.Tab.0.center/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597272982831" />
-    <state width="2490" height="377" key="GridCell.Tab.0.center/64.0.2496.1080@64.0.2496.1080" timestamp="1597283165091" />
-    <state width="2473" height="291" key="GridCell.Tab.0.center/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597021361145" />
-    <state width="2477" height="363" key="GridCell.Tab.0.center/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
-    <state width="2473" height="375" key="GridCell.Tab.0.center/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503911286" />
-    <state width="2477" height="182" key="GridCell.Tab.0.center/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
-    <state width="1223" height="290" key="GridCell.Tab.0.center/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
-    <state width="2473" height="374" key="GridCell.Tab.0.center/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
-    <state width="2473" height="172" key="GridCell.Tab.0.left" timestamp="1599336310251">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state width="2473" height="172" key="GridCell.Tab.0.left/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599336310251" />
-    <state width="1453" height="228" key="GridCell.Tab.0.left/0.0.1474.864@0.0.1474.864" timestamp="1594475669285" />
-    <state width="1515" height="191" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598493042363" />
-    <state width="2470" height="373" key="GridCell.Tab.0.left/0.0.2476.1080@0.0.2476.1080" timestamp="1598313623151" />
-    <state width="2477" height="182" key="GridCell.Tab.0.left/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
-    <state width="2477" height="291" key="GridCell.Tab.0.left/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
-    <state width="2473" height="291" key="GridCell.Tab.0.left/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597272982830" />
-    <state width="2490" height="377" key="GridCell.Tab.0.left/64.0.2496.1080@64.0.2496.1080" timestamp="1597283165091" />
-    <state width="2473" height="291" key="GridCell.Tab.0.left/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597021361145" />
-    <state width="2477" height="363" key="GridCell.Tab.0.left/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
-    <state width="2473" height="375" key="GridCell.Tab.0.left/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503911286" />
-    <state width="2477" height="182" key="GridCell.Tab.0.left/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
-    <state width="1223" height="290" key="GridCell.Tab.0.left/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
-    <state width="2473" height="374" key="GridCell.Tab.0.left/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
-    <state width="2473" height="172" key="GridCell.Tab.0.right" timestamp="1599336310252">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state width="2473" height="172" key="GridCell.Tab.0.right/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599336310252" />
-    <state width="1453" height="228" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" timestamp="1594475669286" />
-    <state width="1515" height="191" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598493042363" />
-    <state width="2470" height="373" key="GridCell.Tab.0.right/0.0.2476.1080@0.0.2476.1080" timestamp="1598313623151" />
-    <state width="2477" height="182" key="GridCell.Tab.0.right/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596665520015" />
-    <state width="2477" height="291" key="GridCell.Tab.0.right/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498435825" />
-    <state width="2473" height="291" key="GridCell.Tab.0.right/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597272982831" />
-    <state width="2490" height="377" key="GridCell.Tab.0.right/64.0.2496.1080@64.0.2496.1080" timestamp="1597283165091" />
-    <state width="2473" height="291" key="GridCell.Tab.0.right/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597021361145" />
-    <state width="2477" height="363" key="GridCell.Tab.0.right/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595888087098" />
-    <state width="2473" height="375" key="GridCell.Tab.0.right/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503911286" />
-    <state width="2477" height="182" key="GridCell.Tab.0.right/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596919682873" />
-    <state width="1223" height="290" key="GridCell.Tab.0.right/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967655343" />
-    <state width="2473" height="374" key="GridCell.Tab.0.right/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597625153114" />
-    <state x="-2254" y="117" width="2108" height="831" key="MergeDialog" timestamp="1598813921980">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-2254" y="117" key="MergeDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598813921980" />
-    <state x="-2258" y="117" width="2108" height="831" key="MergeDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595783812815" />
-    <state x="-1535" y="261" key="MultipleFileMergeDialog" timestamp="1598813921985">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1535" y="261" key="MultipleFileMergeDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598813921985" />
-    <state x="-1537" y="261" key="MultipleFileMergeDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595783812821" />
-    <state x="-1599" y="36" key="SettingsEditor" timestamp="1599334939103">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1599" y="36" key="SettingsEditor/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599334939103" />
-    <state x="246" y="75" key="SettingsEditor/0.0.1474.864@0.0.1474.864" timestamp="1594470863867" />
-    <state x="-1599" y="36" key="SettingsEditor/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503284482" />
-    <state x="-1599" y="36" key="SettingsEditor/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597584568634" />
-    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2" timestamp="1599336050219">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599336050219" />
-    <state x="330" y="165" key="Vcs.Push.Dialog.v2/0.0.1474.864@0.0.1474.864" timestamp="1594472622240" />
-    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503125047" />
-    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583738849" />
-    <state width="1255" height="548" key="XDebugger.FullValuePopup" timestamp="1598395721728">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state width="1255" height="548" key="XDebugger.FullValuePopup/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1598395721728" />
-    <state width="1255" height="548" key="XDebugger.FullValuePopup/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597503575412" />
-    <state x="936" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1598226641815">
-      <screen x="0" y="0" width="2476" height="1080" />
-    </state>
-    <state x="936" y="364" key="com.intellij.ide.util.TipDialog/0.0.2476.1080@0.0.2476.1080" timestamp="1598226641815" />
-    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596853429854" />
-    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596498352792" />
-    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597269761728" />
-    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597002709028" />
-    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595880187603" />
-    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597510628718" />
-    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1596916224021" />
-    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597967494444" />
-    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597580766709" />
-    <state x="-1438" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599084869113">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1438" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599084869113" />
-    <state x="-1438" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597586483770" />
-    <state x="-1623" y="90" width="747" height="909" key="find.popup" timestamp="1595805531516">
-      <screen x="-2498" y="5" width="2498" height="1080" />
-    </state>
-    <state x="-1623" y="90" width="747" height="909" key="find.popup/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595805531516" />
-    <state x="-1620" y="258" key="git4idea.branch.GitSmartOperationDialog" timestamp="1599090555124">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1620" y="258" key="git4idea.branch.GitSmartOperationDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599090555124" />
-    <state x="-1620" y="258" key="git4idea.branch.GitSmartOperationDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597586468215" />
-    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog" timestamp="1599333951344">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599333951344" />
-    <state x="-1619" y="336" key="git4idea.merge.GitPullDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" timestamp="1595784589223" />
-    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597422395645" />
-    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597583585374" />
-    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1599084916538">
-      <screen x="-2494" y="5" width="2494" height="1080" />
-    </state>
-    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1599084916538" />
-    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597270543702" />
-    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" timestamp="1597500663611" />
+    <state x="-1528" y="159" key="#S3_app4" />
+    <state x="-1528" y="159" key="#S3_app4/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-2169" y="114" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
+    <state x="-2169" y="114" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="192" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1474.864@0.0.1474.864" />
+    <state x="200" y="83" width="1089" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="468" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" />
+    <state x="468" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1474.864@0.0.1474.864" />
+    <state x="-1959" y="39" key="CommitChangelistDialog2" />
+    <state x="-1959" y="39" key="CommitChangelistDialog2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="316" y="27" key="CommitChangelistDialog2/0.0.1474.864@0.0.1474.864" />
+    <state x="-1959" y="39" key="CommitChangelistDialog2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1959" y="39" key="CommitChangelistDialog2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="1586" height="548" key="DebuggerActiveHint" />
+    <state width="381" height="438" key="DebuggerActiveHint/0.0.1474.864@0.0.1474.864" />
+    <state width="739" height="548" key="DebuggerActiveHint/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="1586" height="548" key="DebuggerActiveHint/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1835" y="182" key="DiffContextDialog" />
+    <state x="-1835" y="182" key="DiffContextDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1835" y="182" key="DiffContextDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="539" y="178" key="FileChooserDialogImpl" />
+    <state x="517" y="187" key="FileChooserDialogImpl/0.0.1474.864@0.0.1474.864" />
+    <state x="539" y="178" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" />
+    <state width="2473" height="172" key="GridCell.Tab.0.bottom" />
+    <state width="2473" height="172" key="GridCell.Tab.0.bottom/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="1453" height="228" key="GridCell.Tab.0.bottom/0.0.1474.864@0.0.1474.864" />
+    <state width="1515" height="191" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" />
+    <state width="2470" height="373" key="GridCell.Tab.0.bottom/0.0.2476.1080@0.0.2476.1080" />
+    <state width="2477" height="182" key="GridCell.Tab.0.bottom/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2477" height="291" key="GridCell.Tab.0.bottom/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2473" height="291" key="GridCell.Tab.0.bottom/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2490" height="377" key="GridCell.Tab.0.bottom/64.0.2496.1080@64.0.2496.1080" />
+    <state width="2473" height="291" key="GridCell.Tab.0.bottom/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2477" height="363" key="GridCell.Tab.0.bottom/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2473" height="375" key="GridCell.Tab.0.bottom/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2477" height="182" key="GridCell.Tab.0.bottom/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="1223" height="290" key="GridCell.Tab.0.bottom/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2473" height="374" key="GridCell.Tab.0.bottom/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2473" height="172" key="GridCell.Tab.0.center" />
+    <state width="2473" height="172" key="GridCell.Tab.0.center/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="1453" height="228" key="GridCell.Tab.0.center/0.0.1474.864@0.0.1474.864" />
+    <state width="1515" height="191" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" />
+    <state width="2470" height="373" key="GridCell.Tab.0.center/0.0.2476.1080@0.0.2476.1080" />
+    <state width="2477" height="182" key="GridCell.Tab.0.center/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2477" height="291" key="GridCell.Tab.0.center/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2473" height="291" key="GridCell.Tab.0.center/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2490" height="377" key="GridCell.Tab.0.center/64.0.2496.1080@64.0.2496.1080" />
+    <state width="2473" height="291" key="GridCell.Tab.0.center/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2477" height="363" key="GridCell.Tab.0.center/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2473" height="375" key="GridCell.Tab.0.center/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2477" height="182" key="GridCell.Tab.0.center/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="1223" height="290" key="GridCell.Tab.0.center/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2473" height="374" key="GridCell.Tab.0.center/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2473" height="172" key="GridCell.Tab.0.left" />
+    <state width="2473" height="172" key="GridCell.Tab.0.left/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="1453" height="228" key="GridCell.Tab.0.left/0.0.1474.864@0.0.1474.864" />
+    <state width="1515" height="191" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" />
+    <state width="2470" height="373" key="GridCell.Tab.0.left/0.0.2476.1080@0.0.2476.1080" />
+    <state width="2477" height="182" key="GridCell.Tab.0.left/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2477" height="291" key="GridCell.Tab.0.left/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2473" height="291" key="GridCell.Tab.0.left/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2490" height="377" key="GridCell.Tab.0.left/64.0.2496.1080@64.0.2496.1080" />
+    <state width="2473" height="291" key="GridCell.Tab.0.left/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2477" height="363" key="GridCell.Tab.0.left/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2473" height="375" key="GridCell.Tab.0.left/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2477" height="182" key="GridCell.Tab.0.left/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="1223" height="290" key="GridCell.Tab.0.left/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2473" height="374" key="GridCell.Tab.0.left/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2473" height="172" key="GridCell.Tab.0.right" />
+    <state width="2473" height="172" key="GridCell.Tab.0.right/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="1453" height="228" key="GridCell.Tab.0.right/0.0.1474.864@0.0.1474.864" />
+    <state width="1515" height="191" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" />
+    <state width="2470" height="373" key="GridCell.Tab.0.right/0.0.2476.1080@0.0.2476.1080" />
+    <state width="2477" height="182" key="GridCell.Tab.0.right/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2477" height="291" key="GridCell.Tab.0.right/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2473" height="291" key="GridCell.Tab.0.right/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2490" height="377" key="GridCell.Tab.0.right/64.0.2496.1080@64.0.2496.1080" />
+    <state width="2473" height="291" key="GridCell.Tab.0.right/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2477" height="363" key="GridCell.Tab.0.right/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="2473" height="375" key="GridCell.Tab.0.right/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2477" height="182" key="GridCell.Tab.0.right/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state width="1223" height="290" key="GridCell.Tab.0.right/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="2473" height="374" key="GridCell.Tab.0.right/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-2254" y="117" width="2108" height="831" key="MergeDialog" />
+    <state x="-2254" y="117" key="MergeDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-2258" y="117" width="2108" height="831" key="MergeDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state x="-1535" y="261" key="MultipleFileMergeDialog" />
+    <state x="-1535" y="261" key="MultipleFileMergeDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1537" y="261" key="MultipleFileMergeDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state x="-1599" y="36" key="SettingsEditor" />
+    <state x="-1599" y="36" key="SettingsEditor/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="246" y="75" key="SettingsEditor/0.0.1474.864@0.0.1474.864" />
+    <state x="-1599" y="36" key="SettingsEditor/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1599" y="36" key="SettingsEditor/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2" />
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="330" y="165" key="Vcs.Push.Dialog.v2/0.0.1474.864@0.0.1474.864" />
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1936" y="211" key="Vcs.Push.Dialog.v2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="1255" height="548" key="XDebugger.FullValuePopup" />
+    <state width="1255" height="548" key="XDebugger.FullValuePopup/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state width="1255" height="548" key="XDebugger.FullValuePopup/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="936" y="364" key="com.intellij.ide.util.TipDialog" />
+    <state x="936" y="364" key="com.intellij.ide.util.TipDialog/0.0.2476.1080@0.0.2476.1080" />
+    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/62.0.1474.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/68.0.1468.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1553" y="369" key="com.intellij.ide.util.TipDialog/78.0.1458.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/84.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1551" y="369" key="com.intellij.ide.util.TipDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1438" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
+    <state x="-1438" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1438" y="462" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1623" y="90" width="747" height="909" key="find.popup" />
+    <state x="-1623" y="90" width="747" height="909" key="find.popup/71.0.1465.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state x="-1620" y="258" key="git4idea.branch.GitSmartOperationDialog" />
+    <state x="-1620" y="258" key="git4idea.branch.GitSmartOperationDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1620" y="258" key="git4idea.branch.GitSmartOperationDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog" />
+    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1619" y="336" key="git4idea.merge.GitPullDialog/63.0.1473.864/-2498.5.2498.1080@-2498.5.2498.1080" />
+    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1616" y="336" key="git4idea.merge.GitPullDialog/86.0.1450.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup" />
+    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup/0.0.1452.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup/64.0.1472.864/-2494.5.2494.1080@-2494.5.2494.1080" />
+    <state x="-1584" y="240" width="672" height="678" key="search.everywhere.popup/78.0.1458.864/-2494.5.2494.1080@-2494.5.2494.1080" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>148</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>80</line>
-          <option name="timeStamp" value="45" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/vibes/Controller/controller.py</url>
-          <line>114</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -437,5 +603,84 @@
         <watch expression="freq" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/vibes/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/Controller/controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="12" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/Controller/transform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-784">
+          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/Model/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/transformations/differentiel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/Model/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/transformations/filters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/transformations/modif_raw_data.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/transformations/range_selection.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vibes/View/view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-859">
+          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

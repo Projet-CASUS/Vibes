@@ -20,7 +20,7 @@ class data:
         :param func_file: fichier des fonctions de transformation
         """
         if func_file is None:
-            import_func = transform.ImportFile(type=type)
+            import_func = transform.import_file(type=type)
             self.transformations = [[import_func, import_func(data_file)]]
         else:
             self.transformations = []
@@ -77,16 +77,16 @@ class data:
         for i in range(idx, len(self.transformations)):
             self.transformations[i][1] = self.transformations[i][0](self.transformations[i-1][1])
 
-    def export_data(self, data, freq):
+    def export_wav(self, data, freq):
         filename = QtGui.QFileDialog.getSaveFileName(self, 'Save File')
-        wavef = wave.open(filename + '.wav','w')
-        wavef.setnchannels(1) # mono
-        wavef.setsampwidth(2)
-        wavef.setframerate((1/freq))
+        f = wave.open(filename + '.wav', 'w')
+        f.setnchannels(1) # mono
+        f.setsampwidth(2)
+        f.setframerate((1 / freq))
         for i in range(len(data)):
             wavefile = struct.pack('<h', data[i])
-            wavef.writeframesraw(wavefile)
-        wavef.close()
+            f.writeframesraw(wavefile)
+        f.close()
         print('Fichier wav généré au répertoire: ')
 
 

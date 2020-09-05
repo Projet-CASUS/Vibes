@@ -37,7 +37,7 @@ class pipeline(QMainWindow):
 class pipeline_content(QWidget):
     def __init__(self):
         super(pipeline_content, self).__init__()
-        self.pipelineIndex = None
+        self.pipeline_index = None
         self.pipelineSlider = None
 
 class time_plot(QMainWindow):
