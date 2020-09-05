@@ -22,9 +22,9 @@ class Controller():
         self.app = QApplication(sys.argv)
         self.model = models.Model(data_file)
         self.my_interface = view.graphical_interface()
-        self.my_interface.mainWindow.widget.pipeline_slider = QSlider()
-        self.my_interface.mainWindow.widget.pipeline_index = len(self.model.data.transformations[0])
-        self.my_interface.mainWindow.widget.pipeline_slider.valueChanged.connect(self.value_changed)
+        self.my_interface.main_window.widget.pipeline_slider = QSlider()
+        self.my_interface.main_window.widget.pipeline_index = len(self.model.data.transformations[0])
+        self.my_interface.main_window.widget.pipeline_slider.valueChanged.connect(self.value_changed)
 
     def add_data(self, type, data_file):
         """
@@ -68,26 +68,26 @@ class Controller():
 
         name_array = ["time","gforce"]
         if(w == -2):
-            self.my_interface.my_fourier_plot.close()
+            self.my_interface.fourier_window.close()
         else:
-            self.my_interface.my_fourier_plot.close()
-            self.my_interface.my_fourier_plot = view.fourier()
+            self.my_interface.fourier_window.close()
+            self.my_interface.fourier_window = view.fourier()
             length = len(self.model.data.transformations[w][1])
             if (self.model.data.transformations[w][0].type == "range_selection"):
                 length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
             x = [None] * length
             for i in range(0, len(x)):
                 x[i] = float(self.model.data.transformations[w][1].loc[:, name_array[0]][i].replace(',', '.'))
-            freq = self.my_interface.my_fourier_plot.defineX(x, 200)
+            freq = self.my_interface.fourier_window.defineX(x, 200)
             for n in range(1, len(name_array)):
                 y = [None] * length
                 for i in range(0, len(y)):
                     y[i] = float(self.model.data.transformations[w][1].loc[:, name_array[n]][i].replace(',', '.'))
-                fourier = self.my_interface.my_fourier_plot.defineY(y, 200)
+                fourier = self.my_interface.fourier_window.defineY(y, 200)
                 curve = QwtPlotCurve(name_array[n])
                 curve.setData(freq, fourier)
-                curve.attach(self.my_interface.my_fourier_plot)
-            self.my_interface.show_of_freq_plot()
+                curve.attach(self.my_interface.fourier_window)
+            self.my_interface.show_of_freq()
 
     def define_time_graphic(self, w = -1):
         """
@@ -97,12 +97,12 @@ class Controller():
         """
         NameArray = ["time", "x", "y", "z", "gforce"]
         if(w == -2):
-            self.my_interface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.close()
+            self.my_interface.time_window.widget.widgetWrapperForQWTplot.qwtPlot.close()
         else:
-            self.my_interface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.close()
-            self.my_interface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot = view.qwt_time_plot()
+            self.my_interface.time_window.widget.widgetWrapperForQWTplot.qwtPlot.close()
+            self.my_interface.time_window.widget.widgetWrapperForQWTplot.qwtPlot = view.qwt()
             length =len(self.model.data.transformations[w][1])
-            if(self.model.data.transformations[w][0].type == "RangeSelection"):
+            if(self.model.data.transformations[w][0].type == "range_selection"):
                 length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
             x = [None]*length
             for i in range(0, len(x)):
@@ -113,9 +113,9 @@ class Controller():
                     y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
                 curve = QwtPlotCurve(NameArray[n])
                 curve.setData(x, y)
-                curve.attach(self.my_interface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot)
+                curve.attach(self.my_interface.time_window.widget.widgetWrapperForQWTplot.qwtPlot)
 
-            self.my_interface.show_of_time_plot()
+            self.my_interface.show_of_time()
 
     def value_changed(self):
         self.update_pipeline()
@@ -124,13 +124,13 @@ class Controller():
         isNull = True
         plotIndex = 0
         for x in range(0,len(self.model.data.transformations[0])):
-            f= len(self.model.data.transformations[0]) - self.my_interface.mainWindow.widget.pipeline_slider.value()
+            f= len(self.model.data.transformations[0]) - self.my_interface.main_window.widget.pipeline_slider.value()
             if(x < f):
-                t = self.my_interface.mainWindow.layout.itemAt(x).widget().setEnabled(True)
+                t = self.my_interface.main_window.layout.itemAt(x).widget().setEnabled(True)
                 isNull = False
                 plotIndex = x
             else:
-                t = self.my_interface.mainWindow.layout.itemAt(x).widget().setEnabled(False)
+                t = self.my_interface.main_window.layout.itemAt(x).widget().setEnabled(False)
         if(isNull):
             self.define_time_graphic(-2)
             self.define_freq_graphic(-2)
@@ -145,16 +145,16 @@ class Controller():
             pipeline_entry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
             pipeline_entry.setText(self.model.data.transformations[x][0].type)
             pipeline_entry.setAlignment(Qt.AlignCenter)
-            self.my_interface.mainWindow.layout.addWidget(pipeline_entry)
-            self.my_interface.mainWindow.widget.pipeline_slider.setRange(0, x + 1)
-        self.my_interface.mainWindow.widget.pipeline_slider.setTickInterval(1)
-        self.my_interface.mainWindow.layout1.addWidget(self.my_interface.mainWindow.widget.pipeline_slider)
-        self.my_interface.mainWindow.layout1.addLayout(self.my_interface.mainWindow.layout)
+            self.my_interface.main_window.layout.addWidget(pipeline_entry)
+            self.my_interface.main_window.widget.pipeline_slider.setRange(0, x + 1)
+        self.my_interface.main_window.widget.pipeline_slider.setTickInterval(1)
+        self.my_interface.main_window.layout1.addWidget(self.my_interface.main_window.widget.pipeline_slider)
+        self.my_interface.main_window.layout1.addLayout(self.my_interface.main_window.layout)
         self.my_interface.show_of_pipeline()
 
 
     def modifyPipeline(self):
-         self.model.data.currentIndex = self.my_interface.mainWindow.widget.pipeline_slider.value()
+         self.model.data.currentIndex = self.my_interface.main_window.widget.pipeline_slider.value()
 
 
 

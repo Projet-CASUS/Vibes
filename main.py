@@ -7,7 +7,7 @@ import os
 program_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(program_folder)
 
-control = cont.Controller("./test_files/100.0Hz_20.0sec.csv")
+control = cont.Controller("./test_files/test00.csv")
 
 control.define_time_graphic()
 control.data_range_selections(2490, 2500)
