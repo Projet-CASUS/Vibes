@@ -58,7 +58,7 @@ class RangeSelection:
     def __init__(self,first,last):
         self.first = first
         self.last = last
-        self.type = "RangeSelection"
+        self.type = "range_selection"
         self.NameArray = ["time", "x", "y", "z", "gforce"]
         self.savedUpData = [[0 for x in range(len(self.NameArray))] for i in range((self.last - self.first))]
         data = {'time':[None] , 'x':[None], 'y':[None], 'z':[None], 'gforce':[None]}

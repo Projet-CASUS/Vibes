@@ -17,13 +17,13 @@ class graphical_interface():
     def __init__(self):
 
         self.mytimeplot = time_plot()
-        self.myfourierplot = fourier()
+        self.my_fourier_plot = fourier()
         self.mainWindow = pipeline()
 
     def show_of_freq_plot(self):
-        self.myfourierplot.resize(600,300)
-        self.myfourierplot.replot()
-        self.myfourierplot.show()
+        self.my_fourier_plot.resize(600, 300)
+        self.my_fourier_plot.replot()
+        self.my_fourier_plot.show()
 
     def show_of_time_plot(self):
         self.mytimeplot.resize(600, 300)

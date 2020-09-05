@@ -10,28 +10,30 @@ from PyQt5.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QFrame, QSlider, Q
 from PyQt5.Qt import QApplication
 from qwt import QwtPlot, QwtPlotCurve
 from decimal import Decimal
+
+
 class Controller():
-    def __init__(self, datafile):
+    def __init__(self, data_file):
         """
         Init:
             reçois les argument sys.argv pour contruire un Qt application
 
         """
         self.app = QApplication(sys.argv)
-        self.model = models.Model(datafile)
-        self.myinterface = view.graphical_interface()
-        self.myinterface.mainWindow.widget.pipelineSlider = QSlider()
-        self.myinterface.mainWindow.widget.pipelineIndex = len(self.model.data.transformations[0])
-        self.myinterface.mainWindow.widget.pipelineSlider.valueChanged.connect(self.value_changed)
+        self.model = models.Model(data_file)
+        self.my_interface = view.graphical_interface()
+        self.my_interface.mainWindow.widget.pipeline_slider = QSlider()
+        self.my_interface.mainWindow.widget.pipeline_index = len(self.model.data.transformations[0])
+        self.my_interface.mainWindow.widget.pipeline_slider.valueChanged.connect(self.value_changed)
 
-    def add_data(self, type, datafile):
+    def add_data(self, type, data_file):
         """
         todo Daniel
         instancier un objet de data dans le datavibes du model
         Note: is it useful if so we need to modify add_transformation to review the tuple
         :return: none
         """
-        self.model.data.add_transformation(vibes.ImportFile,type,datafile)
+        self.model.data.add_transformation(vibes.ImportFile, type, data_file)
 
 
     def add_transform(self, type,index =-1):
@@ -62,32 +64,32 @@ class Controller():
         """
         pass
 
-    def show_of_freq_graphic(self, w=-1):
+    def define_freq_graphic(self, w=-1):
 
-        NameArray = ["time","gforce"]
+        name_array = ["time","gforce"]
         if(w == -2):
-            self.myinterface.myfourierplot.close()
+            self.my_interface.my_fourier_plot.close()
         else:
-            self.myinterface.myfourierplot.close()
-            self.myinterface.myfourierplot = view.fourier()
+            self.my_interface.my_fourier_plot.close()
+            self.my_interface.my_fourier_plot = view.fourier()
             length = len(self.model.data.transformations[w][1])
-            if (self.model.data.transformations[w][0].type == "RangeSelection"):
+            if (self.model.data.transformations[w][0].type == "range_selection"):
                 length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
             x = [None] * length
             for i in range(0, len(x)):
-                x[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[0]][i].replace(',', '.'))
-            freq = self.myinterface.myfourierplot.defineX(x, 200)
-            for n in range(1, len(NameArray)):
+                x[i] = float(self.model.data.transformations[w][1].loc[:, name_array[0]][i].replace(',', '.'))
+            freq = self.my_interface.my_fourier_plot.defineX(x, 200)
+            for n in range(1, len(name_array)):
                 y = [None] * length
                 for i in range(0, len(y)):
-                    y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
-                fourier = self.myinterface.myfourierplot.defineY(y, 200)
-                curve = QwtPlotCurve(NameArray[n])
+                    y[i] = float(self.model.data.transformations[w][1].loc[:, name_array[n]][i].replace(',', '.'))
+                fourier = self.my_interface.my_fourier_plot.defineY(y, 200)
+                curve = QwtPlotCurve(name_array[n])
                 curve.setData(freq, fourier)
-                curve.attach(self.myinterface.myfourierplot)
-            self.myinterface.show_of_freq_plot()
+                curve.attach(self.my_interface.my_fourier_plot)
+            self.my_interface.show_of_freq_plot()
 
-    def show_of_time_graphic(self , w = -1):
+    def define_time_graphic(self, w = -1):
         """
         TODO Philippe
         afficher le graphique en temporelle du model
@@ -95,10 +97,10 @@ class Controller():
         """
         NameArray = ["time", "x", "y", "z", "gforce"]
         if(w == -2):
-            self.myinterface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.close()
+            self.my_interface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.close()
         else:
-            self.myinterface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.close()
-            self.myinterface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot = view.qwt_time_plot()
+            self.my_interface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.close()
+            self.my_interface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot = view.qwt_time_plot()
             length =len(self.model.data.transformations[w][1])
             if(self.model.data.transformations[w][0].type == "RangeSelection"):
                 length = self.model.data.transformations[w][0].last - self.model.data.transformations[w][0].first
@@ -111,9 +113,9 @@ class Controller():
                     y[i] = float(self.model.data.transformations[w][1].loc[:, NameArray[n]][i].replace(',', '.'))
                 curve = QwtPlotCurve(NameArray[n])
                 curve.setData(x, y)
-                curve.attach(self.myinterface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot)
+                curve.attach(self.my_interface.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot)
 
-            self.myinterface.show_of_time_plot()
+            self.my_interface.show_of_time_plot()
 
     def value_changed(self):
         self.update_pipeline()
@@ -122,37 +124,37 @@ class Controller():
         isNull = True
         plotIndex = 0
         for x in range(0,len(self.model.data.transformations[0])):
-            f= len(self.model.data.transformations[0]) - self.myinterface.mainWindow.widget.pipelineSlider.value()
+            f= len(self.model.data.transformations[0]) - self.my_interface.mainWindow.widget.pipeline_slider.value()
             if(x < f):
-                t = self.myinterface.mainWindow.layout.itemAt(x).widget().setEnabled(True)
+                t = self.my_interface.mainWindow.layout.itemAt(x).widget().setEnabled(True)
                 isNull = False
                 plotIndex = x
             else:
-                t = self.myinterface.mainWindow.layout.itemAt(x).widget().setEnabled(False)
+                t = self.my_interface.mainWindow.layout.itemAt(x).widget().setEnabled(False)
         if(isNull):
-            self.show_of_time_graphic(-2)
-            self.show_of_freq_graphic(-2)
+            self.define_time_graphic(-2)
+            self.define_freq_graphic(-2)
         else:
-            self.show_of_time_graphic(plotIndex)
-            self.show_of_freq_graphic(plotIndex)
+            self.define_time_graphic(plotIndex)
+            self.define_freq_graphic(plotIndex)
 
     def show_of_pipeline(self):
         for x in range(0,len(self.model.data.transformations)):
-            pipelineEntry = QLabel()
-            pipelineEntry.setFixedSize(100, 20)
-            pipelineEntry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
-            pipelineEntry.setText(self.model.data.transformations[x][0].type)  
-            pipelineEntry.setAlignment(Qt.AlignCenter)
-            self.myinterface.mainWindow.layout.addWidget(pipelineEntry)
-            self.myinterface.mainWindow.widget.pipelineSlider.setRange(0, x+1)
-        self.myinterface.mainWindow.widget.pipelineSlider.setTickInterval(1)
-        self.myinterface.mainWindow.layout1.addWidget(self.myinterface.mainWindow.widget.pipelineSlider)
-        self.myinterface.mainWindow.layout1.addLayout(self.myinterface.mainWindow.layout)
-        self.myinterface.show_of_pipeline()
+            pipeline_entry = QLabel()
+            pipeline_entry.setFixedSize(100, 20)
+            pipeline_entry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
+            pipeline_entry.setText(self.model.data.transformations[x][0].type)
+            pipeline_entry.setAlignment(Qt.AlignCenter)
+            self.my_interface.mainWindow.layout.addWidget(pipeline_entry)
+            self.my_interface.mainWindow.widget.pipeline_slider.setRange(0, x + 1)
+        self.my_interface.mainWindow.widget.pipeline_slider.setTickInterval(1)
+        self.my_interface.mainWindow.layout1.addWidget(self.my_interface.mainWindow.widget.pipeline_slider)
+        self.my_interface.mainWindow.layout1.addLayout(self.my_interface.mainWindow.layout)
+        self.my_interface.show_of_pipeline()
 
 
     def modifyPipeline(self):
-         self.model.data.currentIndex = self.myinterface.mainWindow.widget.pipelineSlider.value()
+         self.model.data.currentIndex = self.my_interface.mainWindow.widget.pipeline_slider.value()
 
 
 

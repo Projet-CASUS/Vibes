@@ -9,10 +9,10 @@ os.chdir(program_folder)
 
 control = cont.Controller("./test_files/100.0Hz_20.0sec.csv")
 
-control.show_of_time_graphic()
+control.define_time_graphic()
 control.data_range_selections(2490, 2500)
-control.show_of_time_graphic()
-control.show_of_freq_graphic()
+control.define_time_graphic()
+control.define_freq_graphic()
 control.show_of_pipeline()
 #control.addTransform(None)
 
