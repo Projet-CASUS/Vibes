@@ -1,39 +1,30 @@
-import sys
-import numpy as np
-import vibes.Model.model as models
-from PyQt5.Qt import (QApplication, QPen, QBrush, QFrame, QFont, QWidget,
-                          QMainWindow, QToolButton, QIcon, QPixmap, QToolBar,
-                          QHBoxLayout, QLabel, QPrinter, QPrintDialog,
-                          QFontDatabase, QWindow, QVBoxLayout, QRubberBand, QPalette, QSlider)
-from PyQt5.Qt import QSize, QRect, QPoint
-from PyQt5.Qt import Qt
-from qwt import (QwtPlot, QwtPlotMarker, QwtSymbol, QwtLegend, QwtPlotGrid,
-                 QwtPlotCurve, QwtPlotItem, QwtLogScaleEngine, QwtText,
-                 QwtPlotRenderer)
+from PyQt5.Qt import (QWidget, QMainWindow, QHBoxLayout, QLabel, QVBoxLayout)
+
+from qwt import (QwtPlot)
 from scipy import fftpack
 from scipy import signal
 
 class graphical_interface():
     def __init__(self):
 
-        self.mytimeplot = time_plot()
-        self.myfourierplot = fourier()
-        self.mainWindow = pipeline()
+        self.time_window = time_plot()
+        self.fourier_window = fourier()
+        self.main_window = pipeline()
 
-    def show_of_freq_plot(self):
-        self.myfourierplot.resize(600,300)
-        self.myfourierplot.replot()
-        self.myfourierplot.show()
+    def show_of_freq(self):
+        self.fourier_window.resize(600, 300)
+        self.fourier_window.replot()
+        self.fourier_window.show()
 
-    def show_of_time_plot(self):
-        self.mytimeplot.resize(600, 300)
-        self.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.replot()
-        self.mytimeplot.widget.widgetWrapperForQWTplot.qwtPlot.show()
+    def show_of_time(self):
+        self.time_window.resize(600, 300)
+        self.time_window.widget.widgetWrapperForQWTplot.qwtPlot.replot()
+        self.time_window.widget.widgetWrapperForQWTplot.qwtPlot.show()
 
     def show_of_pipeline(self):
-        self.mainWindow.widget.setLayout(self.mainWindow.layout1)
-        self.mainWindow.setCentralWidget(self.mainWindow.widget)
-        self.mainWindow.show()
+        self.main_window.widget.setLayout(self.main_window.layout1)
+        self.main_window.setCentralWidget(self.main_window.widget)
+        self.main_window.show()
 
 
 class pipeline(QMainWindow):
@@ -41,24 +32,24 @@ class pipeline(QMainWindow):
         super(pipeline, self).__init__(*args,**kwargs)
         self.layout = QVBoxLayout()
         self.layout1 = QHBoxLayout()
-        self.widget = pipeline_widget()
+        self.widget = pipeline_content()
 
-class pipeline_widget(QWidget):
+class pipeline_content(QWidget):
     def __init__(self):
-        super(pipeline_widget,self).__init__()
+        super(pipeline_content, self).__init__()
         self.pipelineIndex = None
         self.pipelineSlider = None
 
 class time_plot(QMainWindow):
     def __init__(self,*args,**kwargs):
         super(time_plot, self).__init__(*args,**kwargs)
-        self.widget = widget_time_plot()
+        self.widget = time_plot_content()
         self.setCentralWidget(self.widget)
 
-class widget_time_plot(QWidget):
+class time_plot_content(QWidget):
     def __init__(self):
-        super(widget_time_plot, self).__init__()
-        self.widgetWrapperForQWTplot = wrapper_qwt_time_plot()
+        super(time_plot_content, self).__init__()
+        self.widgetWrapperForQWTplot = wrapper_qwt()
         self.layoutV = QVBoxLayout()
         self.layoutH = QHBoxLayout()
         self.FirstTime = QLabel("First Time")
@@ -69,18 +60,18 @@ class widget_time_plot(QWidget):
         self.layoutV.addLayout(self.layoutH)
         self.setLayout(self.layoutV)
 
-class wrapper_qwt_time_plot(QWidget):
+class wrapper_qwt(QWidget):
     def __init__(self):
-        super(wrapper_qwt_time_plot, self).__init__()
-        self.qwtPlot = qwt_time_plot()
+        super(wrapper_qwt, self).__init__()
+        self.qwtPlot = qwt()
 
-class qwt_time_plot(QwtPlot):
+class qwt(QwtPlot):
     def __init__(self):
-        super(qwt_time_plot, self).__init__()
+        super(qwt, self).__init__()
 
 class fourier(QwtPlot):
     def __init__(self):
-        super(fourier, self).__init__("Chuba_Hawk")
+        super(fourier, self).__init__()
         self.origin = None
         self.rubberBand = None
 
@@ -94,7 +85,7 @@ class fourier(QwtPlot):
 
 class spectrogram(QwtPlot):
     def __init__(self):
-        super(spectrogram, self).__init__("Old_dirty_V")
+        super(spectrogram, self).__init__()
         self.origin = None
         self.rubberBand = None
 
