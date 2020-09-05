@@ -93,8 +93,8 @@ class fourier_content(QWidget):
 class spectrogram(QMainWindow):
     def __init__(self):
         super(spectrogram, self).__init__()
-        self.origin = None
-        self.rubberBand = None
+        self.widget = spectrogram_content()
+        self.setCentralWidget(self.widget)
 
     def define(self, values, sampling_freq):
         f, t, Sxx = signal.spectrogram(values, sampling_freq)
@@ -118,7 +118,7 @@ class spectrogram_content(QWidget):
 class wrapper_qwt(QWidget):
     def __init__(self):
         super(wrapper_qwt, self).__init__()
-        self.qwtPlot = qwt()
+        self.qwtPlot = QwtPlot()
 
 class qwt(QwtPlot):
     def __init__(self):
