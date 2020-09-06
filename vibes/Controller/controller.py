@@ -29,14 +29,6 @@ class Controller():
         """
         self.model.data.add_transformation(trans.import_file, type, data_file)
 
-    def add_transform(self, type, index=-1):
-        """
-        TODO Vianney
-        ajouter une transformation dans l'objet data du model
-        """
-        self.model.data.add_transformation(trans.Filter, index, type)
-        pass
-
     def data_range_selections(self, first, last , index=-1):
          """
          TODO Philippe que veut dire index ??? - first et last sont des secondes ou autre ???
@@ -49,10 +41,9 @@ class Controller():
          """
          self.model.data.add_transformation(vibes.Controller.transform.Range_selection, index, first, last)
 
-
     def pop_up_graphic(self):
         """
-        TODO philippe
+        TODO philippe : encore besoin de cette fct?
         retire le graphics du model
         :return:
         """
