@@ -77,24 +77,34 @@ class data:
         for i in range(idx, len(self.transformations)):
             self.transformations[i][1] = self.transformations[i][0](self.transformations[i-1][1])
 
-    def export_wav(self, data, freq):
+    def export_wav(self, data, sample_rate):
+        """
+        TODO Adapter cette fonction pour recevoir un vecteur panda
+        :param data: -> vecteur panda > donnees permettant de generer un fichier .wav
+        :param sample_rate: quantite de donnees par secondes contenues dans le vecteur data
+        """
         filename = QtGui.QFileDialog.getSaveFileName(self, 'Save File')
         f = wave.open(filename + '.wav', 'w')
         f.setnchannels(1) # mono
-        f.setsampwidth(2)
-        f.setframerate((1 / freq))
+        f.setsampwidth(2) # two bytes / sample
+        f.setframerate((1 / sample_rate)) # TODO Louis-Philipe es tu certain que c est 1/sample_rate? sample_rate et frame_rate semblent etre les deux en Hz
         for i in range(len(data)):
-            wavefile = struct.pack('<h', data[i])
-            f.writeframesraw(wavefile)
+            # Permet de mettre les donnees dans le bon format afin de les ecrire en .wav
+            wave_data = struct.pack('<h', data[i])
+            f.writeframesraw(wave_data)
         f.close()
         print('Fichier wav généré au répertoire: ')
 
 
     def export_func(self):
+        """
+        todo Philipe : On en avait besoin pour quoi deja ca???
+        """
         pass
 
     def refresh_graphics(self):
         """
+        TODO Philippe: en as-t-on vraiment besoin?
         mettre à jour les graphiques du view
         design pattern observer
         :return:

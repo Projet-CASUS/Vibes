@@ -1,4 +1,12 @@
 def derive(data, dt):
+    """
+    Derivation numerique
+    !!! -> attention cette methode fait perdre la premiere et la derniere donnee du vecteur
+    TODO Faire recevoir et retourner un vecteur panda
+    :param data: -> vecteur panda > Contient les donnees a deriver
+    :param dt: TODO Louis-Philippe que veux tu dire par "pas de temps" ??
+    :return: -> vecteur panda > vecteur des donnees derivees
+    """
 # Dérivation numérique 
 # data = vecteur de données
 # dt   = pas de temps
@@ -14,9 +22,14 @@ def derive(data, dt):
     
     
 def integral(data, dt):
-# Dérivation numérique 
-# data = vecteur de données
-# dt   = pas de temps
+    """
+    Integration numerique
+    !!! -> attention cette methode fait perdre la premiere et la derniere donnee du vecteur
+    TODO Faire recevoir et retourner un vecteur panda
+    :param data: -> vecteur panda > Contient les donnees a integrer
+    :param dt: TODO Louis-Philippe que veux tu dire par "pas de temps" ??
+    :return: -> vecteur panda > vecteur des donnees integrees
+    """
     integ_list = []   # vecteur de sortie
     hs3 = dt/3 # h/3 
     for i in range(len(data)):

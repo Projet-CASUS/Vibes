@@ -7,15 +7,13 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QFrame, QSlider, QHBoxLayout
 from PyQt5.Qt import QApplication
 from qwt import QwtPlot, QwtPlotCurve
-from decimal import Decimal
 
 
 class Controller():
     def __init__(self, data_file):
         """
-        Init:
-            reçois les argument sys.argv pour contruire un Qt application
-
+        Init: reçois les argument sys.argv pour contruire un Qt application
+        data_file: fichier contenant les donnees
         """
         self.app = QApplication(sys.argv)
         self.model = models.Model(data_file)
@@ -26,30 +24,28 @@ class Controller():
 
     def add_data(self, type, data_file):
         """
-        todo Daniel
-        instancier un objet de data dans le datavibes du model
+        Permet d instancier un objet de data dans le model
         Note: is it useful if so we need to modify add_transformation to review the tuple
-        :return: none
         """
         self.model.data.add_transformation(trans.import_file, type, data_file)
 
-
-    def add_transform(self, type,index =-1):
+    def add_transform(self, type, index=-1):
         """
         TODO Vianney
         ajouter une transformation dans l'objet data du model
         """
-        self.model.data.add_transformation(trans.Filter,index,type)
+        self.model.data.add_transformation(trans.Filter, index, type)
         pass
 
-    def data_range_selections(self, first, last , index = -1):
+    def data_range_selections(self, first, last , index=-1):
          """
-         TODO Philippe
+         TODO Philippe que veut dire index ??? - first et last sont des secondes ou autre ???
          fait une selection de donnée dans la section des données temporelles.
          update le view en mettant en evidence les limites
-         ***definire comment modifier datavibes en conséquence***
-         :param self:
-         :return:
+         ***definire comment modifier Model.data en conséquence***
+         :param first: -> int > Temps du debut de la fourchette de temps
+         :param last: -> int > Temps de fin de la fourchette de temps selectionne
+         :param index:
          """
          self.model.data.add_transformation(vibes.Controller.transform.Range_selection, index, first, last)
 
@@ -63,7 +59,10 @@ class Controller():
         pass
 
     def define_freq_graphic(self, w=-1):
+        """
 
+        :param w: TODO Philippe decrire ce que veut dire w
+        """
         name_array = ["time","gforce"]
         if(w == -2):
             self.my_interface.fourier_window.widget.wrapper_widget_qwt.qwtPlot.close()
@@ -85,13 +84,12 @@ class Controller():
                 curve = QwtPlotCurve(name_array[n])
                 curve.setData(freq, fourier)
                 curve.attach(self.my_interface.fourier_window.widget.wrapper_widget_qwt.qwtPlot)
-            self.my_interface.show_of_freq()
+            self.my_interface.show_fourier()
 
-    def define_time_graphic(self, w = -1):
+    def define_time_graphic(self, w=-1):
         """
-        TODO Philippe
         afficher le graphique en temporelle du model
-        :return:
+        :param w: TODO Philippe decrire ce que veut dire w
         """
         name_array = ["time", "x", "y", "z", "gforce"]
         if(w == -2):
@@ -105,7 +103,7 @@ class Controller():
             x = [None]*length
             for i in range(0, len(x)):
                 x[i] = float(self.model.data.transformations[w][1].loc[:, name_array[0]][i].replace(',', '.'))
-            for n in range(1,len(name_array)-1):
+            for n in range(1, len(name_array)-1):
                 y = [None]*length
                 for i in range(0, len(y)):
                     y[i] = float(self.model.data.transformations[w][1].loc[:, name_array[n]][i].replace(',', '.'))
@@ -113,16 +111,21 @@ class Controller():
                 curve.setData(x, y)
                 curve.attach(self.my_interface.time_window.widget.wrapper_widget_qwt.qwtPlot)
 
-            self.my_interface.show_of_time()
+            self.my_interface.show_time_graphic()
 
     def value_changed(self):
+        # TODO philippe: a-t-on vraiment besoin de call value_changed pour call update_pipeline?
         self.update_pipeline()
 
     def update_pipeline(self):
+        """
+        Decrire ce que fait cette fonction (i.e. le scope de ses actions & ou et quand elle est call)
+        TODO philippe: mettre plus de commentaire dans cette fonction
+        """
         is_null = True
         plot_index = 0
-        for x in range(0,len(self.model.data.transformations[0])):
-            f= len(self.model.data.transformations[0]) - self.my_interface.main_window.widget.pipeline_slider.value()
+        for x in range(0, len(self.model.data.transformations[0])):
+            f = len(self.model.data.transformations[0]) - self.my_interface.main_window.widget.pipeline_slider.value()
             if(x < f):
                 t = self.my_interface.main_window.layout.itemAt(x).widget().setEnabled(True)
                 is_null = False
@@ -136,8 +139,11 @@ class Controller():
             self.define_time_graphic(plot_index)
             self.define_freq_graphic(plot_index)
 
-    def show_of_pipeline(self):
-        for x in range(0,len(self.model.data.transformations)):
+    def define_pipeline_browser(self):
+        """
+        TODO philippe: Decrire ce que fait cette fonction (i.e. le scope de ses actions & ou et quand elle est call)
+        """
+        for x in range(0, len(self.model.data.transformations)):
             pipeline_entry = QLabel()
             pipeline_entry.setFixedSize(100, 20)
             pipeline_entry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
@@ -148,10 +154,10 @@ class Controller():
         self.my_interface.main_window.widget.pipeline_slider.setTickInterval(1)
         self.my_interface.main_window.layout1.addWidget(self.my_interface.main_window.widget.pipeline_slider)
         self.my_interface.main_window.layout1.addLayout(self.my_interface.main_window.layout)
-        self.my_interface.show_of_pipeline()
+        self.my_interface.show_pipeline_browser()
 
 
-    def modifyPipeline(self):
+    def modify_pipeline(self):
          self.model.data.currentIndex = self.my_interface.main_window.widget.pipeline_slider.value()
 
 
