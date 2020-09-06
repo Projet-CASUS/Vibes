@@ -5,8 +5,8 @@ import scipy.signal as signal
 
 
 class import_file:
-    def __init__(self, type='csv'):
-        self.type = type
+    def __init__(self, file_type='csv'):
+        self.type = file_type
 
     def __call__(self, filename):
         if self.type == 'csv':
@@ -30,7 +30,7 @@ class Filter:
 
     def __call__(self, data, type, cut_off):
         """
-        TODO Vianney donner un exemple de call
+        TODO donner un exemple de call
         :param data: -> panda > donnees a filtrer
         :param type: -> string >    type de filtre
         :param cut_off: -> int or list > frequence de coupure
@@ -92,9 +92,9 @@ class Range_selection:
 
     def __call__(self, data):
         """
-        TODO Philipe decrire la fonction __call__
-        :param data:
-        :return:
+        TODO donner un exemple de call
+        :param data: La totalite des donnees temporelles en cours d analyse
+        :return: -> vecteur panda > Nouveau vecteur de donnees temporelles
         """
         for i in range(0, len(self.name_array)):
             self.data_relocation(i, data)

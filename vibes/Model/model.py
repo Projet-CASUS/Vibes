@@ -6,7 +6,7 @@ class Model:
     """
     def __init__(self, data_file):
         pass
-        self.data = mc.data(data_file)
+        self.data = mc.Data(data_file)
 
     def undo(self):
         pass

@@ -8,24 +8,25 @@ DEFAULT_HPTFX = "default.hptfx"
 # TODO: add undo/redo system
 # TODO: load/save/export (strategy pattern)
 
-class data:
+class Data:
     """
 
     """
-
-    def __init__(self, data_file, type='csv', func_file=None):
+    def __init__(self, data_file, file_type='csv', transform_func_file=None):
         """
-        Initialise la classe de DataVibes
-        :param tempfile: fichier des données temporelles
-        :param func_file: fichier des fonctions de transformation
+        Initialise la classe de Data
+        :param data_file: fichier des données temporelles
+        :param transform_func_file: -> fichier de type .xml > contient des fonctions de transformation sauvegardees
         """
-        if func_file is None:
-            import_func = transform.import_file(type=type)
+        if transform_func_file is None:
+            # TODO philipe: decrire ce qui se passe
+            import_func = transform.import_file(file_type=file_type)
             self.transformations = [[import_func, import_func(data_file)]]
         else:
+            # TODO philipe: decrire ce qui se passe
             self.transformations = []
-            self.read_hptfx(func_file, data_file)
-            self.currentIndex =0;
+            self.read_hptfx(transform_func_file, data_file)
+            self.currentIndex = 0
 
     def read_hptfx(self, funcfile, datafile=None):
         """
@@ -35,10 +36,10 @@ class data:
         :return:
         """
         pass
-        # TODO: parser hptfx
 
     def add_data(self):
         """
+        TODO philipe: est-ce encore utile?
         todo Daniel Ajouter un importfile dans le transformation pipline
         :return:
         """
@@ -46,6 +47,7 @@ class data:
 
     def add_transformation(self, cls,index = -1 ,*args, **kwargs, ):
         """
+        TODO Philipe: Est-ce encore utile?
         Ajoute une transformation à la fin de la liste de transformations
         :param cls: une classe de type Tranformation (mais pas ImportFile)
         :param args: arguments pour l'initialisation de la classe cls
@@ -57,6 +59,7 @@ class data:
 
     def insert_transformation(self, cls, idx, *args, **kwargs):
         """
+        TODO philipe: Utilise nulle part jusqu a maintenant... encore utile?
         Insert une transformation dans la liste des transformations
         :param cls: une classe de type Tranformation (mais pas ImportFile)
         :param idx: indice où insérer la nouvelle transformation dans la liste
@@ -70,22 +73,25 @@ class data:
 
     def recalculate(self, idx=0):
         """
+        TODO philipe: On la garde??? > semble n etre utilise que par la fonction juste avant qui elle n est utilisee nulle part... est-ce elle que tu utilise ou on s en debarasse>
         Recalculer les données dans la liste de transformations
+        chaque fois qu une transformation est ajoutee ou retiree
         :param idx: Endroit à partir du quel on recalcule
-        :return:
         """
         for i in range(idx, len(self.transformations)):
             self.transformations[i][1] = self.transformations[i][0](self.transformations[i-1][1])
 
-    def export_wav(self, data, sample_rate):
+    def export_wav(self, data, sample_rate, file_name):
         """
         TODO Adapter cette fonction pour recevoir un vecteur panda
+        TODO creer un repertoire par defaut dans le filesystem de Vibes dans lequel generer les fichiers wav - gerer le .gitignore afin que son contenu ne soit pas partage
         :param data: -> vecteur panda > donnees permettant de generer un fichier .wav
         :param sample_rate: quantite de donnees par secondes contenues dans le vecteur data
+        :param file_name: -> string > nom du fichier a sauvegarder
         """
         filename = QtGui.QFileDialog.getSaveFileName(self, 'Save File')
-        f = wave.open(filename + '.wav', 'w')
-        f.setnchannels(1) # mono
+        f = wave.open(filename + '{}.wav'.format(file_name), 'w')
+        f.setnchannels(1) # mono (donc non-stereo)
         f.setsampwidth(2) # two bytes / sample
         f.setframerate((1 / sample_rate)) # TODO Louis-Philipe es tu certain que c est 1/sample_rate? sample_rate et frame_rate semblent etre les deux en Hz
         for i in range(len(data)):
