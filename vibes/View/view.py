@@ -5,23 +5,26 @@ from scipy import fftpack
 from scipy import signal
 
 class graphical_interface():
+    """
+
+    """
     def __init__(self):
 
         self.time_window = time_plot()
         self.fourier_window = fourier()
         self.main_window = pipeline()
 
-    def show_of_freq(self):
+    def show_fourier(self):
         self.fourier_window.resize(600, 300)
         self.fourier_window.widget.wrapper_widget_qwt.qwtPlot.replot()
         self.fourier_window.widget.wrapper_widget_qwt.qwtPlot.show()
 
-    def show_of_time(self):
+    def show_time_graphic(self):
         self.time_window.resize(600, 300)
         self.time_window.widget.wrapper_widget_qwt.qwtPlot.replot()
         self.time_window.widget.wrapper_widget_qwt.qwtPlot.show()
 
-    def show_of_pipeline(self):
+    def show_pipeline_browser(self):
         self.main_window.widget.setLayout(self.main_window.layout1)
         self.main_window.setCentralWidget(self.main_window.widget)
         self.main_window.show()

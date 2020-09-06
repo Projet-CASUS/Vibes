@@ -16,13 +16,26 @@ class import_file:
 
 
 class Filter:
-
+    """
+    Retourne les valeurs filtrees des donnes fournies en parametres
+    """
     def __init__(self, sample_rate, num_taps = 5):
+        """
+        :param sample_rate: -> int > Quantite de donnee par seconde
+        :param num_taps: TODO philipe decrire le type et l utilite
+        """
         self.sample_rate = sample_rate
         self.num_taps = num_taps
         self.fir_filter = None
 
     def __call__(self, data, type, cut_off):
+        """
+        TODO Vianney donner un exemple de call
+        :param data: -> panda > donnees a filtrer
+        :param type: -> string >    type de filtre
+        :param cut_off: -> int or list > frequence de coupure
+        :return: -> panda > sequence de donnees filtrees
+        """
         self.data = data
         self.cut_off = cut_off
 
@@ -38,24 +51,37 @@ class Filter:
         filtered_data = convolve(data, self.fir_filter, 'same')
         return filtered_data
 
-    def passe_bas(self): # Définit le vecteur de filtre FIR pour un passe bas
+    def passe_bas(self):
+        """
+        :return: vecteur de filtre FIR pour un passe bas
+        """
         f = self.cut_off / self.sample_rate
         return signal.firwin(self.num_taps, f)
 
-    def passe_haut(self):# Définit le vecteur de filtre FIR pour un passe haut
+    def passe_haut(self):
+        """
+        :return: vecteur de filtre FIR pour un passe haut
+        """
         f = self.cut_off / self.sample_rate
         return signal.firwin(self.num_taps, f, pass_zero=False)
 
     def passe_bande(self):# Définit le vecteur de filtre FIR pour un passe bande
+        """
+        :return: vecteur de filtre FIR pour un passe bande
+        """
         f1 = float(self.cut_off[0] / self.sample_rate)
         f2 = float(self.cut_off[1] / self.sample_rate)
         return signal.firwin(self.num_taps, self.cut_off, pass_zero=False)
 
 class Range_selection:
     """
-    TODO philippe
+    Selectionne et retourne un vecteur contenant les valeurs correspondantes a la fourchette de temps selectionnee
     """
     def __init__(self,first,last):
+        """
+        :param first: -> int > premiere donne de temps
+        :param last: -> int > derniere donnee de temps
+        """
         self.first = first
         self.last = last
         self.type = "range_selection"
@@ -64,17 +90,22 @@ class Range_selection:
         data = {'time':[None] , 'x':[None], 'y':[None], 'z':[None], 'gforce':[None]}
         self.new_panda = pd.DataFrame(data)
 
-    def __call__(self,data):
-        for x in range(0, len(self.name_array)):
-            self.data_relocation(x,data)
+    def __call__(self, data):
+        """
+        TODO Philipe decrire la fonction __call__
+        :param data:
+        :return:
+        """
+        for i in range(0, len(self.name_array)):
+            self.data_relocation(i, data)
         return self.new_panda
 
-    def data_relocation(self,i,data):
+    def data_relocation(self, i, data):
+        """
+        TODO Philipe decrire la fonction data_relocation
+        :param i:
+        :param data:
+        :return:
+        """
         for x in range(0, self.last - self.first):
             self.new_panda.loc[:, self.name_array[i]][x] = data.loc[:, self.name_array[i]][x + self.first]
-
-class Filtre_parrallele:
-    """
-    TODO Louis-Philippe
-    """
-    pass

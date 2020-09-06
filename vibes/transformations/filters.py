@@ -4,17 +4,25 @@ convolve = np.convolve
 
 
 class FIR:
+    """
+    TODO remplacer le contenu de Controller.transform.Filter par le contenu de cette classe
+    voir la methode la plus pertinente: composition ou autre...
+    """
     def __init__(self, sample_rate, num_taps = 5):
         super().__init__()
         self.sample_rate = sample_rate
         self.num_taps = num_taps
 
     def __call__(self, data, type, cut_off):
-    # data   = Vecteur de données à filtrer
-    # type   = Type de filtre [format texte] (passe_bas || passe_haut || passe_bande || coupe_bande)
-    # cutoff = Fréquence de coupure passe_bas   & passe_haut  =>[int || float] 
-    #                               passe_bande & coupe_bande =>[vect de 2 int || float]
-    # ref: https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firwin.html
+        """
+        :param data: Vecteur de données à filtrer
+        :param type: Type de filtre [format texte] (passe_bas || passe_haut || passe_bande || coupe_bande)
+        :param cut_off: Fréquence de coupure passe_bas   & passe_haut  =>[int || float]
+                                   passe_bande & coupe_bande =>[vect de 2 int || float]
+        ref: https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.firwin.html
+        :return: -> vecteur panda > Donnees filtrees
+        """
+
         self.data = data
         self.cut_off = cut_off
 

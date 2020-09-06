@@ -13,7 +13,7 @@ control.define_time_graphic()
 control.data_range_selections(2490, 2500)
 control.define_time_graphic()
 control.define_freq_graphic()
-control.show_of_pipeline()
+control.define_pipeline_browser()
 #control.addTransform(None)
 
 sys.exit(control.app.exec_())
