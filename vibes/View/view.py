@@ -1,6 +1,6 @@
 from PyQt5.Qt import (QWidget, QMainWindow, QHBoxLayout, QLabel, QVBoxLayout)
 
-from qwt import (QwtPlot)
+from qwt import (QwtPlot, QwtPlotCurve)
 from scipy import fftpack
 from scipy import signal
 
@@ -14,15 +14,10 @@ class graphical_interface():
         self.fourier_window = fourier()
         self.main_window = pipeline()
 
-    def show_fourier(self):
-        self.fourier_window.resize(600, 300)
-        self.fourier_window.widget.wrapper_widget_qwt.qwtPlot.replot()
-        self.fourier_window.widget.wrapper_widget_qwt.qwtPlot.show()
-
-    def show_time_graphic(self):
-        self.time_window.resize(600, 300)
-        self.time_window.widget.wrapper_widget_qwt.qwtPlot.replot()
-        self.time_window.widget.wrapper_widget_qwt.qwtPlot.show()
+    def show_graphic(self,window):
+        window.resize(600, 300)
+        window.widget.wrapper_widget_qwt.qwtPlot.replot()
+        window.widget.wrapper_widget_qwt.qwtPlot.show()
 
     def show_pipeline_browser(self):
         self.main_window.widget.setLayout(self.main_window.layout1)
@@ -37,6 +32,7 @@ class pipeline(QMainWindow):
         self.layout1 = QHBoxLayout()
         self.widget = pipeline_content()
 
+
 class pipeline_content(QWidget):
     def __init__(self):
         super(pipeline_content, self).__init__()
@@ -48,6 +44,7 @@ class time_plot(QMainWindow):
         super(time_plot, self).__init__(*args,**kwargs)
         self.widget = time_plot_content()
         self.setCentralWidget(self.widget)
+        self.name = "Time"
 
 class time_plot_content(QWidget):
     def __init__(self):
@@ -70,6 +67,7 @@ class fourier(QMainWindow):
         super(fourier, self).__init__()
         self.widget = fourier_content()
         self.setCentralWidget(self.widget)
+        self.name = "Freq"
 
     def defineX(self,data,sample_rate):
         freq = fftpack.fftfreq(len(data)) * sample_rate
@@ -122,6 +120,16 @@ class wrapper_qwt(QWidget):
     def __init__(self):
         super(wrapper_qwt, self).__init__()
         self.qwtPlot = QwtPlot()
+    def refresh_graphic(self,index):
+        self.qwtPlot.close()
+        if(index > -2):
+            self.qwtPlot = qwt()
+            return True
+        return False;
+    def set_curve(self,x,y,name):
+        curve = QwtPlotCurve(name)
+        curve.setData(x, y)
+        curve.attach(self.qwtPlot)
 
 class qwt(QwtPlot):
     def __init__(self):

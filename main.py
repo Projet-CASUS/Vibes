@@ -9,10 +9,10 @@ os.chdir(program_folder)
 
 control = cont.Controller("./test_files/test00.csv")
 
-control.define_time_graphic()
-control.data_range_selections(2490, 2500)
-control.define_time_graphic()
-control.define_freq_graphic()
+control.define_graphic(control.my_interface.time_window)
+control.data_range_selections(0, 2500)
+control.define_graphic(control.my_interface.time_window)
+control.define_graphic(control.my_interface.fourier_window)
 control.define_pipeline_browser()
 #control.addTransform(None)
 

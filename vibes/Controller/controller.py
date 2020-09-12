@@ -40,7 +40,7 @@ class Controller():
          """
          self.model.data.add_transformation(vibes.Controller.transform.Range_selection, index, first, last)
 
-    def define_freq_graphic(self, index=-1):
+    def define_freq_graphic_x(self, x,index=-1):
         """
         TODO Philippe redo samedi
         Definit les valurs en x et y du graphique en temporelle.
@@ -49,41 +49,34 @@ class Controller():
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         -2 est un code pour indiquer que l'on devrais retirer tout graphique du main window
         """
+        return self.my_interface.fourier_window.defineX(x, 200)
 
-        name_array = ["time","gforce"]
-        self.refresh_graphic(self.my_interface.fourier_window,index)
-        ####
-        length = len(self.model.data.transformations[index][1])
-        if (self.model.data.transformations[index][0].type == "range_selection"):
-            length = self.model.data.transformations[index][0].last - self.model.data.transformations[index][0].first
-        ####
-        x = self.define_numpy(length,index,name_array[0])
-        freq_x = self.my_interface.fourier_window.defineX(x, 200)
-        for n in range(1, len(name_array)):
-            y = self.define_numpy(length,index,name_array[n])
-            fourier_y = self.my_interface.fourier_window.defineY(y, 200)
-            self.set_curve(freq_x,fourier_y,"Freq Graphic",self.my_interface.fourier_window)
-        self.my_interface.show_fourier()
-
-    def define_time_graphic(self, index=-1):
-
+    def define_freq_graphic_y(self, y,index=-1):
         """
         TODO Philippe redo samedi
-        afficher le graphique en temporelle du model
+        Definit les valurs en x et y du graphique en temporelle.
+        (1) determiner la derniere action dans le pipeline (csv, selection de donnee)
+        (2)
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         -2 est un code pour indiquer que l'on devrais retirer tout graphique du main window
         """
-        name_array = ["time", "x", "y", "z", "gforce"]
-        self.refresh_graphic(self.my_interface.time_window,index)
-        length =len(self.model.data.transformations[index][1])
-        if(self.model.data.transformations[index][0].type == "range_selection"):
-            length = self.model.data.transformations[index][0].last - self.model.data.transformations[index][0].first
-        x = self.define_numpy(length,index,name_array[0]);
-        for n in range(1, len(name_array)-1):
-            y = self.define_numpy(length,index,name_array[n])
-            #decoupler element de la vue
-            self.set_curve(x,y,"Time Graphic",self.my_interface.time_window)
-        self.my_interface.show_time_graphic()
+        return self.my_interface.fourier_window.defineY(y, 200)
+
+    def define_graphic(self, window,index =-1):
+        name_array = self.model.data.transformations[index][1].columns
+        if (window.widget.wrapper_widget_qwt.refresh_graphic(index)):
+            length = len(self.model.data.transformations[index][1])
+            x = self.define_numpy(length,index,name_array[0])
+            if(window.name == "Freq"):
+                x = self.define_freq_graphic_x(x)
+            for n in range(1, len(name_array) - 1):
+                y = self.define_numpy(length, index, name_array[n])
+                if(window.name == "Freq"):
+                    y = self.define_freq_graphic_y(y)
+                # decoupler element de la vue
+                window.widget.wrapper_widget_qwt.set_curve(x, y, window.name)
+            self.my_interface.show_graphic(window)
+
 
     def update_pipeline(self):
         """
@@ -101,11 +94,11 @@ class Controller():
             else:
                 t = self.my_interface.main_window.layout.itemAt(x).widget().setEnabled(False)
         if(is_null):
-            self.define_time_graphic(-2)
-            self.define_freq_graphic(-2)
+            self.define_graphic(self.my_interface.fourier_window,-2)
+            self.define_graphic(self.my_interface.time_window ,-2)
         else:
-            self.define_time_graphic(plot_index)
-            self.define_freq_graphic(plot_index)
+            self.define_graphic(self.my_interface.fourier_window,plot_index)
+            self.define_graphic(self.my_interface.time_window,plot_index)
 
     def define_pipeline_browser(self):
         """
@@ -135,15 +128,4 @@ class Controller():
         for i in range(0, len(numpy)):
             numpy[i] = float(self.model.data.transformations[index][1].loc[:, name][i].replace(',', '.'))
         return numpy
-
-    def refresh_graphic(self,window,index):
-        window.widget.wrapper_widget_qwt.qwtPlot.close()
-        if(index > -2):
-            window.widget.wrapper_widget_qwt.qwtPlot = view.qwt()
-
-    def set_curve(self,x,y,name,window):
-        curve = QwtPlotCurve(name)
-        curve.setData(x, y)
-        curve.attach(window.widget.wrapper_widget_qwt.qwtPlot)
-
 

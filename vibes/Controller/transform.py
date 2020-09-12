@@ -85,9 +85,8 @@ class Range_selection:
         self.first = first
         self.last = last
         self.type = "range_selection"
-        self.name_array = ["time", "x", "y", "z", "gforce"]
-        data = {'time':[None] , 'x':[None], 'y':[None], 'z':[None], 'gforce':[None]}
-        self.new_panda = pd.DataFrame(data)
+        self.data = {}
+        self.new_panda = None
 
     def __call__(self, data):
         """
@@ -96,8 +95,11 @@ class Range_selection:
         :param data: La totalite des donnees temporelles en cours d analyse
         :return: -> vecteur panda > Nouveau vecteur de donnees temporelles
         """
-        print(data)
-        for i in range(0, len(self.name_array)):
+        for i in range(len(data.columns)):
+            self.data[data.columns[i]]= [0] *(self.last-self.first)
+        self.new_panda = pd.DataFrame(self.data)
+        print(self.new_panda)
+        for i in range(0, len(data.columns)):
             self.data_realocation(i, data)
         return self.new_panda
 
@@ -109,4 +111,4 @@ class Range_selection:
         :return:
         """
         for x in range(0, self.last - self.first):
-            self.new_panda.loc[:, self.name_array[i]][x] = data.loc[:, self.name_array[i]][x + self.first]
+            self.new_panda.loc[:, data.columns[i]][x] = data.loc[:,data.columns[i]][x + self.first]
