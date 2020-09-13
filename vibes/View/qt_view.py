@@ -1,18 +1,26 @@
+import sys
+
 from PyQt5.Qt import (QWidget, QMainWindow, QHBoxLayout, QLabel, QVBoxLayout)
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QFrame, QSlider, QApplication
 
 from qwt import (QwtPlot, QwtPlotCurve)
 from scipy import fftpack
 from scipy import signal
+
+
+def instanciate_qt_application():
+    return QApplication(sys.argv)
+
 
 class graphical_interface():
     """
 
     """
     def __init__(self):
-
         self.time_window = time_plot()
         self.fourier_window = fourier()
-        self.main_window = pipeline()
+        self.pipeline_window = pipeline()
 
     def show_graphic(self,window):
         window.resize(600, 300)
@@ -20,9 +28,9 @@ class graphical_interface():
         window.widget.wrapper_widget_qwt.qwtPlot.show()
 
     def show_pipeline_browser(self):
-        self.main_window.widget.setLayout(self.main_window.layout1)
-        self.main_window.setCentralWidget(self.main_window.widget)
-        self.main_window.show()
+        self.pipeline_window.widget.setLayout(self.pipeline_window.layout1)
+        self.pipeline_window.setCentralWidget(self.pipeline_window.widget)
+        self.pipeline_window.show()
 
 
 class pipeline(QMainWindow):
@@ -32,12 +40,29 @@ class pipeline(QMainWindow):
         self.layout1 = QHBoxLayout()
         self.widget = pipeline_content()
 
+    def define_pipeline_browser(self,model):
+        """
+        TODO philippe: Decrire ce que fait cette fonction (i.e. le scope de ses actions & ou et quand elle est call)
+        faire samedi
+        """
+        for x in range(0, len(model.data.transformations)):
+            pipeline_entry = QLabel()
+            pipeline_entry.setFixedSize(100, 20)
+            pipeline_entry.setFrameStyle(QFrame.Panel | QFrame.Sunken)
+            pipeline_entry.setText(model.data.transformations[x][0].type)
+            pipeline_entry.setAlignment(Qt.AlignCenter)
+            self.layout.addWidget(pipeline_entry)
+        self.widget.pipeline_slider.setRange(0, len(model.data.transformations))
+        self.widget.pipeline_slider.setTickInterval(1)
+        self.layout1.addWidget(self.widget.pipeline_slider)
+        self.layout1.addLayout(self.layout)
+
 
 class pipeline_content(QWidget):
     def __init__(self):
         super(pipeline_content, self).__init__()
         self.pipeline_index = None
-        self.pipelineSlider = None
+        self.pipeline_slider =  QSlider()
 
 class time_plot(QMainWindow):
     def __init__(self,*args,**kwargs):
@@ -120,12 +145,14 @@ class wrapper_qwt(QWidget):
     def __init__(self):
         super(wrapper_qwt, self).__init__()
         self.qwtPlot = QwtPlot()
+
     def refresh_graphic(self,index):
         self.qwtPlot.close()
         if(index > -2):
             self.qwtPlot = qwt()
             return True
         return False;
+      
     def set_curve(self,x,y,name):
         curve = QwtPlotCurve(name)
         curve.setData(x, y)
