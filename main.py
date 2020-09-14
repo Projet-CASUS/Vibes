@@ -10,7 +10,7 @@ program_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(program_folder)
 
 control = cont.Controller("./test_files/test00.csv")
-control.data_range_selections(0, 2500)
+control.time_range_selections(0, 2500)
 
 
 #control.addTransform(None)

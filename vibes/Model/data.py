@@ -42,32 +42,19 @@ class Data:
         """
         pass
 
-
-    def add_transformation(self, cls,index = -1 ,*args, **kwargs, ):
+    def insert_transformation(self, cls, index=-1, *args, **kwargs):
         """
-        TODO Philipe: retirer
-        Ajoute une transformation à la fin de la liste de transformations
-        :param cls: une classe de type Tranformation (mais pas ImportFile)
-        :param args: arguments pour l'initialisation de la classe cls
-        :param kwargs: arguments pour l'initialisation de la classe cls
-        :return:
-        """
-        func = cls(*args, **kwargs)
-        self.transformations.append([func, func(self.transformations[index][1])])
-
-    def insert_transformation(self, cls, idx, *args, **kwargs):
-        """
-        TODO philipe: le rendre plus polivalent
         Insert une transformation dans la liste des transformations
         :param cls: une classe de type Tranformation (mais pas ImportFile)
-        :param idx: indice où insérer la nouvelle transformation dans la liste
+        :param index: indice où insérer la nouvelle transformation dans la liste
         :param args: arguments pour l'initialisation de la classe cls
         :param kwargs: arguments pour l'initialisation de la classe cls
         :return:
         """
         func = cls(*args, **kwargs)
-        self.transformations.insert(idx, [func, None])
-        self.recalculate_data_through_pipeline(idx)
+        self.transformations.insert(index, [func, None])
+        if index is not -1:
+            self.recalculate_data_through_pipeline(index)
 
     def recalculate_data_through_pipeline(self, idx=0):
         """

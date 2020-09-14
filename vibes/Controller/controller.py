@@ -15,48 +15,46 @@ class Controller():
         """
         self.model = models.Model(data_file)
         self.my_interface = view.graphical_interface()
+
+        ### todo DECOUPLER DU CONTROLLER
         self.my_interface.pipeline_window.widget.pipeline_index = len(self.model.data.transformations[0])
         self.my_interface.pipeline_window.widget.pipeline_slider.valueChanged.connect(self.update_pipeline)
+        ### DECOUPLER DU CONTROLLER
+
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
 
-    def add_data(self, type, data_file):
+    def time_range_selections(self, first, last, index=-1):
         """
-        Permet d instancier un objet de data dans le model
-        Note: is it useful if so we need to modify add_transformation to review the tuple
+        fait une selection de donnée dans la section des données temporelles.
+        update le view en mettant en evidence les limites
+        ***definire comment modifier Model.data en conséquence***
+        :param first: -> int > Temps du debut de la fourchette de temps
+        :param last: -> int > Temps de fin de la fourchette de temps selectionne
+        :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
-        self.model.data.add_transformation(trans.import_file, type, data_file)
+        self.model.data.add_transformation(vibes.Controller.transform.Range_selection, index, first, last)
+        self.redefine_graphic(self.my_interface.time_window)
+        self.redefine_graphic(self.my_interface.fourier_window)
+        self.define_pipeline_browser()
 
-    def data_range_selections(self, first, last , index=-1):
-         """
-         fait une selection de donnée dans la section des données temporelles.
-         update le view en mettant en evidence les limites
-         ***definire comment modifier Model.data en conséquence***
-         :param first: -> int > Temps du debut de la fourchette de temps
-         :param last: -> int > Temps de fin de la fourchette de temps selectionne
-         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
-         """
-         self.model.data.add_transformation(vibes.Controller.transform.Range_selection, index, first, last)
-         self.redefine_graphic(self.my_interface.time_window)
-         self.redefine_graphic(self.my_interface.fourier_window)
-         self.define_pipeline_browser()
-
-    def redefine_graphic(self, window, data_index =-1):
+    def redefine_graphic(self, window, data_index=-1):
+        """
+        Cette fonction redefinit les valeurs a afficher sur
+        """
         panda_columns_name = self.model.data.transformations[data_index][1].columns
         if (window.widget.wrapper_widget_qwt.refresh_graphic(data_index)):
             length = len(self.model.data.transformations[data_index][1])
-            x = self.define_numpy(length, data_index, panda_columns_name[0])
+            x = self.define_numpy(length, panda_columns_name[0], data_index)
             if(window.name == "Freq"):
                 x = window.defineX(x,200)
             for n in range(1, len(panda_columns_name)):
-                y = self.define_numpy(length, data_index, panda_columns_name[n])
+                y = self.define_numpy(length, panda_columns_name[n], data_index)
                 if(window.name == "Freq"):
                     y = window.defineY(y,200)
                 # decoupler element de la vue
                 window.widget.wrapper_widget_qwt.set_curve(x, y, window.name)
             self.my_interface.show_graphic(window)
-
-
 
     def define_pipeline_browser(self):
         """
@@ -68,19 +66,23 @@ class Controller():
 
     def update_pipeline(self):
         """
-         Decrire ce que fait cette fonction (i.e. le scope de ses actions & ou et quand elle est call)
-         TODO Philippe samedi
+         Cette fonction remet a jour le pipeline browser en fonction de l endroit ou le slider s arrete
+         Il recalcule ensuite les transformations successives faites sur
+         les donnees a l aide de la fonction redefine_graphic()
+         TODO Philippe samedi: faire du code moins retard
          """
         is_null = True
         plot_index = 0
         for x in range(0, len(self.model.data.transformations[0])):
             f = len(self.model.data.transformations[0]) - self.my_interface.pipeline_window.widget.pipeline_slider.value()
             if(x < f ):
+                # t ne semble pas etre utilise
                 t = self.my_interface.pipeline_window.layout.itemAt(x).widget().setEnabled(True)
                 is_null = False
                 plot_index = x
             else:
                 t = self.my_interface.pipeline_window.layout.itemAt(x).widget().setEnabled(False)
+                # t ne semble pas etre utilise
         if(is_null):
             self.redefine_graphic(self.my_interface.fourier_window, -2)
             self.redefine_graphic(self.my_interface.time_window, -2)
@@ -88,11 +90,13 @@ class Controller():
             self.redefine_graphic(self.my_interface.fourier_window, plot_index)
             self.redefine_graphic(self.my_interface.time_window, plot_index)
 
-    def modify_pipeline(self):
-         self.model.data.currentIndex = self.my_interface.pipeline_window.widget.pipeline_slider.value()
-
-
-    def define_numpy(self,length, index, name):
+    def define_numpy(self, length, name, index=-1):
+        """
+        Todo VERIFIER DOCSTRING PAR PHILIP
+        :param length: -> int > la quantite de donnees contenue dans le panda pour un parametre
+        :param index: -> int > a -1 par defaut
+        :param name: -> string > nom exacte du parametre de la colonne a transformer en numpy
+        """
         numpy = [None] * length
         for i in range(0, len(numpy)):
             numpy[i] = float(self.model.data.transformations[index][1].loc[:, name][i].replace(',', '.'))

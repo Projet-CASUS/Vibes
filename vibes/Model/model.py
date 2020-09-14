@@ -1,4 +1,4 @@
-import vibes.Model.data as mc
+import vibes.Model.data as data
 
 class Model:
     """
@@ -6,7 +6,7 @@ class Model:
     """
     def __init__(self, data_file):
         pass
-        self.data = mc.Data(data_file)
+        self.data = data.Data(data_file)
 
     def save(self):
         pass
