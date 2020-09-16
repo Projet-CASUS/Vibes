@@ -17,6 +17,7 @@ class Controller():
         self.my_interface = view.graphical_interface()
 
         ### todo DECOUPLER DU CONTROLLER
+        ## Ne peut pas être découpler puisque connect dois être fais dans le controlleur sinon on créer plein de fonction inutile
         self.my_interface.pipeline_window.widget.pipeline_index = len(self.model.data.transformations[0])
         self.my_interface.pipeline_window.widget.pipeline_slider.valueChanged.connect(self.update_pipeline)
         ### DECOUPLER DU CONTROLLER
@@ -33,14 +34,16 @@ class Controller():
         :param last: -> int > Temps de fin de la fourchette de temps selectionne
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
-        self.model.data.add_transformation(vibes.Controller.transform.Range_selection, index, first, last)
+        self.model.data.insert_transformation(vibes.Controller.transform.Range_selection, index,first,last)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
     def redefine_graphic(self, window, data_index=-1):
         """
-        Cette fonction redefinit les valeurs a afficher sur
+        Cette fonction redefinit les valeurs a afficher sur un graphique
+        :param window: -> QWindow > Une QWindow d'un graphique ex: temps frequence
+        :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
         panda_columns_name = self.model.data.transformations[data_index][1].columns
         if (window.widget.wrapper_widget_qwt.refresh_graphic(data_index)):
@@ -58,8 +61,7 @@ class Controller():
 
     def define_pipeline_browser(self):
         """
-        TODO philippe: Decrire ce que fait cette fonction (i.e. le scope de ses actions & ou et quand elle est call)
-        faire samedi
+        fonction du controlleur qui appelle les fonctions de la vue pour loader le pipeline
         """
         self.my_interface.pipeline_window.define_pipeline_browser(self.model)
         self.my_interface.show_pipeline_browser()
@@ -69,7 +71,6 @@ class Controller():
          Cette fonction remet a jour le pipeline browser en fonction de l endroit ou le slider s arrete
          Il recalcule ensuite les transformations successives faites sur
          les donnees a l aide de la fonction redefine_graphic()
-         TODO Philippe samedi: faire du code moins retard
          """
         is_null = True
         plot_index = 0
@@ -92,7 +93,6 @@ class Controller():
 
     def define_numpy(self, length, name, index=-1):
         """
-        Todo VERIFIER DOCSTRING PAR PHILIP
         :param length: -> int > la quantite de donnees contenue dans le panda pour un parametre
         :param index: -> int > a -1 par defaut
         :param name: -> string > nom exacte du parametre de la colonne a transformer en numpy

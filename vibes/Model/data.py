@@ -18,6 +18,7 @@ class Data:
         :param data_file: fichier des données temporelles
         :param transform_func_file: -> fichier de type .xml > contient des fonctions de transformation sauvegardees
         """
+        self.count = 0
         if transform_func_file is None:
             """
             import_func_type: -> string > le type de fonction dans la pipeline par exemple: csv
@@ -52,8 +53,10 @@ class Data:
         :return:
         """
         func = cls(*args, **kwargs)
-        self.transformations.insert(index, [func, None])
-        if index is not -1:
+        if index == -1:
+            self.transformations.append([func, func(self.transformations[index][1])])
+        else:
+            self.transformations.insert(index,[func, func(self.transformations[index][1])])
             self.recalculate_data_through_pipeline(index)
 
     def recalculate_data_through_pipeline(self, idx=0):

@@ -15,7 +15,8 @@ def instanciate_qt_application():
 
 class graphical_interface():
     """
-
+    Contient des attributs qui contient le différente QWindow
+    Contient les fonction d'affichage
     """
     def __init__(self):
         self.time_window = time_plot()
@@ -34,6 +35,12 @@ class graphical_interface():
 
 
 class pipeline(QMainWindow):
+    """
+    Le pipeline est un QMainWindow
+    contient des layouts pour placer les objets dans sa fenetre
+    contient un widget de type pipeline_content
+    contieent une fonction qui definie le contenue dans le pipeline
+    """
     def __init__(self,*args,**kwargs):
         super(pipeline, self).__init__(*args,**kwargs)
         self.layout = QVBoxLayout()
@@ -42,8 +49,8 @@ class pipeline(QMainWindow):
 
     def define_pipeline_browser(self,model):
         """
-        TODO philippe: Decrire ce que fait cette fonction (i.e. le scope de ses actions & ou et quand elle est call)
-        faire samedi
+        La fonction defini quel transformation son dans le pipeline
+        :param model: -> Model > Reference du model de l'application
         """
         for x in range(0, len(model.data.transformations)):
             pipeline_entry = QLabel()
@@ -59,12 +66,20 @@ class pipeline(QMainWindow):
 
 
 class pipeline_content(QWidget):
+    """
+    Defini les outils Qt utiliser dans la pipeline
+    """
     def __init__(self):
         super(pipeline_content, self).__init__()
         self.pipeline_index = None
         self.pipeline_slider =  QSlider()
 
 class time_plot(QMainWindow):
+    """
+    Defini la QMainWindow du time_plot
+    Contient le widget de type time_plot_content
+    Contient un nom
+    """
     def __init__(self,*args,**kwargs):
         super(time_plot, self).__init__(*args,**kwargs)
         self.widget = time_plot_content()
@@ -72,6 +87,9 @@ class time_plot(QMainWindow):
         self.name = "Time"
 
 class time_plot_content(QWidget):
+    """
+
+    """
     def __init__(self):
         super(time_plot_content, self).__init__()
         self.wrapper_widget_qwt = wrapper_qwt()
