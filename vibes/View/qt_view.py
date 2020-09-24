@@ -92,6 +92,7 @@ class pipeline_content(QWidget):
 class plot_state():
     """
     Classe abstraite qui definit le minimum dans un état d'un graphique
+   :param qwtPlot: -> qwtPlot > Recois un graphique
     """
     def __init__(self,qwtPlot):
         self.qwtPlot = qwtPlot
@@ -101,6 +102,7 @@ class plot_state():
 class time_state(plot_state):
     """
     sous cette état le graphique affiche une courbe en temporelle
+    :param qwtPlot: -> qwtPlot > Recois un graphique
     """
     def __init__(self,qwtPlot):
         super(time_state, self).__init__(qwtPlot)
@@ -114,24 +116,50 @@ class time_state(plot_state):
         curve.attach(self.qwtPlot)
 
 class freq_state(plot_state):
+    """
+    sous cette etat la graphique affiche une courbe en frequentielle
+    :param qwtPlot: -> qwtPlot > Recois un graphique
+    """
     def __init__(self,qwtPlot):
         super(freq_state, self).__init__(qwtPlot)
         self.qwtPlot = qwtPlot
 
     def set_curve(self,x,y,name):
+        """
+        :param x: -> numpy > Recois un numpy des valeurs en x
+        :param y: -> numpy > recois un numpy des valeurs en y
+        :param name -> string > recois une string du nom de la courbe
+        definit la courbe avec des valeur en temporelle
+
+        """
         curve = QwtPlotCurve(name)
         curve.setData(self.defineX(x,200), self.defineY(y,200))
         curve.attach(self.qwtPlot)
 
     def defineX(self, data, sample_rate):
+        """
+        :param data: -> numpy > donnee que l'on veut convertire
+        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
+       Convertie les donnee temporelle en frequentielle
+
+        """
         freq = fftpack.fftfreq(len(data)) * sample_rate
         return freq
 
     def defineY(self, data, sample_rate):
+        """
+        :param data: -> numpy > donnee que l'on veut convertire
+        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
+       Convertie les donnee temporelle en frequentielle
+
+        """
         fourier = fftpack.fft(data)
         return fourier
 
 class specto_state(plot_state):
+    """
+    Pas encore utiliser devrait avoir besoin certaine redefinition lorsqu'on voudra l'utiliser
+    """
     def __init__(self,qwtPlot):
         super(specto_state, self).__init__(qwtPlot)
         self.qwtPlot = qwtPlot
@@ -147,11 +175,17 @@ class specto_state(plot_state):
 
 
 class wrapper_qwt():
+    """
+    classe ajoutant des fonctionnalite a un qwtPlot
+    """
     def __init__(self, state):
         super(wrapper_qwt, self).__init__()
         self.state = state
 
     def refresh_graphic(self,index):
+        """
+        TODO: il devrait avoir une meilleur maniere de proceder
+        """
         self.state.qwtPlot.close()
         if(index > -2):
             self.state.qwtPlot = QwtPlot()
@@ -159,4 +193,7 @@ class wrapper_qwt():
         return False;
 
     def set_curve(self,x,y,name):
+        """
+        appelle la bonne definition pour definir la courbe selon l'etat
+        """
         self.state.set_curve(x,y,name)
