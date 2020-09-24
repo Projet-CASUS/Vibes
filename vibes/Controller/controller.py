@@ -46,17 +46,13 @@ class Controller():
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
         panda_columns_name = self.model.data.transformations[data_index][1].columns
-        if (window.widget.wrapper_widget_qwt.refresh_graphic(data_index)):
+        if (window.refresh_graphic(data_index)):
             length = len(self.model.data.transformations[data_index][1])
             x = self.define_numpy(length, panda_columns_name[0], data_index)
-            if(window.name == "Freq"):
-                x = window.defineX(x,200)
             for n in range(1, len(panda_columns_name)):
                 y = self.define_numpy(length, panda_columns_name[n], data_index)
-                if(window.name == "Freq"):
-                    y = window.defineY(y,200)
                 # decoupler element de la vue
-                window.widget.wrapper_widget_qwt.set_curve(x, y, window.name)
+                window.set_curve(x, y,panda_columns_name[n])
             self.my_interface.show_graphic(window)
 
     def define_pipeline_browser(self):
