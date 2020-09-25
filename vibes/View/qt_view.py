@@ -87,7 +87,8 @@ class pipeline_content(QWidget):
         self.pipeline_index = None
         self.pipeline_slider =  QSlider()
 
-
+class operation_dashboard(QMainWindow):
+   pass
 
 class plot_state():
     """
