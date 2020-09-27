@@ -3,8 +3,8 @@
 Le système est développé testé et oppéré sur python 3.7.7.<br />
 Modules python:<br />
 
- * ipython
- * decimal
+ * ipython  * decimal
+
  * numpy
  * pandas
  * PyQt5
