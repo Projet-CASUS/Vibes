@@ -22,7 +22,7 @@ class Filter:
     def __init__(self, sample_rate, num_taps = 5):
         """
         :param sample_rate: -> int > Quantite de donnee par seconde
-        :param num_taps: TODO philipe decrire le type et l utilite
+        :param num_taps: TODO Louis-Philippe decrire le type et l utilite
         """
         self.sample_rate = sample_rate
         self.num_taps = num_taps
@@ -85,27 +85,30 @@ class Range_selection:
         self.first = first
         self.last = last
         self.type = "range_selection"
-        self.name_array = ["time", "x", "y", "z", "gforce"]
-        self.saved_data = [[0 for x in range(len(self.name_array))] for i in range((self.last - self.first))]
-        data = {'time':[None] , 'x':[None], 'y':[None], 'z':[None], 'gforce':[None]}
-        self.new_panda = pd.DataFrame(data)
+        self.data = {}
+        self.new_panda = None
 
     def __call__(self, data):
         """
-        TODO donner un exemple de call
+
+        TODO samedi Philippe
         :param data: La totalite des donnees temporelles en cours d analyse
         :return: -> vecteur panda > Nouveau vecteur de donnees temporelles
         """
-        for i in range(0, len(self.name_array)):
-            self.data_relocation(i, data)
+        for i in range(len(data.columns)):
+            self.data[data.columns[i]]= [0] *(self.last-self.first)
+        self.new_panda = pd.DataFrame(self.data)
+        print(self.new_panda)
+        for i in range(0, len(data.columns)):
+            self.data_realocation(i, data)
         return self.new_panda
 
-    def data_relocation(self, i, data):
+    def data_realocation(self, i, data):
         """
-        TODO Philipe decrire la fonction data_relocation
+        TODO samedi Philippe
         :param i:
         :param data:
         :return:
         """
         for x in range(0, self.last - self.first):
-            self.new_panda.loc[:, self.name_array[i]][x] = data.loc[:, self.name_array[i]][x + self.first]
+            self.new_panda.loc[:, data.columns[i]][x] = data.loc[:,data.columns[i]][x + self.first]
