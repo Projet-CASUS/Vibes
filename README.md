@@ -14,8 +14,6 @@ Modules python:<br />
  * wave
 
 ## Description
-Ce code est un interpréteur/générateur de signaux ayant pour but de produire
-les ondes nécéssaire aux fonctionnement d'appareil haptique.
 
 Cet outil est développé en vue de représenter les forces vécues par la fusée
 conçue par le Groupe CASUS de l'université de Sherbrooke dans des actuateurs haptiques.
