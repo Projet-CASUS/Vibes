@@ -26,12 +26,8 @@ Finalement des fichiers en format .wav seront produits par le logiciel afin de
 pouvoir être "joués" par les actuateurs.
 
 
-## Spécifications
-
-
-
-# Spécifications techniques
-##commandes fonctionnelles
+# Spécifications techniques  
+##commandes fonctionnelles  
 Importer des fichiers csv 
 Afficher l'acceleration en fonction du temps
 Afficher les séries de fourier de l'acceleration d'une section de vol choisie
