@@ -27,13 +27,14 @@ pouvoir être "joués" par les actuateurs.
 
 
 # Spécifications techniques  
-##commandes fonctionnelles  
+
+## Commandes fonctionnelles  
 Importer des fichiers csv 
 Afficher l'acceleration en fonction du temps
 Afficher les séries de fourier de l'acceleration d'une section de vol choisie
 
 
-### Commandes en développement
+## Commandes en développement
 - Dérivées / intégrales
 - Filtres FIR & IIR
 - Extraction .wav
