@@ -19,9 +19,9 @@ pouvoir être "joués" par les actuateurs.
 # Spécifications techniques  
 
 ## Commandes fonctionnelles  
-Importer des fichiers csv 
-Afficher l'acceleration en fonction du temps
-Afficher les séries de fourier de l'acceleration d'une section de vol choisie
+- Importer des fichiers csv 
+- Afficher l'acceleration en fonction du temps
+- Afficher les séries de fourier de l'acceleration d'une section de vol choisie
 
 
 ## Commandes en développement
