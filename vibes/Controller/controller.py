@@ -14,8 +14,9 @@ class Controller():
         data_file: fichier contenant les donnees
         """
         self.model = models.Model(data_file)
-        self.my_interface = view.graphical_interface()
 
+        self.my_interface = view.graphical_interface()
+        
         ### todo DECOUPLER DU CONTROLLER
         ## Ne peut pas être découpler puisque connect dois être fais dans le controlleur sinon on créer plein de fonction inutile
         self.my_interface.pipeline_window.widget.pipeline_index = len(self.model.data.transformations[0])
@@ -24,6 +25,7 @@ class Controller():
 
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
+
 
     def time_range_selections(self, first, last, index=-1):
         """
@@ -45,14 +47,14 @@ class Controller():
         :param window: -> QWindow > Une QWindow d'un graphique ex: temps frequence
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
-        panda_columns_name = self.model.data.transformations[data_index][1].columns
+        columns_name = self.model.data.transformations[data_index][0].names
         if (window.refresh_graphic(data_index)):
             length = len(self.model.data.transformations[data_index][1])
-            x = self.define_numpy(length, panda_columns_name[0], data_index)
-            for n in range(1, len(panda_columns_name)):
-                y = self.define_numpy(length, panda_columns_name[n], data_index)
+            x =  self.define_numpy(length,self.model.data.transformations[data_index][1],0,data_index)
+            for n in range(1, len(columns_name)):
+                y = self.define_numpy(length, self.model.data.transformations[data_index][1],n,data_index)
                 # decoupler element de la vue
-                window.set_curve(x, y,panda_columns_name[n])
+                window.set_curve(x, y,columns_name[n])
             self.my_interface.show_graphic(window)
 
     def define_pipeline_browser(self):
@@ -87,7 +89,7 @@ class Controller():
             self.redefine_graphic(self.my_interface.fourier_window, plot_index)
             self.redefine_graphic(self.my_interface.time_window, plot_index)
 
-    def define_numpy(self, length, name, index=-1):
+    def define_numpy(self, length, datastructure, column,index=-1):
         """
         :param length: -> int > la quantite de donnees contenue dans le panda pour un parametre
         :param index: -> int > a -1 par defaut
@@ -95,6 +97,6 @@ class Controller():
         """
         numpy = [None] * length
         for i in range(0, len(numpy)):
-            numpy[i] = float(self.model.data.transformations[index][1].loc[:, name][i].replace(',', '.'))
+            numpy[i] = datastructure[i][column]
         return numpy
 

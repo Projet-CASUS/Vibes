@@ -1,3 +1,5 @@
+import csv
+
 import numpy as np
 convolve = np.convolve
 import pandas as pd
@@ -10,7 +12,10 @@ class import_file:
 
     def __call__(self, filename):
         if self.type == 'csv':
-            return pd.read_csv(filename, delimiter=';')
+            with open(filename, newline='') as f:
+                reader = csv.reader(f)
+                self.names = next(reader)
+            return np.loadtxt(filename, delimiter=',',skiprows=1)
         else:
             return filename
 
@@ -111,4 +116,4 @@ class Range_selection:
         :return:
         """
         for x in range(0, self.last - self.first):
-            self.new_panda.loc[:, data.columns[i]][x] = data.loc[:,data.columns[i]][x + self.first]
+            self.new_panda = data.loc[:,data.columns[i]][x + self.first]
