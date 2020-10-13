@@ -82,7 +82,7 @@ class Range_selection:
     """
     Selectionne et retourne un vecteur contenant les valeurs correspondantes a la fourchette de temps selectionnee
     """
-    def __init__(self,first,last):
+    def __init__(self,first,last,data):
         """
         :param first: -> int > premiere donne de temps
         :param last: -> int > derniere donnee de temps
@@ -90,9 +90,8 @@ class Range_selection:
         self.first = first
         self.last = last
         self.type = "range_selection"
-        self.data = {}
-        self.new_panda = None
-
+        self.names = data[0].names
+        self.new_numpy = np.zeros(shape=((last-first),len(data[1][0])))
     def __call__(self, data):
         """
 
@@ -100,20 +99,8 @@ class Range_selection:
         :param data: La totalite des donnees temporelles en cours d analyse
         :return: -> vecteur panda > Nouveau vecteur de donnees temporelles
         """
-        for i in range(len(data.columns)):
-            self.data[data.columns[i]]= [0] *(self.last-self.first)
-        self.new_panda = pd.DataFrame(self.data)
-        print(self.new_panda)
-        for i in range(0, len(data.columns)):
-            self.data_realocation(i, data)
-        return self.new_panda
+        for i in range(len(data[1][0])):
+            for e in range(self.first ,self.last):
+                self.new_numpy[e][i] = data[1][e][i]
+        return self.new_numpy
 
-    def data_realocation(self, i, data):
-        """
-        TODO samedi Philippe
-        :param i:
-        :param data:
-        :return:
-        """
-        for x in range(0, self.last - self.first):
-            self.new_panda = data.loc[:,data.columns[i]][x + self.first]

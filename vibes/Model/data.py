@@ -54,9 +54,9 @@ class Data:
         """
         func = cls(*args, **kwargs)
         if index == -1:
-            self.transformations.append([func, func(self.transformations[index][1])])
+            self.transformations.append([func, func(self.transformations[index])])
         else:
-            self.transformations.insert(index,[func, func(self.transformations[index][1])])
+            self.transformations.insert(index,[func, func(self.transformations[index])])
             self.recalculate_data_through_pipeline(index)
 
     def recalculate_data_through_pipeline(self, idx=0):

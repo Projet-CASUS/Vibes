@@ -36,7 +36,7 @@ class Controller():
         :param last: -> int > Temps de fin de la fourchette de temps selectionne
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
-        self.model.data.insert_transformation(vibes.Controller.transform.Range_selection, index,first,last)
+        self.model.data.insert_transformation(vibes.Controller.transform.Range_selection, index,first,last, self.model.data.transformations[0])
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
