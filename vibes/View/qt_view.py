@@ -137,15 +137,13 @@ class freq_state(plot_state):
 
         """
         sample_rate = 0
-        while(sample_rate < len(x)  and x[sample_rate] <=1):
-            sample_rate = sample_rate+1
-        if(sample_rate >= len(x)):
-            sample_rate =sample_rate-1
-        if(x[sample_rate]<=1):
-            sample_rate = sample_rate*1/x[sample_rate]
+        if(x[-1] <=1):
+            sample_rate = len(x)*1/x[-1]
+        else:
+            sample_rate = len(x)/x[-1]
         curve = QwtPlotCurve(name)
         freq, count =self.defineX(x,sample_rate)
-        fourier = self.defineY(y,count)
+        fourier = self.defineY(y,count,sample_rate)
         curve.setData(freq,fourier)
         curve.attach(self.qwtPlot)
 
@@ -168,7 +166,7 @@ class freq_state(plot_state):
             freqreturn[x] = freq[x]
         return freqreturn,i
 
-    def defineY(self, data, count):
+    def defineY(self, data, count,samplerate):
         """
         :param data: -> numpy > donnee que l'on veut convertire
         :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
