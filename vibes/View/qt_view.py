@@ -3,6 +3,9 @@ import sys
 from PyQt5.Qt import (QWidget, QMainWindow, QHBoxLayout, QLabel, QVBoxLayout)
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QFrame, QSlider, QApplication
+import pyqtgraph as pg
+
+import numpy as np
 
 from qwt import (QwtPlot, QwtPlotCurve)
 from scipy import fftpack
@@ -133,8 +136,17 @@ class freq_state(plot_state):
         definit la courbe avec des valeur en temporelle
 
         """
+        sample_rate = 0
+        while(sample_rate < len(x)  and x[sample_rate] <=1):
+            sample_rate = sample_rate+1
+        if(sample_rate >= len(x)):
+            sample_rate =sample_rate-1
+        if(x[sample_rate]<=1):
+            sample_rate = sample_rate*1/x[sample_rate]
         curve = QwtPlotCurve(name)
-        curve.setData(self.defineX(x,200), self.defineY(y,200))
+        freq, count =self.defineX(x,sample_rate)
+        fourier = self.defineY(y,count)
+        curve.setData(freq,fourier)
         curve.attach(self.qwtPlot)
 
     def defineX(self, data, sample_rate):
@@ -144,18 +156,29 @@ class freq_state(plot_state):
        Convertie les donnee temporelle en frequentielle
 
         """
-        freq = fftpack.fftfreq(len(data)) * sample_rate
-        return freq
 
-    def defineY(self, data, sample_rate):
+        n = len(data)
+        freq = fftpack.fftfreq(n) * sample_rate
+
+        i = 0
+        while(freq[i] >= 0):
+            i= i+1
+        freqreturn = [0]*i
+        for x in range(0,i):
+            freqreturn[x] = freq[x]
+        return freqreturn,i
+
+    def defineY(self, data, count):
         """
         :param data: -> numpy > donnee que l'on veut convertire
         :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
-       Convertie les donnee temporelle en frequentielle
-
+        Convertie les donnee temporelle en frequentielle
         """
         fourier = fftpack.fft(data)
-        return fourier
+        fourierreturn = [0]*count
+        for x in range(0,count):
+            fourierreturn[x] = fourier[x]
+        return fourierreturn
 
 class specto_state(plot_state):
     """
@@ -192,6 +215,7 @@ class wrapper_qwt():
             self.state.qwtPlot = QwtPlot()
             return True
         return False;
+
 
     def set_curve(self,x,y,name):
         """

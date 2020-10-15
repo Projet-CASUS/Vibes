@@ -50,12 +50,13 @@ class Controller():
         columns_name = self.model.data.transformations[data_index][0].names
         if (window.refresh_graphic(data_index)):
             length = len(self.model.data.transformations[data_index][1])
-            x =  self.define_numpy(length,self.model.data.transformations[data_index][1],0,data_index)
+            x = self.define_numpy(length, self.model.data.transformations[data_index][1], 0, data_index)
             for n in range(1, len(columns_name)):
-                y = self.define_numpy(length, self.model.data.transformations[data_index][1],n,data_index)
+                y = self.define_numpy(length, self.model.data.transformations[data_index][1], n, data_index)
                 # decoupler element de la vue
-                window.set_curve(x, y,columns_name[n])
+                window.set_curve(x, y, columns_name[n])
             self.my_interface.show_graphic(window)
+
 
     def define_pipeline_browser(self):
         """
