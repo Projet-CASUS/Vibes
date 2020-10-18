@@ -25,6 +25,7 @@ class Controller():
 
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
+        self.define_pipeline_browser()
 
 
     def time_range_selections(self, first, last, index=-1):
@@ -37,6 +38,20 @@ class Controller():
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
         self.model.data.insert_transformation(vibes.Controller.transform.Range_selection, index,first,last, self.model.data.transformations[0])
+        self.redefine_graphic(self.my_interface.time_window)
+        self.redefine_graphic(self.my_interface.fourier_window)
+        self.define_pipeline_browser()
+
+    def differential(self, data, index= -1):
+
+        self.model.data.insert_transformation(vibes.Controller.transform.Differential,index,data)
+        self.redefine_graphic(self.my_interface.time_window)
+        self.redefine_graphic(self.my_interface.fourier_window)
+        self.define_pipeline_browser()
+
+    def integral(self,data, index =-1):
+
+        self.model.data.insert_transformation(vibes.Controller.transform.Integral,index,data)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
@@ -73,8 +88,8 @@ class Controller():
          """
         is_null = True
         plot_index = 0
-        for x in range(0, len(self.model.data.transformations[0])):
-            f = len(self.model.data.transformations[0]) - self.my_interface.pipeline_window.widget.pipeline_slider.value()
+        f = len(self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value()
+        for x in range(0, len(self.model.data.transformations)):
             if(x < f ):
                 # t ne semble pas etre utilise
                 t = self.my_interface.pipeline_window.layout.itemAt(x).widget().setEnabled(True)

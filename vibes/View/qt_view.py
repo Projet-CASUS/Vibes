@@ -68,7 +68,7 @@ class pipeline(QMainWindow):
         La fonction defini quel transformation son dans le pipeline
         :param model: -> Model > Reference du model de l'application
         """
-        for x in range(0, len(model.data.transformations)):
+        for x in range(len(model.data.transformations)-1, len(model.data.transformations)):
             pipeline_entry = QLabel()
             pipeline_entry.setFixedSize(100, 20)
             pipeline_entry.setFrameStyle(QFrame.Panel | QFrame.Sunken)

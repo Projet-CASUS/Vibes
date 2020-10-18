@@ -3,14 +3,17 @@ import sys
 import vibes.Controller.controller as cont
 import os
 import vibes.View.qt_view as view
+import vibes.transformations.differentiel as df
 
 # Lance le programme à son emplacement
 app = view.instanciate_qt_application()
 program_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(program_folder)
 
-control = cont.Controller("./test_files/30.0sec___['300.0Hz_', '150.0Hz_'].csv")
-control.time_range_selections(0, 3900)
+control = cont.Controller("./test_files/100.0Hz_20.0sec.csv")
+control.time_range_selections(0,300 )
+control.differential(control.model.data.transformations[1])
+control.integral(control.model.data.transformations[1])
 
 
 #control.addTransform(None)

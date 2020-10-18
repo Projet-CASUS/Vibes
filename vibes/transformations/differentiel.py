@@ -10,7 +10,7 @@ def derive(data, dt):
 # Dérivation numérique 
 # data = vecteur de données
 # dt   = pas de temps
-    drv_list = []
+    drv_list = [0]
     for i in range(len(data)):
         if i == 0: # point 1 : dérivé avant
             drv_list.append(((data[i + 1] - data[i]) / dt))
