@@ -2,6 +2,7 @@ from IPython.external.qt_for_kernel import QtGui
 
 import vibes.Controller.transform as transform
 import wave, struct
+import numpy as np
 DEFAULT_HPTFX = "default.hptfx"
 
 # TODO: add del_transformation
@@ -68,7 +69,7 @@ class Data:
         for i in range(idx, len(self.transformations)):
             self.transformations[i][1] = self.transformations[i][0](self.transformations[i-1][1])
 
-    def export_wav(self, data, sample_rate, file_name):
+    def export_wav(self, data, min=(-1 * (np.power(2, 15))), max=np.power(2, 15)):
         """
         TODO Adapter cette fonction pour recevoir un vecteur panda
         TODO creer un repertoire par defaut dans le filesystem de Vibes dans lequel generer les fichiers wav - gerer le .gitignore afin que son contenu ne soit pas partage
@@ -76,19 +77,67 @@ class Data:
         :param sample_rate: quantite de donnees par secondes contenues dans le vecteur data
         :param file_name: -> string > nom du fichier a sauvegarder
         """
-        filename = QtGui.QFileDialog.getSaveFileName(self, 'Save File')
-        f = wave.open(filename + '{}.wav'.format(file_name), 'w')
+        sample_rate = 0
+        if (data.transformations[-1][-1][-1][0] <= 1):
+            sample_rate = len(data.transformations[-1][-1]) * 1 / data.transformations[-1][-1][-1][0]
+        else:
+            sample_rate = len(data.transformations[-1][-1]) / data.transformations[-1][-1][-1][0]
+        filename = QtGui.QFileDialog.getSaveFileName()
+        f = wave.open(filename, 'w')
         f.setnchannels(1) # mono (donc non-stereo)
         f.setsampwidth(2) # two bytes / sample
-        f.setframerate((1 / sample_rate)) # TODO Louis-Philipe es tu certain que c est 1/sample_rate? sample_rate et frame_rate semblent etre les deux en Hz
-        for i in range(len(data)):
+        f.setframerate((sample_rate)) # TODO Louis-Philipe es tu certain que c est 1/sample_rate? sample_rate et frame_rate semblent etre les deux en Hz
+
+        value =0
+        for x in range(1,len(data.transformations[-1][-1][0])):
+
+
             # Permet de mettre les donnees dans le bon format afin de les ecrire en .wav
-            wave_data = struct.pack('<h', data[i])
-            f.writeframesraw(wave_data)
+            for i in range(len(data.transformations[-1][-1])):
+                value = int((((data.transformations[-1][-1][i][x] - min) * 65533) / (max - min)) - 32767)
+
+                wave_data = struct.pack('<h',value)
+                f.writeframesraw(wave_data)
+
         f.close()
         print('Fichier wav généré au répertoire: ')
+"""
+    def arr_to_wav(vect, sampleRate=44100.0, title='bacon', min=(-1 * (np.power(2, 15))), max=np.power(2, 15)):
 
+        mon_repertoire = os.getcwd()
 
+        if main.debug:
+
+        print('FX: arr_to_wav')
+
+        print('sampleRate = ' + str(sampleRate))
+
+        print('min ; max = ' + str(min) + ' ; ' + str(max))
+
+        # sampleRate = 44100.0 # hertz
+
+        # frequency = 900.0 # hertz
+
+        wavef = wave.open(mon_repertoire + title + '.wav', 'w')
+
+        wavef.setnchannels(1)  # mono
+
+        wavef.setsampwidth(2)
+
+        wavef.setframerate(sampleRate)
+
+        for i in range(len(vect)):
+
+        value = int((((vect[i] - min) * 65533) / (max - min)) - 32767)
+
+        data = struct.pack('<h', value)
+
+        wavef.writeframesraw(data)
+
+        wavef.close()
+
+        print('Fichier wav généré au répertoire: ' + mon_repertoire)
+"""
 
 
 
