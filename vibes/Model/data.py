@@ -69,14 +69,28 @@ class Data:
         for i in range(idx, len(self.transformations)):
             self.transformations[i][1] = self.transformations[i][0](self.transformations[i-1][1])
 
-    def export_wav(self, data, min=(-1 * (np.power(2, 15))), max=np.power(2, 15)):
+    def export_wav(self, data, max=np.power(2, 15)):
         """
         TODO creer un repertoire par defaut dans le filesystem de Vibes dans lequel generer les fichiers wav + gerer le .gitignore afin que son contenu ne soit pas partage
         :param data: -> vecteur panda > donnees permettant de generer un fichier .wav
         :param sample_rate: quantite de donnees par secondes contenues dans le vecteur data
         :param file_name: -> string > nom du fichier a sauvegarder
         """
-        sample_rate = 44100
+        max_value = data.transformations[-1][-1][-1][0]
+
+        for x in range(1,len(data.transformations[-1][-1][0])):
+            for i in range(len(data.transformations[-1][-1])):
+                if(data.transformations[-1][-1][i][x] > max_value):
+                    max_value = data.transformations[-1][-1][i][x]
+        x_data =[0]*len(data.transformations[-1][-1])
+        for x in range(len(data.transformations[-1][-1])):
+            x_data[x] =  data.transformations[-1][-1][x][0]
+
+        sample_rate = 0
+        if (x_data[-1] <= 1):
+            sample_rate = len(x_data) * 1 / x_data[-1]
+        else:
+            sample_rate = len(x_data) / x_data[-1]
         #if (data.transformations[-1][-1][-1][0] <= 1):
         #    sample_rate = len(data.transformations[-1][-1]) * 1 / data.transformations[-1][-1][-1][0]
         #else:
@@ -90,7 +104,7 @@ class Data:
         for x in range(1, len(data.transformations[-1][-1][0])):
             # Permet de mettre les donnees dans le bon format afin de les ecrire en .wav
             for i in range(len(data.transformations[-1][-1])):
-                value = int((((data.transformations[-1][-1][i][x] - min) * 65533) / (max - min)) - 32767)
+                value = int((data.transformations[-1][-1][i][x]/max_value)*max)
                 wave_data = struct.pack('<h', value)
                 f.writeframesraw(wave_data)
 
