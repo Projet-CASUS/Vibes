@@ -7,7 +7,7 @@ import pyqtgraph as pg
 
 import numpy as np
 
-from qwt import (QwtPlot, QwtPlotCurve)
+from qwt import (QwtPlot, QwtPlotCurve, QwtText)
 from scipy import fftpack
 from scipy import signal
 
@@ -99,7 +99,8 @@ class plot_state():
    :param qwtPlot: -> qwtPlot > Recois un graphique
     """
     def __init__(self,qwtPlot):
-        self.qwtPlot = qwtPlot
+        self.qwtPlot = QwtPlot
+
     def set_curve(self):
         pass
 
@@ -110,7 +111,10 @@ class time_state(plot_state):
     """
     def __init__(self,qwtPlot):
         super(time_state, self).__init__(qwtPlot)
-        self.qwtPlot = qwtPlot
+        self.name = "Time"
+        self.qwtPlot = QwtPlot(self.name)
+
+
     def set_curve(self,x,y,name):
         """
         definit la courbe avec des valeur en temporelle
@@ -126,7 +130,9 @@ class freq_state(plot_state):
     """
     def __init__(self,qwtPlot):
         super(freq_state, self).__init__(qwtPlot)
-        self.qwtPlot = qwtPlot
+        self.name = "frequency"
+        self.qwtPlot = QwtPlot(self.name)
+
 
     def set_curve(self,x,y,name):
         """
@@ -178,13 +184,14 @@ class freq_state(plot_state):
             fourierreturn[x] = fourier[x]
         return fourierreturn
 
-class specto_state(plot_state):
+class spectro_state(plot_state):
     """
     Pas encore utiliser devrait avoir besoin certaine redefinition lorsqu'on voudra l'utiliser
     """
     def __init__(self,qwtPlot):
-        super(specto_state, self).__init__(qwtPlot)
-        self.qwtPlot = qwtPlot
+        super(spectro_state, self).__init__(qwtPlot)
+        self.name ="Spectro"
+        self.qwtPlot = QwtPlot(self.name)
 
     def set_curve(self,x,y,name):
         curve = QwtPlotCurve(name)
@@ -210,7 +217,8 @@ class wrapper_qwt():
         """
         self.state.qwtPlot.close()
         if(index > -2):
-            self.state.qwtPlot = QwtPlot()
+            self.state.qwtPlot = QwtPlot(self.state.name)
+
             return True
         return False;
 
