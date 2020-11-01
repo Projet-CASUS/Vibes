@@ -20,11 +20,12 @@ pouvoir être "joués" par les actuateurs.
 
 ## Commandes fonctionnelles
 Toutes ces fonctionnalités ne peuvent être appelées que dans le main (main.py) pour l'itération présente:
-> - Importer des fichiers en format csv
--- En démarant l'application, l'utilisateur se fera proposer d'ouvrir un fichier à travers un explorateur de fichiers
--- Le format des données doit suivre ce pattern: 
---- blabla
---- blabla
+> Importer des fichiers en format csv
+>
+> - En démarant l'application, l'utilisateur se fera proposer d'ouvrir un fichier à travers un explorateur de fichiers
+> - Le format des données doit suivre ce pattern: 
+>  - blabla
+>  - blabla
 - Exporter le résultat en fichier .wav
 -- L'utilisateur se fera présenter un explorateur de fichier pour sauvegarder son fichier .wav
 -- Fonction à appeler dans le main: control.model.data.export_wav(control.model.data)
