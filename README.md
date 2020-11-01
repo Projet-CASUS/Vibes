@@ -25,8 +25,8 @@ Toutes ces fonctionnalités ne peuvent être appelées ***uniquement que dans le
 >
 > - En démarant l'application, l'utilisateur se fera proposer d'ouvrir un fichier à travers un explorateur de fichiers
 > - Le format des données doit suivre ce pattern: 
->    - blabla
->    - blabla
+>    - blabla..........................................................................
+>    - blabla..........................................................................
 
 > ### Exporter le résultat en fichier .wav
 >
@@ -63,6 +63,7 @@ Toutes ces fonctionnalités ne peuvent être appelées ***uniquement que dans le
 > - Fonctions à appeler dans le main:
 >    - ***control.differential(control.model.data.transformations[1])***
 >    - ***control.integral(control.model.data.transformations[1])***
+>       - L'index passé en argument correspond à ........................................................
 
 ## Structure de données
 - ### EN DÉVELOPPEMENT
