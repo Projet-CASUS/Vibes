@@ -19,7 +19,7 @@ pouvoir être "joués" par les actuateurs.
 # Spécifications techniques  
 
 ## Commandes fonctionnelles
-Toutes ces fonctionnalités ne peuvent être appelées que dans le main (main.py) pour l'itération présente:
+Toutes ces fonctionnalités ne peuvent être appelées ***uniquement que dans le main*** (main.py) pour l'itération présente:
 
 > ### Importer des fichiers en format csv
 >
