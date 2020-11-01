@@ -18,15 +18,18 @@ pouvoir être "joués" par les actuateurs.
 
 # Spécifications techniques  
 
-## Commandes fonctionnelles  
-- Importer des fichiers csv 
-- Afficher l'acceleration en fonction du temps
-- Afficher les séries de fourier de l'acceleration d'une section de vol choisie
+## Commandes fonctionnelles
+Toutes ces fonctionnalités ne peuvent être appelées que dans le main pour l'itération présente:
+- Importer des fichiers en format csv 
+- Exporter le résultat en fichier .wav 
+- Afficher l'acceleration en fonction du temps 
+- Afficher les séries de fourier de l'acceleration 
+- Sélectionner une portion du graphique temporel et en afficher le contenu fréquentiel (Séries de fourier) 
+- Intégrales et dérivées du graphique temporel 
 
 
 ## Commandes en développement
-- Dérivées / intégrales
-- Filtres FIR & IIR
-- Extraction .wav
-- Interface graphique
+- Interface graphique permettant d'ajouter et de modifier les transformations du signal
+- Fonctions de filtres FIR & IIR
+
 
