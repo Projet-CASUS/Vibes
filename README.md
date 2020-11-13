@@ -3,7 +3,7 @@
 Le système a été développé testé et oppéré sur python 3.7<br />
 Modules python:<br />
 
- ipython; numpy; PyQt5; PythonQwt; scipy     (; wave)
+ ipython; numpy; PyQt5; PythonQwt; scipy ; pyqtgraph    (; wave)
 
 ## Description
 
