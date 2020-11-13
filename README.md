@@ -3,7 +3,7 @@
 Le système a été développé testé et oppéré sur python 3.7<br />
 Modules python:<br />
 
- ipython; decimal ; numpy; PyQt5; qwt; scipy; struct; wave
+ ipython; numpy; PyQt5; PythonQwt; scipy     (; wave)
 
 ## Description
 
@@ -25,8 +25,8 @@ Toutes ces fonctionnalités ne peuvent être appelées ***uniquement que dans le
 >
 > - En démarant l'application, l'utilisateur se fera proposer d'ouvrir un fichier à travers un explorateur de fichiers
 > - Le format des données doit suivre ce pattern: 
->    - blabla..........................................................................
->    - blabla..........................................................................
+>    - EN DEVELOPPEMENT..........................................................................
+>    - EN DEVELOPPEMENT..........................................................................
 
 > ### Exporter le résultat en fichier .wav
 >
