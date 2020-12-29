@@ -1,5 +1,6 @@
 from IPython.external.qt_for_kernel import QtGui
 
+from scipy.interpolate import interp1d
 import vibes.Controller.transform as transform
 import wave, struct
 import numpy as np
@@ -19,7 +20,7 @@ class Data:
         :param data_file: fichier des données temporelles
         :param transform_func_file: -> fichier de type .xml > contient des fonctions de transformation sauvegardees
         """
-        self.count = 0
+        self.transformations_fourier = []
         if transform_func_file is None:
             """
             import_func_type: -> string > le type de fonction dans la pipeline par exemple: csv
@@ -59,6 +60,9 @@ class Data:
         else:
             self.transformations.insert(index,[func, func(self.transformations[index])])
             self.recalculate_data_through_pipeline(index)
+
+    def insert_transformation_fourier(self,data):
+        self.transformations_fourier.append(data)
 
     def recalculate_data_through_pipeline(self, idx=0):
         """
@@ -110,6 +114,10 @@ class Data:
 
         f.close()
         print('Fichier wav généré au répertoire: ')
+
+
+
+
 """
     def arr_to_wav(vect, sampleRate=44100.0, title='bacon', min=(-1 * (np.power(2, 15))), max=np.power(2, 15)):
 

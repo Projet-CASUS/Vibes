@@ -11,10 +11,6 @@ program_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(program_folder)
 
 control = cont.Controller("./test_files/100.0Hz_20.0sec.csv")
-control.time_range_selections(0,300 )
-control.differential(control.model.data.transformations[1])
-control.integral(control.model.data.transformations[1])
-control.model.data.export_wav(control.model.data)
 
 #control.addTransform(None)
 

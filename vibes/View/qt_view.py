@@ -2,7 +2,7 @@ import sys
 
 from PyQt5.Qt import (QWidget, QMainWindow, QHBoxLayout, QLabel, QVBoxLayout)
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QFrame, QSlider, QApplication
+from PyQt5.QtWidgets import QFrame, QSlider, QApplication, QPushButton, QLineEdit
 import pyqtgraph as pg
 
 import numpy as np
@@ -32,6 +32,7 @@ class graphical_interface():
         self.time_window = wrapper_qwt(time_state(QwtPlot()))
         self.fourier_window = wrapper_qwt(freq_state(QwtPlot()))
         self.pipeline_window = pipeline()
+        self.filter_window = Filters()
 
     def show_graphic(self,window):
         """
@@ -49,6 +50,8 @@ class graphical_interface():
         self.pipeline_window.setCentralWidget(self.pipeline_window.widget)
         self.pipeline_window.show()
 
+    def show_filter_window(self):
+        self.filter_window.show()
 
 class pipeline(QMainWindow):
     """
@@ -61,6 +64,9 @@ class pipeline(QMainWindow):
         super(pipeline, self).__init__(*args,**kwargs)
         self.layout = QVBoxLayout()
         self.layout1 = QHBoxLayout()
+        self.layoutDashBoard = QVBoxLayout()
+        self.layoutAction = QHBoxLayout()
+        self.layoutText = QHBoxLayout()
         self.widget = pipeline_content()
 
     def define_pipeline_browser(self,model):
@@ -68,6 +74,7 @@ class pipeline(QMainWindow):
         La fonction defini quel transformation son dans le pipeline
         :param model: -> Model > Reference du model de l'application
         """
+
         for x in range(len(model.data.transformations)-1, len(model.data.transformations)):
             pipeline_entry = QLabel()
             pipeline_entry.setFixedSize(100, 20)
@@ -75,11 +82,36 @@ class pipeline(QMainWindow):
             pipeline_entry.setText(model.data.transformations[x][0].type)
             pipeline_entry.setAlignment(Qt.AlignCenter)
             self.layout.addWidget(pipeline_entry)
+
         self.widget.pipeline_slider.setRange(0, len(model.data.transformations))
         self.widget.pipeline_slider.setTickInterval(1)
+        self.widget.pipeline_slider.setValue(0)
+        self.layoutAction.addWidget(self.widget.exportWav)
+        self.layoutAction.addWidget(self.widget.differentiel)
+        self.layoutAction.addWidget(self.widget.merger)
+        self.layoutAction.addWidget(self.widget.rangeSelection)
+        self.layoutAction.addWidget(self.widget.FirPasseBas)
+        self.layoutAction.addWidget(self.widget.FirPasseHaut)
+        self.layoutAction.addWidget(self.widget.FirPasseBande)
+        self.layoutAction.addWidget(self.widget.PasseBas)
+        self.layoutAction.addWidget(self.widget.PasseHaut)
+        self.layoutAction.addWidget(self.widget.PasseBande)
         self.layout1.addWidget(self.widget.pipeline_slider)
-        self.layout1.addLayout(self.layout)
 
+        self.layoutText.addWidget(self.widget.firstLabel)
+        self.layoutText.addWidget(self.widget.first)
+        self.layoutText.addWidget(self.widget.lastLabel)
+        self.layoutText.addWidget(self.widget.last)
+        self.layoutText.addWidget(self.widget.cut_off_label)
+        self.layoutText.addWidget(self.widget.cut_off)
+        self.layoutText.addWidget(self.widget.cut_off_label2)
+        self.layoutText.addWidget(self.widget.cut_off2)
+
+        self.layoutDashBoard.addLayout(self.layoutAction)
+        self.layoutDashBoard.addLayout(self.layoutText)
+
+        self.layout1.addLayout(self.layout)
+        self.layout1.addLayout(self.layoutDashBoard)
 
 class pipeline_content(QWidget):
     """
@@ -89,9 +121,28 @@ class pipeline_content(QWidget):
         super(pipeline_content, self).__init__()
         self.pipeline_index = None
         self.pipeline_slider =  QSlider()
+        self.differentiel = QPushButton("Differentiel")
+        self.merger = QPushButton("Merger")
+        self.rangeSelection = QPushButton("Range Selection")
+        self.firstLabel = QLabel("First:")
+        self.first = QLineEdit()
+        self.lastLabel = QLabel("Last:")
+        self.last = QLineEdit()
+        self.cut_off_label = QLabel("cut_off(1):")
+        self.cut_off_label2 = QLabel("cut_off(2):")
+        self.cut_off = QLineEdit()
+        self.cut_off2 = QLineEdit()
+        self.exportWav = QPushButton("Export Wav")
+        self.FirPasseBas = QPushButton("FIR Passe Bas")
+        self.FirPasseHaut = QPushButton("FIR Passe Haut")
+        self.FirPasseBande = QPushButton("FIR Passe Bande")
+        self.PasseBas = QPushButton("Passe Bas")
+        self.PasseHaut = QPushButton("Passe Haut")
+        self.PasseBande = QPushButton("Passe Bande")
 
-class operation_dashboard(QMainWindow):
-   pass
+class Filters(QMainWindow):
+   def __init__(self):
+       super(Filters, self).__init__()
 
 class plot_state():
     """
@@ -122,6 +173,7 @@ class time_state(plot_state):
         curve = QwtPlotCurve(name)
         curve.setData(x, y)
         curve.attach(self.qwtPlot)
+        return [0],[0]
 
 class freq_state(plot_state):
     """
@@ -148,10 +200,14 @@ class freq_state(plot_state):
         else:
             sample_rate = len(x)/x[-1]
         curve = QwtPlotCurve(name)
-        freq, count =self.defineX(x,sample_rate)
-        fourier = self.defineY(y,count,sample_rate)
-        curve.setData(freq,fourier)
+        freq, count, realfreq =self.defineX(x,sample_rate)
+        fourier,realfourier = self.defineY(y,count,sample_rate)
+        fourierNoComplex= [0]*len(fourier);
+        for i in range(0, len(fourier)):
+            fourierNoComplex[i] = fourier[i].real
+        curve.setData(freq,fourierNoComplex)
         curve.attach(self.qwtPlot)
+        return realfreq,realfourier
 
     def defineX(self, data, sample_rate):
         """
@@ -170,7 +226,7 @@ class freq_state(plot_state):
         freqreturn = [0]*i
         for x in range(0,i):
             freqreturn[x] = freq[x]
-        return freqreturn,i
+        return freqreturn,i,freq
 
     def defineY(self, data, count,samplerate):
         """
@@ -182,7 +238,7 @@ class freq_state(plot_state):
         fourierreturn = [0]*count
         for x in range(0,count):
             fourierreturn[x] = fourier[x]
-        return fourierreturn
+        return fourierreturn,fourier
 
 class spectro_state(plot_state):
     """
@@ -218,7 +274,6 @@ class wrapper_qwt():
         self.state.qwtPlot.close()
         if(index > -2):
             self.state.qwtPlot = QwtPlot(self.state.name)
-
             return True
         return False;
 
@@ -227,4 +282,4 @@ class wrapper_qwt():
         """
         appelle la bonne definition pour definir la courbe selon l'etat
         """
-        self.state.set_curve(x,y,name)
+        return self.state.set_curve(x,y,name)
