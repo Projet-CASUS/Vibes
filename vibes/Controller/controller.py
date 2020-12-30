@@ -2,8 +2,11 @@ import sys
 import vibes
 import vibes.View.qt_view as view
 import vibes.Model.model as models
-import vibes.Controller.transform as trans
-from PyQt5.Qt import QApplication
+import vibes.Controller.Event.events as events
+import vibes.Controller.Event.filter_events as filter_events
+
+from Vibes.vibes.Controller.Event import events
+
 
 class Controller():
     def __init__(self, data_file):
@@ -13,100 +16,28 @@ class Controller():
         """
         self.model = models.Model(data_file)
         self.my_interface = view.graphical_interface()
+        self.events = events.events(self)
+        self.filter_events = filter_events.filter_events(self)
         ### todo DECOUPLER DU CONTROLLER
         ## Ne peut pas être découpler puisque connect dois être fais dans le controlleur sinon on créer plein de fonction inutile
         self.my_interface.pipeline_window.widget.pipeline_index = len(self.model.data.transformations[0])
         self.my_interface.pipeline_window.widget.pipeline_slider.valueChanged.connect(self.update_pipeline)
-        self.my_interface.pipeline_window.widget.differentiel.clicked.connect(self.differentiel_event)
-        self.my_interface.pipeline_window.widget.rangeSelection.clicked.connect(self.rangeSelection_event)
-        self.my_interface.pipeline_window.widget.merger.clicked.connect(self.merger_event)
-        self.my_interface.pipeline_window.widget.exportWav.clicked.connect(self.exporter_event)
-        self.my_interface.pipeline_window.widget.FirPasseBas.clicked.connect(self.fir_passe_bas_event)
-        self.my_interface.pipeline_window.widget.FirPasseHaut.clicked.connect(self.fir_passe_haut_event)
-        self.my_interface.pipeline_window.widget.FirPasseBande.clicked.connect(self.fir_passe_bande_event)
-        self.my_interface.pipeline_window.widget.PasseBas.clicked.connect(self.passe_bas_event)
-        self.my_interface.pipeline_window.widget.PasseHaut.clicked.connect(self.passe_haut_event)
-        self.my_interface.pipeline_window.widget.PasseBande.clicked.connect(self.passe_bande_event)
+        self.my_interface.pipeline_window.widget.differentiel.clicked.connect(self.events.differentiel_event)
+        self.my_interface.pipeline_window.widget.rangeSelection.clicked.connect(self.events.rangeSelection_event)
+        self.my_interface.pipeline_window.widget.merger.clicked.connect(self.events.merger_event)
+        self.my_interface.pipeline_window.widget.exportWav.clicked.connect(self.events.exporter_event)
+        self.my_interface.pipeline_window.widget.FirPasseBas.clicked.connect(self.filter_events.fir_passe_bas_event)
+        self.my_interface.pipeline_window.widget.FirPasseHaut.clicked.connect(self.filter_events.fir_passe_haut_event)
+        self.my_interface.pipeline_window.widget.FirPasseBande.clicked.connect(self.filter_events.fir_passe_bande_event)
+        self.my_interface.pipeline_window.widget.PasseBas.clicked.connect(self.filter_events.passe_bas_event)
+        self.my_interface.pipeline_window.widget.PasseHaut.clicked.connect(self.filter_events.passe_haut_event)
+        self.my_interface.pipeline_window.widget.PasseBande.clicked.connect(self.filter_events.passe_bande_event)
         ### DECOUPLER DU CONTROLLER
 
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
         self.show_Filter_Window()
-
-    def passe_bas_event(self):
-        data = self.model.data.transformations[-1]
-        cut_off = 0
-        att = 0
-        if self.my_interface.pipeline_window.widget.cut_off.text() != '':
-            cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        if self.my_interface.pipeline_window.widget.attenuation.text() != '':
-            att = self.my_interface.pipeline_window.widget.attenuation.text()
-        self.filter2(data,float(cut_off),0,float(att), self.model.data.transformations_fourier[-1],"passe_bas")
-    def passe_haut_event(self):
-        data = self.model.data.transformations[-1]
-        cut_off = 0
-        att = 0
-        if self.my_interface.pipeline_window.widget.cut_off.text() != '':
-            cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        if self.my_interface.pipeline_window.widget.attenuation.text() != '':
-            att = self.my_interface.pipeline_window.widget.attenuation.text()
-        self.filter2(data, float(cut_off), 0, float(att), self.model.data.transformations_fourier[-1], "passe_haut")
-    def passe_bande_event(self):
-        data = self.model.data.transformations[-1]
-        cut_off = 0
-        cut_off2 = 0
-        att = 0
-        if self.my_interface.pipeline_window.widget.cut_off.text() != '':
-            cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        if self.my_interface.pipeline_window.widget.cut_off2.text() != '':
-            cut_off2 = self.my_interface.pipeline_window.widget.cut_off2.text()
-        if self.my_interface.pipeline_window.widget.attenuation.text() != '':
-            att = self.my_interface.pipeline_window.widget.attenuation.text()
-        self.filter2(data, float(cut_off), float(cut_off2), float(att), self.model.data.transformations_fourier[-1], "passe_bande")
-    def fir_passe_bas_event(self):
-        data = self.model.data.transformations[-1]
-        cut_off = 0
-        if self.my_interface.pipeline_window.widget.cut_off.text() != '':
-            cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        self.filter(data,float(cut_off),0,"passe_bas")
-
-    def fir_passe_haut_event(self):
-        data = self.model.data.transformations[-1]
-        cut_off = 0
-        if self.my_interface.pipeline_window.widget.cut_off.text() != '':
-            cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        self.filter(data,float(cut_off),0,"passe_haut")
-
-    def fir_passe_bande_event(self):
-        data = self.model.data.transformations[-1]
-        cut_off = 0
-        cut_off2 = 0
-        if self.my_interface.pipeline_window.widget.cut_off.text() != '':
-            cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        if self.my_interface.pipeline_window.widget.cut_off2.text() != '':
-            cut_off2 = self.my_interface.pipeline_window.widget.cut_off2.text()
-        self.filter(data,float(cut_off),float (cut_off2),"passe_bande")
-
-    def exporter_event(self):
-        self.model.data.export_wav(self.model.data)
-
-    def merger_event(self):
-        data = self.model.data.transformations
-        self.Merging(data)
-
-    def rangeSelection_event(self):
-        first = 0
-        last = len(self.model.data.transformations[-1][-1])
-        if(self.my_interface.pipeline_window.widget.first.text() != ''):
-            first = int(self.my_interface.pipeline_window.widget.first.text())
-        if(self.my_interface.pipeline_window.widget.last.text() != ''):
-            last = int(self.my_interface.pipeline_window.widget.last.text())
-        self.time_range_selections(first,last)
-
-    def differentiel_event(self):
-        data = self.model.data.transformations[-1]
-        self.differential(data)
 
     def time_range_selections(self, first, last, index=-1):
         """
