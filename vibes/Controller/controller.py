@@ -39,13 +39,13 @@ class Controller():
         cut_off = 0
         if self.my_interface.pipeline_window.widget.cut_off.text() != '':
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        self.filter2(data,cut_off,0,0, self.model.data.transformations_fourier[-1],"passe_bas")
+        self.filter2(data,int(cut_off),0,0, self.model.data.transformations_fourier[-1],"passe_bas")
     def passe_haut_event(self):
         data = self.model.data.transformations[-1]
         cut_off = 0
         if self.my_interface.pipeline_window.widget.cut_off.text() != '':
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        self.filter2(data, cut_off, 0, 0, self.model.data.transformations_fourier[-1], "passe_haut")
+        self.filter2(data, int(cut_off), 0, 0, self.model.data.transformations_fourier[-1], "passe_haut")
     def passe_bande_event(self):
         data = self.model.data.transformations[-1]
         cut_off = 0
@@ -54,7 +54,7 @@ class Controller():
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
         if self.my_interface.pipeline_window.widget.cut_off2.text() != '':
             cut_off2 = self.my_interface.pipeline_window.widget.cut_off2.text()
-        self.filter2(data, cut_off, cut_off2, 0, self.model.data.transformations_fourier[-1], "passe_bande")
+        self.filter2(data, int(cut_off), int(cut_off2), 0, self.model.data.transformations_fourier[-1], "passe_bande")
     def fir_passe_bas_event(self):
         data = self.model.data.transformations[-1]
         cut_off = 0

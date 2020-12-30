@@ -268,12 +268,44 @@ class Filter2:
         return self.filtering(self.dataFourier)
 
     def filtering(self,dataFourier):
-        dataFourierNumpy = np.zeros(shape=((len(dataFourier[1]) ), len(dataFourier)))
-        for i in range(0, len(dataFourier[1])):
-            dataFourierNumpy[i][0] = dataFourier[0][i]
-            dataFourierNumpy[i][1] = dataFourier[1][i]
         #TODO modification manuelle des signaux
 
+        if(self.type == "passe_bas"):
+            for i in range(0,len(dataFourier[0])):
+                currentDataTime = dataFourier[0][i]
+                currentDataimpulse = dataFourier[1][i]
+                if(currentDataTime  <0):
+                    if(currentDataTime  < -1*self.cut_off):
+                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                elif(currentDataTime  >=0):
+                    if(currentDataTime  > self.cut_off):
+                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+
+        if(self.type == "passe_haut"):
+            for i in range(0,len(dataFourier[0])):
+                currentDataTime = dataFourier[0][i]
+                currentDataimpulse = dataFourier[1][i]
+                if(currentDataTime <0):
+                    if(currentDataTime  > -1*self.cut_off):
+                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                elif(currentDataTime  >=0):
+                    if(currentDataTime  < self.cut_off):
+                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+
+        if(self.type == "passe_bande"):
+            for i in range(0,len(dataFourier[0])):
+                currentDataTime = dataFourier[0][i]
+                currentDataimpulse = dataFourier[1][i]
+                if(currentDataTime <0):
+                    if(currentDataTime > -1*self.cut_off):
+                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                    elif(currentDataTime < -1*self.cut_off2):
+                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                elif(currentDataTime  >=0):
+                    if(currentDataTime  < self.cut_off):
+                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                    elif (currentDataTime  > self.cut_off2):
+                        dataFourier[1][i] = self.attenuation * currentDataimpulse
         itx = scipy.fft.ifft(dataFourier[1])
         dataNumpy = np.zeros(shape=((len(itx)), len(self.data)))
         for i in range(0, len(itx)):
