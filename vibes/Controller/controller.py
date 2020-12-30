@@ -37,37 +37,46 @@ class Controller():
     def passe_bas_event(self):
         data = self.model.data.transformations[-1]
         cut_off = 0
+        att = 0
         if self.my_interface.pipeline_window.widget.cut_off.text() != '':
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        self.filter2(data,int(cut_off),0,0, self.model.data.transformations_fourier[-1],"passe_bas")
+        if self.my_interface.pipeline_window.widget.attenuation.text() != '':
+            att = self.my_interface.pipeline_window.widget.attenuation.text()
+        self.filter2(data,float(cut_off),0,float(att), self.model.data.transformations_fourier[-1],"passe_bas")
     def passe_haut_event(self):
         data = self.model.data.transformations[-1]
         cut_off = 0
+        att = 0
         if self.my_interface.pipeline_window.widget.cut_off.text() != '':
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        self.filter2(data, int(cut_off), 0, 0, self.model.data.transformations_fourier[-1], "passe_haut")
+        if self.my_interface.pipeline_window.widget.attenuation.text() != '':
+            att = self.my_interface.pipeline_window.widget.attenuation.text()
+        self.filter2(data, float(cut_off), 0, float(att), self.model.data.transformations_fourier[-1], "passe_haut")
     def passe_bande_event(self):
         data = self.model.data.transformations[-1]
         cut_off = 0
         cut_off2 = 0
+        att = 0
         if self.my_interface.pipeline_window.widget.cut_off.text() != '':
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
         if self.my_interface.pipeline_window.widget.cut_off2.text() != '':
             cut_off2 = self.my_interface.pipeline_window.widget.cut_off2.text()
-        self.filter2(data, int(cut_off), int(cut_off2), 0, self.model.data.transformations_fourier[-1], "passe_bande")
+        if self.my_interface.pipeline_window.widget.attenuation.text() != '':
+            att = self.my_interface.pipeline_window.widget.attenuation.text()
+        self.filter2(data, float(cut_off), float(cut_off2), float(att), self.model.data.transformations_fourier[-1], "passe_bande")
     def fir_passe_bas_event(self):
         data = self.model.data.transformations[-1]
         cut_off = 0
         if self.my_interface.pipeline_window.widget.cut_off.text() != '':
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        self.filter(data,int(cut_off),0,"passe_bas")
+        self.filter(data,float(cut_off),0,"passe_bas")
 
     def fir_passe_haut_event(self):
         data = self.model.data.transformations[-1]
         cut_off = 0
         if self.my_interface.pipeline_window.widget.cut_off.text() != '':
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
-        self.filter(data,int(cut_off),0,"passe_haut")
+        self.filter(data,float(cut_off),0,"passe_haut")
 
     def fir_passe_bande_event(self):
         data = self.model.data.transformations[-1]
@@ -77,7 +86,7 @@ class Controller():
             cut_off = self.my_interface.pipeline_window.widget.cut_off.text()
         if self.my_interface.pipeline_window.widget.cut_off2.text() != '':
             cut_off2 = self.my_interface.pipeline_window.widget.cut_off2.text()
-        self.filter(data,int(cut_off),int(cut_off2),"passe_bande")
+        self.filter(data,float(cut_off),float (cut_off2),"passe_bande")
 
     def exporter_event(self):
         self.model.data.export_wav(self.model.data)
