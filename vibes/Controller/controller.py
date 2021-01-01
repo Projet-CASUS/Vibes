@@ -4,6 +4,7 @@ import vibes.View.qt_view as view
 import vibes.Model.model as models
 import vibes.Controller.Event.events as events
 import vibes.Controller.Event.filter_events as filter_events
+from scipy import fftpack
 
 from Vibes.vibes.Controller.Event import events
 
@@ -18,6 +19,8 @@ class Controller():
         self.my_interface = view.graphical_interface()
         self.events = events.events(self)
         self.filter_events = filter_events.filter_events(self)
+        self.x = []
+        self.y = []
         ### todo DECOUPLER DU CONTROLLER
         ## Ne peut pas être découpler puisque connect dois être fais dans le controlleur sinon on créer plein de fonction inutile
         self.my_interface.pipeline_window.widget.pipeline_index = len(self.model.data.transformations[0])
@@ -49,54 +52,53 @@ class Controller():
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
         self.deactivate_transformation()
-        self.model.data.insert_transformation(vibes.Controller.transform.Range_selection, index,first,last, self.model.data.transformations[0])
+        self.model.data.insert_transformation(vibes.Controller.transform.Range_selection, index, first, last,
+                                              self.model.data.transformations[0])
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
-    def differential(self, data, index= -1):
+    def differential(self, data, index=-1):
         self.deactivate_transformation()
-        self.model.data.insert_transformation(vibes.Controller.transform.Differential,index,data)
+        self.model.data.insert_transformation(vibes.Controller.transform.Differential, index, data)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
-    def integral(self,data, index =-1):
+    def integral(self, data, index=-1):
         self.deactivate_transformation()
-        self.model.data.insert_transformation(vibes.Controller.transform.Integral,index,data)
+        self.model.data.insert_transformation(vibes.Controller.transform.Integral, index, data)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
-    def Merging(self,data,index = -1):
+    def Merging(self, data, index=-1):
         self.deactivate_transformation()
-        self.model.data.insert_transformation(vibes.Controller.transform.Merge,index,data)
+        self.model.data.insert_transformation(vibes.Controller.transform.Merge, index, data)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
-    def filter(self,data, cut_off,cut_off2, type,index = -1):
-        if(data[1][-1][0] <=1):
-            sample_rate = len(data[1])*1/data[1][-1][0]
+    def filter(self, data, cut_off, cut_off2, type, index=-1):
+        if (data[1][-1][0] <= 1):
+            sample_rate = len(data[1]) * 1 / data[1][-1][0]
         else:
-            sample_rate = len(data[1])/data[1][-1][0]
+            sample_rate = len(data[1]) / data[1][-1][0]
         self.deactivate_transformation()
-        self.model.data.insert_transformation(vibes.Controller.transform.Filter,index,sample_rate,cut_off,cut_off2,data,type)
+        self.model.data.insert_transformation(vibes.Controller.transform.Filter, index, sample_rate, cut_off, cut_off2,
+                                              data, type)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
-    def filter2(self,data,cut_off, cut_off2, attenuation,fourier,type,index = -1):
-        if(data[1][-1][0] <=1):
-            sample_rate = len(data[1])*1/data[1][-1][0]
-        else:
-            sample_rate = len(data[1])/data[1][-1][0]
+    def filter2(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
+
         self.deactivate_transformation()
-        self.model.data.insert_transformation(vibes.Controller.transform.Filter2,index,data,fourier,cut_off,cut_off2,attenuation,type)
+        self.model.data.insert_transformation(vibes.Controller.transform.Filter2, index, data, fourier, cut_off,
+                                              cut_off2, attenuation, type)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
-
 
     def redefine_graphic(self, window, data_index=-1):
         """
@@ -104,18 +106,64 @@ class Controller():
         :param window: -> QWindow > Une QWindow d'un graphique ex: temps frequence
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
+        if(window.state.name == "Time"):
+            self.x,self.y = self.redefine_graphic_time(window,data_index)
+        else:
+            self.redefine_graphic_freq(self.x,self.y,window,data_index)
+
+    def redefine_graphic_time(self, window, data_index=-1):
         columns_name = self.model.data.transformations[data_index][0].names
         if (window.refresh_graphic(data_index)):
             length = len(self.model.data.transformations[data_index][1])
             x = self.define_numpy(length, self.model.data.transformations[data_index][1], 0, data_index)
-            for n in range(1, len(columns_name)):
-                y = self.define_numpy(length, self.model.data.transformations[data_index][1], n, data_index)
-                # decoupler element de la vue
-                freq, fourier = window.set_curve(x, y, columns_name[n])
-                if(len(fourier) > 2):
-                    self.model.data.insert_transformation_fourier([freq,fourier])
-            self.my_interface.show_graphic(window)
+        for n in range(1, len(columns_name)):
+            y = self.define_numpy(length, self.model.data.transformations[data_index][1], n, data_index)
+            window.set_curve(x, y, columns_name[n])
+        self.my_interface.show_graphic(window)
+        return x,y
 
+    def redefine_graphic_freq(self,x,y ,window, data_index=-1):
+        if (x[-1] <= 1):
+            sample_rate = len(x) * 1 / x[-1]
+        else:
+            sample_rate = len(x) / x[-1]
+        columns_name = self.model.data.transformations[data_index][0].names
+        if (window.refresh_graphic(data_index)):
+            freq, count, freq_complete = self.defineX(x, sample_rate)
+            for n in range(1, len(columns_name)):
+                fourier_complete, fourier_no_complexe = self.defineY(y, count)
+                window.set_curve(freq, fourier_no_complexe, columns_name[n])
+                self.model.data.insert_transformation_fourier([freq_complete, fourier_complete])
+        self.my_interface.show_graphic(window)
+
+    def defineX(self, data, sample_rate):
+        """
+        :param data: -> numpy > donnee que l'on veut convertire
+        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
+       Convertie les donnee temporelle en frequentielle
+
+        """
+        n = len(data)
+        freq = fftpack.fftfreq(n) * sample_rate
+        i = 0
+        while (freq[i] >= 0):
+            i = i + 1
+        freqreturn = [0] * i
+        for x in range(0, i):
+            freqreturn[x] = freq[x]
+        return freqreturn, i, freq
+
+    def defineY(self, data, count):
+        """
+        :param data: -> numpy > donnee que l'on veut convertire
+        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
+        Convertie les donnee temporelle en frequentielle
+        """
+        fourier = fftpack.fft(data)
+        fourierNoComplex = [0] * count;
+        for x in range(0, count):
+            fourierNoComplex[x] = fourier[x].real
+        return fourier, fourierNoComplex
 
     def define_pipeline_browser(self):
         """
@@ -147,7 +195,7 @@ class Controller():
             self.redefine_graphic(self.my_interface.fourier_window, plot_index)
             self.redefine_graphic(self.my_interface.time_window, plot_index)
 
-    def define_numpy(self, length, datastructure, column,index=-1):
+    def define_numpy(self, length, datastructure, column, index=-1):
         """
         :param length: -> int > la quantite de donnees contenue dans le panda pour un parametre
         :param index: -> int > a -1 par defaut
@@ -159,13 +207,15 @@ class Controller():
         return numpy
 
     def deactivate_transformation(self):
-        if (len(self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value()) < len(self.model.data.transformations):
-            cpt = len(self.model.data.transformations) - (len(self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value())
+        if (len(
+                self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value()) < len(
+                self.model.data.transformations):
+            cpt = len(self.model.data.transformations) - (len(
+                self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value())
             for i in range(0, cpt):
-                self.model.data.transformations[len(self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value()+i][0].state = False
+                self.model.data.transformations[len(
+                    self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value() + i][
+                    0].state = False
 
     def show_Filter_Window(self):
         self.my_interface.show_filter_window()
-
-
-

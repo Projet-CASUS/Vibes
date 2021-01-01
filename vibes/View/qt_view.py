@@ -156,8 +156,10 @@ class plot_state():
     def __init__(self,qwtPlot):
         self.qwtPlot = QwtPlot
 
-    def set_curve(self):
-        pass
+    def set_curve(self,x,y,name):
+        curve = QwtPlotCurve(name)
+        curve.setData(x, y)
+        curve.attach(self.qwtPlot)
 
 class time_state(plot_state):
     """
@@ -169,16 +171,6 @@ class time_state(plot_state):
         self.name = "Time"
         self.qwtPlot = QwtPlot(self.name)
 
-
-    def set_curve(self,x,y,name):
-        """
-        definit la courbe avec des valeur en temporelle
-        """
-        curve = QwtPlotCurve(name)
-        curve.setData(x, y)
-        curve.attach(self.qwtPlot)
-        return [0],[0]
-
 class freq_state(plot_state):
     """
     sous cette etat la graphique affiche une courbe en frequentielle
@@ -189,60 +181,6 @@ class freq_state(plot_state):
         self.name = "frequency"
         self.qwtPlot = QwtPlot(self.name)
 
-
-    def set_curve(self,x,y,name):
-        """
-        :param x: -> numpy > Recois un numpy des valeurs en x
-        :param y: -> numpy > recois un numpy des valeurs en y
-        :param name -> string > recois une string du nom de la courbe
-        definit la courbe avec des valeur en temporelle
-
-        """
-        sample_rate = 0
-        if(x[-1] <=1):
-            sample_rate = len(x)*1/x[-1]
-        else:
-            sample_rate = len(x)/x[-1]
-        curve = QwtPlotCurve(name)
-        freq, count, realfreq =self.defineX(x,sample_rate)
-        fourier,realfourier = self.defineY(y,count,sample_rate)
-        fourierNoComplex= [0]*len(fourier);
-        for i in range(0, len(fourier)):
-            fourierNoComplex[i] = fourier[i].real
-        curve.setData(freq,fourierNoComplex)
-        curve.attach(self.qwtPlot)
-        return realfreq,realfourier
-
-    def defineX(self, data, sample_rate):
-        """
-        :param data: -> numpy > donnee que l'on veut convertire
-        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
-       Convertie les donnee temporelle en frequentielle
-
-        """
-
-        n = len(data)
-        freq = fftpack.fftfreq(n) * sample_rate
-
-        i = 0
-        while(freq[i] >= 0):
-            i= i+1
-        freqreturn = [0]*i
-        for x in range(0,i):
-            freqreturn[x] = freq[x]
-        return freqreturn,i,freq
-
-    def defineY(self, data, count,samplerate):
-        """
-        :param data: -> numpy > donnee que l'on veut convertire
-        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
-        Convertie les donnee temporelle en frequentielle
-        """
-        fourier = fftpack.fft(data)
-        fourierreturn = [0]*count
-        for x in range(0,count):
-            fourierreturn[x] = fourier[x]
-        return fourierreturn,fourier
 
 class spectro_state(plot_state):
     """
