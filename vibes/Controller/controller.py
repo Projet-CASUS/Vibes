@@ -2,11 +2,10 @@ import sys
 import vibes
 import vibes.View.qt_view as view
 import vibes.Model.model as models
-import vibes.Controller.Event.events as events
+import vibes.Controller.Event.Events as events
 import vibes.Controller.Event.filter_events as filter_events
 from scipy import fftpack
 
-from Vibes.vibes.Controller.Event import events
 
 
 class Controller():
@@ -113,9 +112,9 @@ class Controller():
 
     def redefine_graphic_time(self, window, data_index=-1):
         columns_name = self.model.data.transformations[data_index][0].names
-        if (window.refresh_graphic(data_index)):
-            length = len(self.model.data.transformations[data_index][1])
-            x = self.define_numpy(length, self.model.data.transformations[data_index][1], 0, data_index)
+
+        length = len(self.model.data.transformations[data_index][1])
+        x = self.define_numpy(length, self.model.data.transformations[data_index][1], 0, data_index)
         for n in range(1, len(columns_name)):
             y = self.define_numpy(length, self.model.data.transformations[data_index][1], n, data_index)
             window.set_curve(x, y, columns_name[n])
@@ -128,9 +127,9 @@ class Controller():
         else:
             sample_rate = len(x) / x[-1]
         columns_name = self.model.data.transformations[data_index][0].names
-        if (window.refresh_graphic(data_index)):
-            freq, count, freq_complete = self.defineX(x, sample_rate)
-            for n in range(1, len(columns_name)):
+
+        freq, count, freq_complete = self.defineX(x, sample_rate)
+        for n in range(1, len(columns_name)):
                 fourier_complete, fourier_no_complexe = self.defineY(y, count)
                 window.set_curve(freq, fourier_no_complexe, columns_name[n])
                 self.model.data.insert_transformation_fourier([freq_complete, fourier_complete])

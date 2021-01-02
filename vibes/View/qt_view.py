@@ -157,9 +157,9 @@ class plot_state():
         self.qwtPlot = QwtPlot
 
     def set_curve(self,x,y,name):
-        curve = QwtPlotCurve(name)
-        curve.setData(x, y)
-        curve.attach(self.qwtPlot)
+
+        self.curve.setData(x, y)
+        self.curve.attach(self.qwtPlot)
 
 class time_state(plot_state):
     """
@@ -169,6 +169,7 @@ class time_state(plot_state):
     def __init__(self,qwtPlot):
         super(time_state, self).__init__(qwtPlot)
         self.name = "Time"
+        self.curve = QwtPlotCurve(self.name)
         self.qwtPlot = QwtPlot(self.name)
 
 class freq_state(plot_state):
@@ -179,6 +180,7 @@ class freq_state(plot_state):
     def __init__(self,qwtPlot):
         super(freq_state, self).__init__(qwtPlot)
         self.name = "frequency"
+        self.curve = QwtPlotCurve(self.name)
         self.qwtPlot = QwtPlot(self.name)
 
 
@@ -208,16 +210,6 @@ class wrapper_qwt():
     def __init__(self, state):
         super(wrapper_qwt, self).__init__()
         self.state = state
-
-    def refresh_graphic(self,index):
-        """
-        TODO: il devrait avoir une meilleur maniere de proceder
-        """
-        self.state.qwtPlot.close()
-        if(index > -2):
-            self.state.qwtPlot = QwtPlot(self.state.name)
-            return True
-        return False;
 
 
     def set_curve(self,x,y,name):
