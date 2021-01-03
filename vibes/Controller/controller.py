@@ -20,6 +20,7 @@ class Controller():
         self.filter_events = filter_events.filter_events(self)
         self.x = []
         self.y = []
+
         ### todo DECOUPLER DU CONTROLLER
         ## Ne peut pas être découpler puisque connect dois être fais dans le controlleur sinon on créer plein de fonction inutile
         self.my_interface.pipeline_window.widget.pipeline_index = len(self.model.data.transformations[0])
@@ -57,12 +58,14 @@ class Controller():
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
+
     def differential(self, data, index=-1):
         self.deactivate_transformation()
         self.model.data.insert_transformation(vibes.Controller.transform.Differential, index, data)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
+
 
     def integral(self, data, index=-1):
         self.deactivate_transformation()
@@ -71,12 +74,14 @@ class Controller():
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
+
     def Merging(self, data, index=-1):
         self.deactivate_transformation()
         self.model.data.insert_transformation(vibes.Controller.transform.Merge, index, data)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
+
 
     def filter(self, data, cut_off, cut_off2, type, index=-1):
         if (data[1][-1][0] <= 1):
@@ -90,6 +95,7 @@ class Controller():
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
 
+
     def filter2(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
 
         self.deactivate_transformation()
@@ -98,6 +104,7 @@ class Controller():
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
+
 
     def redefine_graphic(self, window, data_index=-1):
         """
@@ -188,11 +195,12 @@ class Controller():
             else:
                 self.my_interface.pipeline_window.layout.itemAt(x).widget().setEnabled(False)
         if is_null:
-            self.redefine_graphic(self.my_interface.fourier_window, -2)
             self.redefine_graphic(self.my_interface.time_window, -2)
+            self.redefine_graphic(self.my_interface.fourier_window, -2)
         else:
-            self.redefine_graphic(self.my_interface.fourier_window, plot_index)
             self.redefine_graphic(self.my_interface.time_window, plot_index)
+            self.redefine_graphic(self.my_interface.fourier_window, plot_index)
+
 
     def define_numpy(self, length, datastructure, column, index=-1):
         """

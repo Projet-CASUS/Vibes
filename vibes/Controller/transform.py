@@ -249,8 +249,14 @@ class Merge:
 
         length = len(self.transformations[len(self.transformations) - 1][-1])
         for x in range(length):
-            self.newData[x] = self.transformations[len(self.transformations) - 1][-1][x]
+            if(len(self.newData) > length +self.first):
+                self.newData[x+self.first] = self.transformations[len(self.transformations) - 1][-1][x]
+            else:
+                self.newData[x] = self.transformations[len(self.transformations) - 1][-1][x]
         return self.newData
+
+
+
 
 class Filter2:
 
