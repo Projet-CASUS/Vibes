@@ -21,26 +21,31 @@ class Controller():
         self.x = []
         self.y = []
 
+        self.my_interface.DashBoard_window.define()
         ### todo DECOUPLER DU CONTROLLER
         ## Ne peut pas être découpler puisque connect dois être fais dans le controlleur sinon on créer plein de fonction inutile
         self.my_interface.pipeline_window.widget.pipeline_index = len(self.model.data.transformations[0])
         self.my_interface.pipeline_window.widget.pipeline_slider.valueChanged.connect(self.update_pipeline)
-        self.my_interface.pipeline_window.widget.differentiel.clicked.connect(self.events.differentiel_event)
-        self.my_interface.pipeline_window.widget.rangeSelection.clicked.connect(self.events.rangeSelection_event)
-        self.my_interface.pipeline_window.widget.merger.clicked.connect(self.events.merger_event)
-        self.my_interface.pipeline_window.widget.exportWav.clicked.connect(self.events.exporter_event)
-        self.my_interface.pipeline_window.widget.FirPasseBas.clicked.connect(self.filter_events.fir_passe_bas_event)
-        self.my_interface.pipeline_window.widget.FirPasseHaut.clicked.connect(self.filter_events.fir_passe_haut_event)
-        self.my_interface.pipeline_window.widget.FirPasseBande.clicked.connect(self.filter_events.fir_passe_bande_event)
-        self.my_interface.pipeline_window.widget.PasseBas.clicked.connect(self.filter_events.passe_bas_event)
-        self.my_interface.pipeline_window.widget.PasseHaut.clicked.connect(self.filter_events.passe_haut_event)
-        self.my_interface.pipeline_window.widget.PasseBande.clicked.connect(self.filter_events.passe_bande_event)
+
+        self.my_interface.DashBoard_window.export_wav.triggered.connect(self.events.export_event)
+
+        self.my_interface.DashBoard_window.differential.triggered.connect(self.events.differentiel_event)
+        self.my_interface.DashBoard_window.range_selection.triggered.connect(self.events.range_selection_event)
+        self.my_interface.DashBoard_window.merge.triggered.connect(self.events.merge_event)
+        self.my_interface.DashBoard_window.passe_bas_fir.triggered.connect(self.filter_events.fir_passe_bas_event)
+        self.my_interface.DashBoard_window.passe_haut_fir.triggered.connect(self.filter_events.fir_passe_haut_event)
+        self.my_interface.DashBoard_window.passe_bande_fir.triggered.connect(self.filter_events.fir_passe_bande_event)
+        self.my_interface.DashBoard_window.passe_bas.triggered.connect(self.filter_events.passe_bas_event)
+        self.my_interface.DashBoard_window.passe_haut.triggered.connect(self.filter_events.passe_haut_event)
+        self.my_interface.DashBoard_window.passe_bande.triggered.connect(self.filter_events.passe_bande_event)
+
+
         ### DECOUPLER DU CONTROLLER
 
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
-        self.show_Filter_Window()
+        self.show_DashBoard_window()
 
     def time_range_selections(self, first, last, index=-1):
         """
@@ -224,5 +229,5 @@ class Controller():
                     self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value() + i][
                     0].state = False
 
-    def show_Filter_Window(self):
-        self.my_interface.show_filter_window()
+    def show_DashBoard_window(self):
+        self.my_interface.show_DashBoard_window()
