@@ -6,9 +6,60 @@ import scipy
 convolve = np.convolve
 import pandas as pd
 import scipy.signal as signal
-from scipy import integrate
+from scipy import integrate, fftpack
 
-class import_file:
+
+class fourier:
+    def __init__(self):
+        pass
+    def fourier(self,data,names,data_index = -1):
+        x = [0]*len(data)
+        for i in range(len(data)):
+            x[i] = data[i][0]
+        y = [0] * len(data)
+        for i in range(len(data)):
+            y[i] = data[i][1]
+        if (x[-1] <= 1):
+            sample_rate = len(x) * 1 / x[-1]
+        else:
+            sample_rate = len(x) / x[-1]
+        columns_name = names
+        freq, count, freq_complete = self.defineX(x, sample_rate)
+        for n in range(1, len(columns_name)):
+            fourier_complete, fourier_no_complexe = self.defineY(y, count)
+        return freq,freq_complete,fourier_complete,fourier_no_complexe
+
+    def defineX(self, data, sample_rate):
+        """
+        :param data: -> numpy > donnee que l'on veut convertire
+        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
+       Convertie les donnee temporelle en frequentielle
+
+        """
+        n = len(data)
+        freq = fftpack.fftfreq(n) * sample_rate
+        i = 0
+        while (freq[i] >= 0):
+            i = i + 1
+        freqreturn = [0] * i
+        for x in range(0, i):
+            freqreturn[x] = freq[x]
+        return freqreturn, i, freq
+
+    def defineY(self, data, count):
+        """
+        :param data: -> numpy > donnee que l'on veut convertire
+        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
+        Convertie les donnee temporelle en frequentielle
+        """
+        fourier = fftpack.fft(data)
+        fourierNoComplex = [0] * count;
+        for x in range(0, count):
+            fourierNoComplex[x] = fourier[x].real
+        return fourier, fourierNoComplex
+
+
+class import_file(fourier):
     def __init__(self, file_type='csv'):
         self.type = file_type
         self.state = True
@@ -18,12 +69,14 @@ class import_file:
             with open(filename, newline='') as f:
                 reader = csv.reader(f)
                 self.names = next(reader)
-            return np.loadtxt(filename, delimiter=',',skiprows=1)
+                data = np.loadtxt(filename, delimiter=',',skiprows=1)
+                self.freq,self.freq_complete,self.fourier_complete,self.fourier_no_complexe = self.fourier(data,self.names)
+            return data
         else:
             return filename
 
 
-class Filter:
+class Filter(fourier):
     """
     Retourne les valeurs filtrees des donnes fournies en parametres
     """
@@ -69,6 +122,7 @@ class Filter:
         for i in range(0,len(filtered_numpy)):
             filtered_numpy[i][0]= data[1][i][0]
             filtered_numpy[i][1] = filtered_data[i]
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(filtered_numpy, self.names)
         return filtered_numpy
 
     def passe_bas(self):
@@ -93,7 +147,7 @@ class Filter:
         f2 = float(self.cut_off2 / self.sample_rate)
         return signal.firwin(self.num_taps, [f1,f2], pass_zero=False)
 
-class Differential:
+class Differential(fourier):
     def __init__(self,data):
         self.state = True
         self.data = data
@@ -125,6 +179,7 @@ class Differential:
                     drv_list[i][x] = (((data[i][x] - data[i - 1][x]) / dt))
                 else:  # point médiants : dérivé centré (plus précis)
                     drv_list[i][x] = (((data[i + 1][x] - data[i - 1][x]) / (2 * dt)))
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(drv_list,self.names)
         return drv_list
 
     def derive2(self, data,names):
@@ -152,9 +207,11 @@ class Differential:
                     drv_list[i][1] = minValue
             else:
                 drv_list[i][1] = dydx[i]
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(drv_list,
+                                                                                                      self.names)
         return drv_list
 
-class Integral:
+class Integral(fourier):
     def __init__(self,data):
         self.state = True
         self.data = data
@@ -187,9 +244,11 @@ class Integral:
                 else:  # point médiants : méthode de simpson (plus précis)
                     # ref: https://en.wikipedia.org/wiki/Simpson's_rule
                     integ_list[i][x] =(((data[i - 1][x] + 4 * data[i][x] + data[i + 1][x]) * hs3))
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(integ_list,
+                                                                                                      self.names)
         return integ_list
 
-class Range_selection:
+class Range_selection(fourier):
     """
     Selectionne et retourne un vecteur contenant les valeurs correspondantes a la fourchette de temps selectionnee
     """
@@ -214,9 +273,11 @@ class Range_selection:
         for i in range(len(data[1][0])):
             for e in range(self.first ,self.last):
                 self.new_numpy[e-self.first][i] = data[1][e][i]
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(self.new_numpy,
+                                                                                                      self.names)
         return self.new_numpy
 
-class Merge:
+class Merge(fourier):
 
     def __init__(self,data):
         self.state = True
@@ -253,12 +314,14 @@ class Merge:
                 self.newData[x+self.first] = self.transformations[len(self.transformations) - 1][-1][x]
             else:
                 self.newData[x] = self.transformations[len(self.transformations) - 1][-1][x]
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(self.newData,
+                                                                                                      self.names)
         return self.newData
 
 
 
 
-class Filter2:
+class Filter2(fourier):
 
     def __init__(self,data, datafourier, cut_off, cut_off2, attenuation,type):
         self.state = True
@@ -271,7 +334,10 @@ class Filter2:
         self.type = type
 
     def __call__(self, data):
-        return self.filtering(self.dataFourier)
+        data = self.filtering(self.dataFourier)
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(data,
+                                                                                                      self.names)
+        return data
 
     def filtering(self,dataFourier):
         #TODO modification manuelle des signaux

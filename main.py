@@ -10,7 +10,7 @@ app = view.instanciate_qt_application()
 program_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(program_folder)
 
-control = cont.Controller("./test_files/aircraft_takeoff.csv")
+control = cont.Controller("./test_files/exposant3.csv")
 
 #control.addTransform(None)
 

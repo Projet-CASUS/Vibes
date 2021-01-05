@@ -7,14 +7,14 @@ class filter_events:
         cut_off = self.define_cut_off1()
         att = self.define_att()
         self.controller.filter2(data, float(cut_off), 0, float(att),
-                                self.controller.model.data.transformations_fourier[-1], "passe_bas")
+                                [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_bas")
 
     def passe_haut_event(self):
         data = self.define_data()
         cut_off = self.define_cut_off1()
         att = self.define_att()
         self.controller.filter2(data, float(cut_off), 0, float(att),
-                                self.controller.model.data.transformations_fourier[-1], "passe_haut")
+                                [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_haut")
 
     def passe_bande_event(self):
         data = self.define_data()
@@ -22,7 +22,7 @@ class filter_events:
         cut_off2 = self.define_cut_off2()
         att = self.define_att()
         self.controller.filter2(data, float(cut_off), float(cut_off2), float(att),
-                                self.controller.model.data.transformations_fourier[-1],
+                                [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe],
                                 "passe_bande")
 
     def fir_passe_bas_event(self):
@@ -47,19 +47,19 @@ class filter_events:
     def define_cut_off1(self):
         cut_off = 0
         if self.controller.my_interface.DashBoard_window.widget.cut_off.text() != '':
-            cut_off = self.controller.my_interfaceDashBoard_window.widget.cut_off.text()
+            cut_off = self.controller.my_interface.DashBoard_window.widget.cut_off.text()
         return cut_off
 
     def define_cut_off2(self):
         cut_off = 0
         if self.controller.my_interface.DashBoard_window.widget.cut_off2.text() != '':
-            cut_off = self.controller.my_interfaceDashBoard_window.widget.cut_off2.text()
+            cut_off = self.controller.my_interface.DashBoard_window.widget.cut_off2.text()
         return cut_off
 
     def define_att(self):
         att = 0
-        if self.controller.my_interfaceDashBoard_window.widget.attenuation.text() != '':
-            att = self.controller.my_interfaceDashBoard_window.widget.attenuation.text()
+        if self.controller.my_interface.DashBoard_window.widget.attenuation.text() != '':
+            att = self.controller.my_interface.DashBoard_window.widget.attenuation.text()
         return att
 
     def activate_field(self):

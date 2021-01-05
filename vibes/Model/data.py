@@ -28,7 +28,7 @@ class Data:
             transformations: -> transformation[] > ceci est la pipeline browser contenant toute les objets data et leur type de transformation subie.
             """
             import_func_type = transform.import_file(file_type=file_type)
-            self.transformations = [[import_func_type, import_func_type(data_file),self.fourier()]]
+            self.transformations = [[import_func_type, import_func_type(data_file)]]
         else:
             """
             si transform_func_file contient deja des data
@@ -37,52 +37,6 @@ class Data:
             self.read_hptfx(transform_func_file, data_file)
             self.currentIndex = 0
 
-    def fourier(self,data_index = -1):
-        x = [0]*len(self.transformations[-1][1])
-        for i in range(len(self.transformations[-1][1])):
-            x[i] = self.transformations[-1][1][i][0]
-        y = [0] * len(self.transformations[-1][1])
-        for i in range(len(self.transformations[-1][1])):
-            y[i] = self.transformations[-1][1][i][1]
-        if (x[-1] <= 1):
-            sample_rate = len(x) * 1 / x[-1]
-        else:
-            sample_rate = len(x) / x[-1]
-        columns_name = self.model.data.transformations[data_index][0].names
-        freq, count, freq_complete = self.defineX(x, sample_rate)
-        for n in range(1, len(columns_name)):
-            fourier_complete, fourier_no_complexe = self.defineY(y, count)
-            self.model.data.insert_transformation_fourier([freq_complete, fourier_complete])
-        return fourier_no_complexe
-
-    def defineX(self, data, sample_rate):
-        """
-        :param data: -> numpy > donnee que l'on veut convertire
-        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
-       Convertie les donnee temporelle en frequentielle
-
-        """
-        n = len(data)
-        freq = fftpack.fftfreq(n) * sample_rate
-        i = 0
-        while (freq[i] >= 0):
-            i = i + 1
-        freqreturn = [0] * i
-        for x in range(0, i):
-            freqreturn[x] = freq[x]
-        return freqreturn, i, freq
-
-    def defineY(self, data, count):
-        """
-        :param data: -> numpy > donnee que l'on veut convertire
-        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
-        Convertie les donnee temporelle en frequentielle
-        """
-        fourier = fftpack.fft(data)
-        fourierNoComplex = [0] * count;
-        for x in range(0, count):
-            fourierNoComplex[x] = fourier[x].real
-        return fourier, fourierNoComplex
 
     def read_hptfx(self, funcfile, datafile=None):
         """

@@ -18,8 +18,6 @@ class Controller():
         self.my_interface = view.graphical_interface()
         self.events = events.events(self)
         self.filter_events = filter_events.filter_events(self)
-        self.x = []
-        self.y = []
 
         self.my_interface.DashBoard_window.define()
         ### todo DECOUPLER DU CONTROLLER
@@ -104,8 +102,7 @@ class Controller():
     def filter2(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
 
         self.deactivate_transformation()
-        self.model.data.insert_transformation(vibes.Controller.transform.Filter2, index, data, fourier, cut_off,
-                                              cut_off2, attenuation, type)
+        self.model.data.insert_transformation(vibes.Controller.transform.Filter2, index, data, fourier, cut_off,cut_off2, attenuation, type)
         self.redefine_graphic(self.my_interface.time_window)
         self.redefine_graphic(self.my_interface.fourier_window)
         self.define_pipeline_browser()
@@ -118,9 +115,9 @@ class Controller():
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
         if(window.state.name == "Time"):
-            self.x,self.y = self.redefine_graphic_time(window,data_index)
+            self.redefine_graphic_time(window,data_index)
         else:
-            self.redefine_graphic_freq(self.x,self.y,window,data_index)
+            self.redefine_graphic_freq(window,data_index)
 
     def redefine_graphic_time(self, window, data_index=-1):
         columns_name = self.model.data.transformations[data_index][0].names
@@ -131,50 +128,13 @@ class Controller():
             y = self.define_numpy(length, self.model.data.transformations[data_index][1], n, data_index)
             window.set_curve(x, y, columns_name[n])
         self.my_interface.show_graphic(window)
-        return x,y
 
-    def redefine_graphic_freq(self,x,y ,window, data_index=-1):
-        if (x[-1] <= 1):
-            sample_rate = len(x) * 1 / x[-1]
-        else:
-            sample_rate = len(x) / x[-1]
-        columns_name = self.model.data.transformations[data_index][0].names
-
-        freq, count, freq_complete = self.defineX(x, sample_rate)
-        for n in range(1, len(columns_name)):
-                fourier_complete, fourier_no_complexe = self.defineY(y, count)
-                window.set_curve(freq, fourier_no_complexe, columns_name[n])
-                self.model.data.insert_transformation_fourier([freq_complete, fourier_complete])
+    def redefine_graphic_freq(self,window, data_index=-1):
+        model = self.model.data.transformations[data_index][0]
+        for i in range(len(model.names)):
+            window.set_curve(model.freq, model.fourier_no_complexe,model.names[i])
         self.my_interface.show_graphic(window)
 
-    def defineX(self, data, sample_rate):
-        """
-        :param data: -> numpy > donnee que l'on veut convertire
-        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
-       Convertie les donnee temporelle en frequentielle
-
-        """
-        n = len(data)
-        freq = fftpack.fftfreq(n) * sample_rate
-        i = 0
-        while (freq[i] >= 0):
-            i = i + 1
-        freqreturn = [0] * i
-        for x in range(0, i):
-            freqreturn[x] = freq[x]
-        return freqreturn, i, freq
-
-    def defineY(self, data, count):
-        """
-        :param data: -> numpy > donnee que l'on veut convertire
-        :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
-        Convertie les donnee temporelle en frequentielle
-        """
-        fourier = fftpack.fft(data)
-        fourierNoComplex = [0] * count;
-        for x in range(0, count):
-            fourierNoComplex[x] = fourier[x].real
-        return fourier, fourierNoComplex
 
     def define_pipeline_browser(self):
         """
