@@ -16,7 +16,7 @@ class events:
         if (self.controller.my_interface.DashBoard_window.widget.first.text() != ''):
             first = int(self.controller.my_interface.DashBoard_window.widget.first.text())
         if (self.controller.my_interface.DashBoard_window.widget.last.text() != ''):
-            last = int(self.controller.my_interface.DashBoard_window.widget.first.text())
+            last = int(self.controller.my_interface.DashBoard_window.widget.last.text())
         self.controller.time_range_selections(first, last)
 
     def differentiel_event(self):

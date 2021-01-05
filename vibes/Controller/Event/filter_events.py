@@ -47,13 +47,13 @@ class filter_events:
     def define_cut_off1(self):
         cut_off = 0
         if self.controller.my_interface.DashBoard_window.widget.cut_off.text() != '':
-            cut_off = self.controller.my_interfaceDashBoard_window.widget.attenuation.text()
+            cut_off = self.controller.my_interfaceDashBoard_window.widget.cut_off.text()
         return cut_off
 
     def define_cut_off2(self):
         cut_off = 0
         if self.controller.my_interface.DashBoard_window.widget.cut_off2.text() != '':
-            cut_off = self.controller.my_interfaceDashBoard_window.widget.attenuation.text()
+            cut_off = self.controller.my_interfaceDashBoard_window.widget.cut_off2.text()
         return cut_off
 
     def define_att(self):
