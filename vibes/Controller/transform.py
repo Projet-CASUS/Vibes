@@ -17,7 +17,7 @@ class fourier:
         """
         :param data: -> numpy > des données temporelles d'une transformations
         :param names: -> listes > de noms des colonnes représentant les différentes y
-        :return: ->
+        :return: -> freq, freq_complete, fourier_complete, fourier_no_complexe, sample_rate
         Orchestrer et calculer les information nécessaires pour tout ce qui entoure le fréquentiel
         """
         #ici on fait la convertion de numpy à un simple array
@@ -44,6 +44,7 @@ class fourier:
         """
         :param data: -> numpy > donnee que l'on veut convertire
         :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
+        :return: -> freq_return, count, freq
         Convertie les donnee temporelle en frequentielle
 
         """
@@ -61,6 +62,7 @@ class fourier:
         """
         :param data: -> numpy > donnee que l'on veut convertire
         :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
+        :return: -> fourier, fourier_no_complex
         Convertie les donnee temporelle en frequentielle
         """
         fourier = fftpack.fft(data)
@@ -83,6 +85,7 @@ class import_file(fourier):
     def __call__(self, filename):
         """
         :param filename: -> string > représente le nom du fichier que l'on veut utiliser pour nos données initiales
+        :return: -> data or filename
         ici on prend les données qui se retrouve dans le fichier et on les converties dans un numpy
         """
         if self.type == 'csv':
@@ -123,7 +126,7 @@ class Filter_Fir(fourier):
         """
         TODO donner un exemple de call
         :param data: -> panda > donnees a filtrer
-        :return: -> panda > sequence de donnees filtrees
+        :return: -> filtered_numpy
         """
 
         # On définit le filtre à utiliser
@@ -171,31 +174,43 @@ class Filter_Fir(fourier):
 
 
 class Differential(fourier):
+    """
+    permet de calculer la différentiel de donner temporelle
+    """
     def __init__(self, data):
+        """
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        """
         self.names = data[0].names
         self.type = "Differential"
 
     def __call__(self, data):
+        """
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        :return: -> donnée dériver
+        """
         return self.derive(data[1])
 
     def derive(self, data):
         """
         Derivation numerique
         !!! -> attention cette methode fait perdre la premiere et la derniere donnee du vecteur
-        TODO Faire recevoir et retourner un vecteur panda
         :param data: -> vecteur panda > Contient les donnees a deriver
-        :param dt: TODO Louis-Philippe que veux tu dire par "pas de temps" ??
         :return: -> vecteur panda > vecteur des donnees derivees
         """
+        #Initialisation de structure de données
         drv_list = np.zeros(shape=((len(data) - 1), len(data[1])))
         drv_listx = [0] * len(data)
         drv_listy = [0] * len(data)
+        # loading arrays with data
         for x in range(len(data)):
             drv_listx[x] = data[x][0]
         for x in range(len(data)):
             drv_listy[x] = data[x][1]
+        # caculer la dériver
         dx = np.diff(drv_listx)
         dydx = np.diff(drv_listy) / dx
+        #loader le numpy
         maxValue = 0
         minValue = 0
         for i in range(len(dydx)):
@@ -217,11 +232,21 @@ class Differential(fourier):
 
 
 class Integral(fourier):
+    """
+    class en construction qui permet de calculer des integrales poir des données temporelles
+    """
     def __init__(self, data):
+        """
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        """
         self.names = data[0].names
         self.type = "Integral"
 
     def __call__(self, data):
+        """
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        :return: -> integrale des données temporelles
+        """
         return self.integral(data[1], self.names)
 
     def integral(self, data, names):
@@ -259,6 +284,7 @@ class Range_selection(fourier):
         """
         :param first: -> int > premiere donne de temps
         :param last: -> int > derniere donnee de temps
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
         """
         self.first = first
         self.last = last
@@ -268,9 +294,7 @@ class Range_selection(fourier):
 
     def __call__(self, data):
         """
-
-        TODO samedi Philippe
-        :param data: La totalite des donnees temporelles en cours d analyse
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
         :return: -> vecteur panda > Nouveau vecteur de donnees temporelles
         """
         new_numpy = np.zeros(shape=((self.last - self.first), len(data[1][0])))
@@ -283,50 +307,72 @@ class Range_selection(fourier):
 
 
 class Merge(fourier):
-
+    """
+    permet de prendre une fourchette de données que l'on a modifier et la replacer dans le reste des données
+    """
     def __init__(self, data):
-        self.nbMerge = 0
-        self.ctpMerge = 0
-        self.cptsearch = 0
+        """
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        """
+        self.nb_merge = 0
+        self.ctp_merge = 0
+        self.cpt_search = 0
         self.type = "merge"
         self.first = 0
         self.last = 0
         self.names = data[-1][0].names
         self.transformations = data
-        self.newData = self.defineNewData()
+        self.new_data = self.defineNewData()
 
     def defineNewData(self):
+        """
+        permet de déterminer la grosseur de la structure de données contenant les données qui encapsule celle modifier
+        :return: ->  a grosseur de la structure de données contenant les données qui encapsule celle modifier
+        """
         for i in range(len(self.transformations)):
             position = self.transformations[len(self.transformations) - 1 - i]
             if (position[0].type == "merge"):
-                self.nbMerge = self.nbMerge + 1
+                self.nb_merge = self.nb_merge + 1
             if (position[0].type == "range_selection" or position[0].type == "csv"):
                 if (position[0].type == "range_selection"):
                     self.first = position[0].first
-                if (self.nbMerge == self.ctpMerge):
+                if (self.nb_merge == self.ctp_merge):
                     newData1 = np.zeros(shape=((len(position[1]) - 1), len(position[-1][0])))
                     for x in range(len(newData1)):
                         newData1[x] = position[-1][x]
                     return newData1
                 else:
-                    self.ctpMerge = self.ctpMerge + 1
+                    self.ctp_merge = self.ctp_merge + 1
 
     def __call__(self, data):
-
+        """
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        :return: -> new_data > retourne les données modifier dans la structure la plus large
+        """
         length = len(self.transformations[len(self.transformations) - 1][-1])
         for x in range(length):
-            if (len(self.newData) > length + self.first):
-                self.newData[x + self.first] = self.transformations[len(self.transformations) - 1][-1][x]
+            if (len(self.new_data) > length + self.first):
+                self.new_data[x + self.first] = self.transformations[len(self.transformations) - 1][-1][x]
             else:
-                self.newData[x] = self.transformations[len(self.transformations) - 1][-1][x]
-        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(self.newData,
-                                                                                                      self.names)
-        return self.newData
+                self.new_data[x] = self.transformations[len(self.transformations) - 1][-1][x]
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(self.new_data,
+                                                                                                                       self.names)
+        return self.new_data
 
 
 class Filter(fourier):
-
+    """
+    Retourne les valeurs filtrees des donnes fournies en parametres
+    Cependant ce type de filtre est beaucoup plus efficaces en terme d'atténuation car elle fait toute les modification demander manuellement sur chaque fréquence
+    """
     def __init__(self, data, datafourier, cut_off, cut_off2, attenuation, type):
+        """
+        :param cut_off: -> float > le cut_off de la plus petite valeur fréquentielle
+        :param cut_off2: -> float > le cut_off2 de la plus grande valeur fréquentielle
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        :param type: -> type > le type de filtre
+        :param attenuation: -> float > coefficient d'attenuation des fréquences
+        """
         self.state = True
         self.dataFourier = datafourier
         self.names = data[0].names
@@ -336,54 +382,62 @@ class Filter(fourier):
         self.type = type
 
     def __call__(self, data):
+        """
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        :return: -> new_data > retourne les données temporelle filtrée
+        """
         new_data = self.filtering(data,self.dataFourier)
         self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(new_data,
                                                                                                       self.names)
         return new_data
 
-    def filtering(self,data, dataFourier):
-        # TODO modification manuelle des signaux
+    def filtering(self, data, data_fourier):
+        """
+        :param data_fourier: -> numpy > les données fréquentielle
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        :return: -> new_numpy > retourne les données temporelle filtrée
+        """
 
         if (self.type == "passe_bas"):
-            for i in range(0, len(dataFourier[0])):
-                currentDataTime = dataFourier[0][i]
-                currentDataimpulse = dataFourier[1][i]
+            for i in range(0, len(data_fourier[0])):
+                currentDataTime = data_fourier[0][i]
+                currentDataimpulse = data_fourier[1][i]
                 if (currentDataTime < 0):
                     if (currentDataTime < -1 * self.cut_off):
-                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                        data_fourier[1][i] = self.attenuation * currentDataimpulse
                 elif (currentDataTime >= 0):
                     if (currentDataTime > self.cut_off):
-                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                        data_fourier[1][i] = self.attenuation * currentDataimpulse
 
         if (self.type == "passe_haut"):
-            for i in range(0, len(dataFourier[0])):
-                currentDataTime = dataFourier[0][i]
-                currentDataimpulse = dataFourier[1][i]
+            for i in range(0, len(data_fourier[0])):
+                currentDataTime = data_fourier[0][i]
+                currentDataimpulse = data_fourier[1][i]
                 if (currentDataTime < 0):
                     if (currentDataTime > -1 * self.cut_off):
-                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                        data_fourier[1][i] = self.attenuation * currentDataimpulse
                 elif (currentDataTime >= 0):
                     if (currentDataTime < self.cut_off):
-                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                        data_fourier[1][i] = self.attenuation * currentDataimpulse
 
         if (self.type == "passe_bande"):
-            for i in range(0, len(dataFourier[0])):
-                currentDataTime = dataFourier[0][i]
-                currentDataimpulse = dataFourier[1][i]
+            for i in range(0, len(data_fourier[0])):
+                currentDataTime = data_fourier[0][i]
+                currentDataimpulse = data_fourier[1][i]
                 if (currentDataTime < 0):
                     if (currentDataTime > -1 * self.cut_off):
-                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                        data_fourier[1][i] = self.attenuation * currentDataimpulse
                     elif (currentDataTime < -1 * self.cut_off2):
-                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                        data_fourier[1][i] = self.attenuation * currentDataimpulse
                 elif (currentDataTime >= 0):
                     if (currentDataTime < self.cut_off):
-                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                        data_fourier[1][i] = self.attenuation * currentDataimpulse
                     elif (currentDataTime > self.cut_off2):
-                        dataFourier[1][i] = self.attenuation * currentDataimpulse
+                        data_fourier[1][i] = self.attenuation * currentDataimpulse
 
-        itx = scipy.fft.ifft(dataFourier[1])
-        dataNumpy = np.zeros(shape=((len(itx)), len(data)))
+        itx = scipy.fft.ifft(data_fourier[1])
+        data_numpy = np.zeros(shape=((len(itx)), len(data)))
         for i in range(0, len(itx)):
-            dataNumpy[i][0] = data[1][i][0]
-            dataNumpy[i][1] = itx[i]
-        return dataNumpy
+            data_numpy[i][0] = data[1][i][0]
+            data_numpy[i][1] = itx[i]
+        return data_numpy
