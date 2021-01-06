@@ -28,7 +28,7 @@ class fourier:
         freq, count, freq_complete = self.defineX(x, sample_rate)
         for n in range(1, len(columns_name)):
             fourier_complete, fourier_no_complexe = self.defineY(y, count)
-        return freq, freq_complete, fourier_complete, fourier_no_complexe
+        return freq, freq_complete, fourier_complete, fourier_no_complexe,sample_rate
 
     def defineX(self, data, sample_rate):
         """
@@ -42,10 +42,10 @@ class fourier:
         i = 0
         while (freq[i] >= 0):
             i = i + 1
-        freqreturn = [0] * i
+        freq_return = [0] * i
         for x in range(0, i):
-            freqreturn[x] = freq[x]
-        return freqreturn, i, freq
+            freq_return[x] = freq[x]
+        return freq_return, i, freq
 
     def defineY(self, data, count):
         """
@@ -54,10 +54,10 @@ class fourier:
         Convertie les donnee temporelle en frequentielle
         """
         fourier = fftpack.fft(data)
-        fourierNoComplex = [0] * count;
+        fourier_no_complex = [0] * count;
         for x in range(0, count):
-            fourierNoComplex[x] = fourier[x].real
-        return fourier, fourierNoComplex
+            fourier_no_complex[x] = fourier[x].real
+        return fourier, fourier_no_complex
 
 
 class import_file(fourier):
@@ -70,7 +70,7 @@ class import_file(fourier):
                 reader = csv.reader(f)
                 self.names = next(reader)
                 data = np.loadtxt(filename, delimiter=',', skiprows=1)
-                self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(data,
+                self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(data,
                                                                                                               self.names)
             return data
         else:
@@ -121,7 +121,7 @@ class Filter_Fir(fourier):
         for i in range(0, len(filtered_numpy)):
             filtered_numpy[i][0] = data[1][i][0]
             filtered_numpy[i][1] = filtered_data[i]
-        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(filtered_numpy,
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(filtered_numpy,
                                                                                                       self.names)
         return filtered_numpy
 
@@ -189,7 +189,7 @@ class Differential(fourier):
                     drv_list[i][1] = minValue
             else:
                 drv_list[i][1] = dydx[i]
-        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(drv_list,
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(drv_list,
                                                                                                       self.names)
         return drv_list
 
@@ -223,7 +223,7 @@ class Integral(fourier):
                 else:  # point médiants : méthode de simpson (plus précis)
                     # ref: https://en.wikipedia.org/wiki/Simpson's_rule
                     integ_list[i][x] = (((data[i - 1][x] + 4 * data[i][x] + data[i + 1][x]) * hs3))
-        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(integ_list,
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(integ_list,
                                                                                                       self.names)
         return integ_list
 
@@ -255,7 +255,7 @@ class Range_selection(fourier):
         for i in range(len(data[1][0])):
             for e in range(self.first, self.last):
                 new_numpy[e - self.first][i] = data[1][e][i]
-        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(new_numpy,
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(new_numpy,
                                                                                                       self.names)
         return new_numpy
 
@@ -297,29 +297,29 @@ class Merge(fourier):
                 self.newData[x + self.first] = self.transformations[len(self.transformations) - 1][-1][x]
             else:
                 self.newData[x] = self.transformations[len(self.transformations) - 1][-1][x]
-        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(self.newData,
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(self.newData,
                                                                                                       self.names)
         return self.newData
 
 
-class Filter2(fourier):
+class Filter(fourier):
 
     def __init__(self, data, datafourier, cut_off, cut_off2, attenuation, type):
         self.state = True
         self.dataFourier = datafourier
         self.names = data[0].names
-        self.cut_off = cut_off
-        self.cut_off2 = cut_off2
+        self.cut_off = cut_off/2
+        self.cut_off2 = cut_off2/2
         self.attenuation = attenuation
         self.type = type
 
     def __call__(self, data):
-        data = self.filtering(self.dataFourier)
-        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe = self.fourier(data,
+        new_data = self.filtering(data,self.dataFourier)
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(new_data,
                                                                                                       self.names)
-        return data
+        return new_data
 
-    def filtering(self, dataFourier):
+    def filtering(self,data, dataFourier):
         # TODO modification manuelle des signaux
 
         if (self.type == "passe_bas"):
@@ -360,8 +360,8 @@ class Filter2(fourier):
                         dataFourier[1][i] = self.attenuation * currentDataimpulse
 
         itx = scipy.fft.ifft(dataFourier[1])
-        dataNumpy = np.zeros(shape=((len(itx)), len(self.data)))
+        dataNumpy = np.zeros(shape=((len(itx)), len(data)))
         for i in range(0, len(itx)):
-            dataNumpy[i][0] = self.data[1][i][0]
+            dataNumpy[i][0] = data[1][i][0]
             dataNumpy[i][1] = itx[i]
         return dataNumpy

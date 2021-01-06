@@ -46,22 +46,22 @@ class filter_events:
 
     def define_cut_off1(self):
         cut_off = 0
-        if self.controller.my_interface.DashBoard_window.widget.cut_off.text() != '':
-            cut_off = self.controller.my_interface.DashBoard_window.widget.cut_off.text()
+        if self.controller.my_interface.dashboard_window.widget.cut_off.text() != '':
+            cut_off = self.controller.my_interface.dashboard_window.widget.cut_off.text()
         return cut_off
 
     def define_cut_off2(self):
         cut_off = 0
-        if self.controller.my_interface.DashBoard_window.widget.cut_off2.text() != '':
-            cut_off = self.controller.my_interface.DashBoard_window.widget.cut_off2.text()
+        if self.controller.my_interface.dashboard_window.widget.cut_off2.text() != '':
+            cut_off = self.controller.my_interface.dashboard_window.widget.cut_off2.text()
         return cut_off
 
     def define_att(self):
         att = 0
-        if self.controller.my_interface.DashBoard_window.widget.attenuation.text() != '':
-            att = self.controller.my_interface.DashBoard_window.widget.attenuation.text()
+        if self.controller.my_interface.dashboard_window.widget.attenuation.text() != '':
+            att = self.controller.my_interface.dashboard_window.widget.attenuation.text()
         return att
 
     def activate_field(self):
-        for x in range(0, len(self.controller.my_interface.DashBoard_window.widget.layoutText)):
-            self.controller.my_interface.DashBoard_window.layoutText.itemAt(x).widget().setEnabled(False)
+        for x in range(0, len(self.controller.my_interface.dashboard_window.widget.layout_text)):
+            self.controller.my_interface.dashboard_window.layout_text.itemAt(x).widget().setEnabled(False)

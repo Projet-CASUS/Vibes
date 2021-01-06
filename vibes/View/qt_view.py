@@ -32,15 +32,15 @@ class graphical_interface():
         self.time_window = wrapper_qwt(time_state(QwtPlot()))
         self.fourier_window = wrapper_qwt(freq_state(QwtPlot()))
         self.pipeline_window = pipeline()
-        self.DashBoard_window = DashBoard()
+        self.dashboard_window = dashboard()
 
     def show_graphic(self,window):
         """
         affichage d'un graphique
         """
-        window.state.qwtPlot.resize(600, 300)
-        window.state.qwtPlot.replot()
-        window.state.qwtPlot.show()
+        window.state.qwt_plot.resize(600, 300)
+        window.state.qwt_plot.replot()
+        window.state.qwt_plot.show()
 
     def show_pipeline_browser(self):
         """
@@ -51,9 +51,9 @@ class graphical_interface():
         self.pipeline_window.show()
 
     def show_DashBoard_window(self):
-        self.DashBoard_window.widget.setLayout(self.DashBoard_window.layoutText)
-        self.DashBoard_window.setCentralWidget(self.DashBoard_window.widget)
-        self.DashBoard_window.show()
+        self.dashboard_window.widget.setLayout(self.dashboard_window.layout_text)
+        self.dashboard_window.setCentralWidget(self.dashboard_window.widget)
+        self.dashboard_window.show()
 
 class pipeline(QMainWindow):
     """
@@ -99,11 +99,11 @@ class pipeline_content(QWidget):
         self.pipeline_index = None
         self.pipeline_slider =  QSlider()
 
-class DashBoard(QMainWindow):
+class dashboard(QMainWindow):
    def __init__(self):
-       super(DashBoard, self).__init__()
+       super(dashboard, self).__init__()
 
-       self.layoutText = QHBoxLayout()
+       self.layout_text = QHBoxLayout()
 
        self.widget = DashBoard_content()
 
@@ -153,16 +153,16 @@ class DashBoard(QMainWindow):
        self.FIR.addAction(self.passe_bande_fir)
 
    def define(self):
-       self.layoutText.addWidget(self.widget.firstLabel)
-       self.layoutText.addWidget(self.widget.first)
-       self.layoutText.addWidget(self.widget.lastLabel)
-       self.layoutText.addWidget(self.widget.last)
-       self.layoutText.addWidget(self.widget.cut_off_label)
-       self.layoutText.addWidget(self.widget.cut_off)
-       self.layoutText.addWidget(self.widget.cut_off_label2)
-       self.layoutText.addWidget(self.widget.cut_off2)
-       self.layoutText.addWidget(self.widget.attenuation_label)
-       self.layoutText.addWidget(self.widget.attenuation)
+       self.layout_text.addWidget(self.widget.first_label)
+       self.layout_text.addWidget(self.widget.first)
+       self.layout_text.addWidget(self.widget.last_label)
+       self.layout_text.addWidget(self.widget.last)
+       self.layout_text.addWidget(self.widget.cut_off_label)
+       self.layout_text.addWidget(self.widget.cut_off)
+       self.layout_text.addWidget(self.widget.cut_off_label2)
+       self.layout_text.addWidget(self.widget.cut_off2)
+       self.layout_text.addWidget(self.widget.attenuation_label)
+       self.layout_text.addWidget(self.widget.attenuation)
 
 
 class DashBoard_content(QWidget):
@@ -172,9 +172,9 @@ class DashBoard_content(QWidget):
     def __init__(self):
         super(DashBoard_content, self).__init__()
 
-        self.firstLabel = QLabel("First:")
+        self.first_label = QLabel("First:")
         self.first = QLineEdit()
-        self.lastLabel = QLabel("Last:")
+        self.last_label = QLabel("Last:")
         self.last = QLineEdit()
         self.cut_off_label = QLabel("cut_off(1):")
         self.cut_off_label2 = QLabel("cut_off(2):")
@@ -190,12 +190,12 @@ class plot_state(QMainWindow):
     """
     def __init__(self,qwtPlot):
         super(plot_state, self).__init__()
-        self.qwtPlot = QwtPlot
+        self.qwt_plot = QwtPlot
 
     def set_curve(self,x,y,name):
 
         self.curve.setData(x, y)
-        self.curve.attach(self.qwtPlot)
+        self.curve.attach(self.qwt_plot)
 
 class time_state(plot_state):
     """
@@ -206,7 +206,7 @@ class time_state(plot_state):
         super(time_state, self).__init__(qwtPlot)
         self.name = "Time"
         self.curve = QwtPlotCurve(self.name)
-        self.qwtPlot = QwtPlot(self.name)
+        self.qwt_plot = QwtPlot(self.name)
 
 class freq_state(plot_state):
     """
@@ -217,7 +217,7 @@ class freq_state(plot_state):
         super(freq_state, self).__init__(qwtPlot)
         self.name = "frequency"
         self.curve = QwtPlotCurve(self.name)
-        self.qwtPlot = QwtPlot(self.name)
+        self.qwt_plot = QwtPlot(self.name)
 
 
 class spectro_state(plot_state):

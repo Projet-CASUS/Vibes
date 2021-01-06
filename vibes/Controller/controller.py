@@ -49,7 +49,7 @@ class Controller():
 
     def filter2(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
 
-        self.model.data.insert_transformation(vibes.Controller.transform.Filter2, index, data, fourier, cut_off,cut_off2, attenuation, type)
+        self.model.data.insert_transformation(vibes.Controller.transform.Filter, index, data, fourier, cut_off, cut_off2, attenuation, type)
         self.controller_qt.redefine_graphic()
 
 
