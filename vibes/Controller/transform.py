@@ -9,24 +9,34 @@ from scipy import fftpack
 
 
 class fourier:
-
-    def __init__(self):
-        pass
-
-    def fourier(self, data, names, data_index=-1):
+    """
+    cette class sert à calculer les éléments nécessaires pour le fonctionnement de certaine manipulation avec les filtres
+    ainsi que les éléments nécessaires pour l'affichages des graphiques
+    """
+    def fourier(self, data, names):
+        """
+        :param data: -> numpy > des données temporelles d'une transformations
+        :param names: -> listes > de noms des colonnes représentant les différentes y
+        :return: ->
+        Orchestrer et calculer les information nécessaires pour tout ce qui entoure le fréquentiel
+        """
+        #ici on fait la convertion de numpy à un simple array
         x = [0] * len(data)
         for i in range(len(data)):
             x[i] = data[i][0]
         y = [0] * len(data)
         for i in range(len(data)):
             y[i] = data[i][1]
+        #ici on calcule le sample rate
         if (x[-1] <= 1):
             sample_rate = len(x) * 1 / x[-1]
         else:
             sample_rate = len(x) / x[-1]
         columns_name = names
+        # cette fonction retourne toute les frequences et celle seulement positives pour l'affichages. Count est un paramêtre utile pour calculer seulement les amplitudes des fréquences positives
         freq, count, freq_complete = self.defineX(x, sample_rate)
         for n in range(1, len(columns_name)):
+        # Ici on calcule toute les amplitude de fourier ainsi que ceux positives sans nombre complexe pour l'affichage
             fourier_complete, fourier_no_complexe = self.defineY(y, count)
         return freq, freq_complete, fourier_complete, fourier_no_complexe,sample_rate
 
@@ -34,7 +44,7 @@ class fourier:
         """
         :param data: -> numpy > donnee que l'on veut convertire
         :param sample_rate -> int > le sample rate a laquelle les donnees sont calculer
-       Convertie les donnee temporelle en frequentielle
+        Convertie les donnee temporelle en frequentielle
 
         """
         n = len(data)
@@ -61,10 +71,20 @@ class fourier:
 
 
 class import_file(fourier):
+    """
+    Ceci représente la première transformation dans le pipeline elle importe un fichier et le met dans un numpy
+    """
     def __init__(self, file_type='csv'):
+        """
+        :param file_type: ->  string > représente le type de fichier que l'on utilise
+        """
         self.type = file_type
 
     def __call__(self, filename):
+        """
+        :param filename: -> string > représente le nom du fichier que l'on veut utiliser pour nos données initiales
+        ici on prend les données qui se retrouve dans le fichier et on les converties dans un numpy
+        """
         if self.type == 'csv':
             with open(filename, newline='') as f:
                 reader = csv.reader(f)
@@ -85,7 +105,11 @@ class Filter_Fir(fourier):
     def __init__(self, sample_rate, cut_off, cut_off2, data, type, num_taps=5):
         """
         :param sample_rate: -> int > Quantite de donnee par seconde
-        :param num_taps: TODO Louis-Philippe decrire le type et l utilite
+        :param num_taps: -> int > un coefficient et une réponse impulsionnaire d'un filtre FIR
+        :param cut_off: -> float > le cut_off de la plus petite valeur fréquentielle
+        :param cut_off2: -> float > le cut_off2 de la plus grande valeur fréquentielle
+        :param data: -> transformation > contient la dernière transformation dans le pipeline
+        :param type: -> type > le type de filtre
         """
         self.names = data[0].names
         self.sample_rate = sample_rate
@@ -99,8 +123,6 @@ class Filter_Fir(fourier):
         """
         TODO donner un exemple de call
         :param data: -> panda > donnees a filtrer
-        :param type: -> string >    type de filtre
-        :param cut_off: -> int or list > frequence de coupure
         :return: -> panda > sequence de donnees filtrees
         """
 
