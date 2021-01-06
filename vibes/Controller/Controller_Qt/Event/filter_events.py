@@ -28,18 +28,18 @@ class filter_events:
     def fir_passe_bas_event(self):
         data = self.define_data()
         cut_off = self.define_cut_off1()
-        self.controller.filter(data, float(cut_off), 0, "passe_bas")
+        self.controller.filter(data, data[0].sample_rate,float(cut_off), 0, "passe_bas")
 
     def fir_passe_haut_event(self):
         data = self.define_data()
         cut_off = self.define_cut_off1()
-        self.controller.filter(data, float(cut_off), 0, "passe_haut")
+        self.controller.filter(data, data[0].sample_rate,float(cut_off), 0, "passe_haut")
 
     def fir_passe_bande_event(self):
         data = self.define_data()
         cut_off = self.define_cut_off1()
         cut_off2 = self.define_cut_off2()
-        self.controller.filter(data, float(cut_off), float(cut_off2), "passe_bande")
+        self.controller.filter(data,data[0].sample_rate ,float(cut_off), float(cut_off2), "passe_bande")
 
     def define_data(self):
         return self.controller.model.data.transformations[-1]
