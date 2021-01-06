@@ -40,9 +40,9 @@ class Controller():
         self.controller_qt.redefine_graphic()
 
 
-    def filter(self, data, sample_rate,cut_off, cut_off2, type, index=-1):
+    def filter_fir(self, data, sample_rate, cut_off, cut_off2, type, index=-1):
 
-        self.model.data.insert_transformation(vibes.Controller.transform.Filter, index, sample_rate, cut_off, cut_off2,
+        self.model.data.insert_transformation(vibes.Controller.transform.Filter_Fir, index, sample_rate, cut_off, cut_off2,
                                               data, type)
         self.controller_qt.redefine_graphic()
 

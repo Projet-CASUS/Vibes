@@ -1,20 +1,13 @@
 from IPython.external.qt_for_kernel import QtGui
-from scipy import fftpack
-
-from scipy.interpolate import interp1d
 import vibes.Controller.transform as transform
 import wave, struct
 import numpy as np
+
 DEFAULT_HPTFX = "default.hptfx"
 
-# TODO: add del_transformation
-# TODO: add undo/redo system
-# TODO: load/save/export (strategy pattern)
 
 class Data:
-    """
 
-    """
     def __init__(self, data_file, file_type='csv', transform_func_file=None):
         """
         Initialise la classe de Data
@@ -36,7 +29,6 @@ class Data:
             self.transformations = []
             self.read_hptfx(transform_func_file, data_file)
             self.currentIndex = 0
-
 
     def read_hptfx(self, funcfile, datafile=None):
         """
@@ -60,11 +52,8 @@ class Data:
         if index == -1:
             self.transformations.append([func, func(self.transformations[index])])
         else:
-            self.transformations.insert(index,[func, func(self.transformations[index])])
+            self.transformations.insert(index, [func, func(self.transformations[index])])
             self.recalculate_data_through_pipeline(index)
-
-    def insert_transformation_fourier(self,data):
-        self.transformations_fourier.append(data)
 
     def recalculate_data_through_pipeline(self, idx=0):
         """
@@ -73,7 +62,7 @@ class Data:
         :param idx: Endroit à partir du quel on recalcule
         """
         for i in range(idx, len(self.transformations)):
-            self.transformations[i][1] = self.transformations[i][0](self.transformations[i-1][1])
+            self.transformations[i][1] = self.transformations[i][0](self.transformations[i - 1][1])
 
     def export_wav(self, data, max=np.power(2, 15)):
         """
@@ -84,80 +73,30 @@ class Data:
         """
         max_value = data.transformations[-1][-1][-1][0]
 
-        for x in range(1,len(data.transformations[-1][-1][0])):
+        for x in range(1, len(data.transformations[-1][-1][0])):
             for i in range(len(data.transformations[-1][-1])):
-                if(data.transformations[-1][-1][i][x] > max_value):
+                if (data.transformations[-1][-1][i][x] > max_value):
                     max_value = data.transformations[-1][-1][i][x]
-        x_data =[0]*len(data.transformations[-1][-1])
+        x_data = [0] * len(data.transformations[-1][-1])
         for x in range(len(data.transformations[-1][-1])):
-            x_data[x] =  data.transformations[-1][-1][x][0]
+            x_data[x] = data.transformations[-1][-1][x][0]
 
-        sample_rate = 0
         if (x_data[-1] <= 1):
             sample_rate = len(x_data) * 1 / x_data[-1]
         else:
             sample_rate = len(x_data) / x_data[-1]
-        #if (data.transformations[-1][-1][-1][0] <= 1):
-        #    sample_rate = len(data.transformations[-1][-1]) * 1 / data.transformations[-1][-1][-1][0]
-        #else:
-        #    sample_rate = len(data.transformations[-1][-1]) / data.transformations[-1][-1][-1][0]
         filename = QtGui.QFileDialog.getSaveFileName()[0]
         f = wave.open(filename, 'wb')
-        f.setnchannels(1) # mono (donc non-stereo)
-        f.setsampwidth(2) # two bytes / sample
+        f.setnchannels(1)  # mono (donc non-stereo)
+        f.setsampwidth(2)  # two bytes / sample
         f.setframerate(sample_rate)
 
         for x in range(1, len(data.transformations[-1][-1][0])):
             # Permet de mettre les donnees dans le bon format afin de les ecrire en .wav
             for i in range(len(data.transformations[-1][-1])):
-                value = int((data.transformations[-1][-1][i][x]/max_value)*max)
+                value = int((data.transformations[-1][-1][i][x] / max_value) * max)
                 wave_data = struct.pack('<h', value)
                 f.writeframesraw(wave_data)
 
         f.close()
         print('Fichier wav généré au répertoire: ')
-
-
-
-
-"""
-    def arr_to_wav(vect, sampleRate=44100.0, title='bacon', min=(-1 * (np.power(2, 15))), max=np.power(2, 15)):
-
-        mon_repertoire = os.getcwd()
-
-        if main.debug:
-
-        print('FX: arr_to_wav')
-
-        print('sampleRate = ' + str(sampleRate))
-
-        print('min ; max = ' + str(min) + ' ; ' + str(max))
-
-        # sampleRate = 44100.0 # hertz
-
-        # frequency = 900.0 # hertz
-
-        wavef = wave.open(mon_repertoire + title + '.wav', 'w')
-
-        wavef.setnchannels(1)  # mono
-
-        wavef.setsampwidth(2)
-
-        wavef.setframerate(sampleRate)
-
-        for i in range(len(vect)):
-
-        value = int((((vect[i] - min) * 65533) / (max - min)) - 32767)
-
-        data = struct.pack('<h', value)
-
-        wavef.writeframesraw(data)
-
-        wavef.close()
-
-        print('Fichier wav généré au répertoire: ' + mon_repertoire)
-"""
-
-
-
-

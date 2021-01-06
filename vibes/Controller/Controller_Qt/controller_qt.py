@@ -114,15 +114,5 @@ class controller_qt(controller_view):
             numpy[i] = datastructure[i][column]
         return numpy
 
-    def deactivate_transformation(self):
-        if (len(self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value()) < len(
-                self.model.data.transformations):
-            cpt = len(self.model.data.transformations) - (len(
-                self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value())
-            for i in range(0, cpt):
-                self.model.data.transformations[len(
-                    self.model.data.transformations) - self.my_interface.pipeline_window.widget.pipeline_slider.value() + i][
-                    0].state = False
-
     def show_DashBoard_window(self):
         self.my_interface.show_DashBoard_window()
