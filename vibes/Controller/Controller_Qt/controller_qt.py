@@ -5,8 +5,15 @@ from Vibes.vibes.Controller.controller_view import controller_view
 
 
 class controller_qt(controller_view):
-    def __init__(self,model,interface,controller,data_index = -1):
-
+    """
+    Control l'orchestration ainsi que les appelles de fonction de la vue nécessaires pour que celle-ci soit mis à jours
+    """
+    def __init__(self,model,interface,controller):
+        """
+        :param model: -> pipeline > le pipeline du controlleur
+        :param interface -> graphical_interface > l'interface graphique du controlleur
+        :param controller -> controller > l'objet controller
+        """
         self.model = model
         self.my_interface = interface
         self.my_interface.dashboard_window.define()
@@ -14,10 +21,15 @@ class controller_qt(controller_view):
         self.events = events.events(controller)
         self.filter_events = filter_events.filter_events(controller)
         self.define_connects(model)
-        self.redefine_graphic()
+        self.redefine_vue()
 
 
     def intialisation(self, model, data_index):
+        """
+        sert à initialiser les dernières informations nécessaires pour la vue
+        :param model: -> pipeline > le pipeline du controlleur
+        :param data_index: -> int > position de la transformation dans le pipeline
+        """
         self.length = len(model.data.transformations[data_index][1])
         self.columns_name = model.data.transformations[data_index][0].names
         self.dataX = self.define_x_data(model,data_index)
@@ -26,6 +38,10 @@ class controller_qt(controller_view):
         self.fourier_no_complexe = model.data.transformations[data_index][0].fourier_no_complexe
 
     def define_connects(self,model):
+        """
+        :param model: -> pipeline > le pipeline du controlleur
+        Définie toute les connection entre les objets qt et les événements
+        """
         self.my_interface.pipeline_window.widget.pipeline_index = len(model.data.transformations[0])
         self.my_interface.pipeline_window.widget.pipeline_slider.valueChanged.connect(self.update_pipeline)
 
@@ -42,18 +58,29 @@ class controller_qt(controller_view):
         self.my_interface.dashboard_window.passe_bande.triggered.connect(self.filter_events.passe_bande_event)
 
     def define_x_data(self,model,data_index = -1):
-        x = self.define_numpy(self.length, model.data.transformations[data_index][1], 0, data_index)
+        """
+        :param model: -> pipeline > le pipeline du controlleur
+        :param data_index: -> int > position de la transformation dans le pipeline
+        :return: -> x
+        sert à définir les données en x temporelle
+        """
+        x = self.define_numpy(self.length, model.data.transformations[data_index][1], 0)
         return x
 
     def define_y_data(self,model,data_index = -1):
+        """
+        :param model: -> pipeline > le pipeline du controlleur
+        :param data_index: -> int > position de la transformation dans le pipeline
+        :return: -> y
+        sert à définir les données en y temporelle
+        """
         for n in range(1, len(self.columns_name)):
-            y = self.define_numpy(self.length, model.data.transformations[data_index][1], n, data_index)
+            y = self.define_numpy(self.length, model.data.transformations[data_index][1], n)
         return y
 
-    def redefine_graphic(self, data_index=-1):
+    def redefine_vue(self, data_index=-1):
         """
-        Cette fonction redefinit les valeurs a afficher sur un graphique
-        :param window: -> QWindow > Une QWindow d'un graphique ex: temps frequence
+        Cette fonction orchestre toute les changement nécessaire pour mettre à jours la vue
         :param index: -> int > index du placement dans le pipeline (-1 est un shortcut de python pour acceder au dernier element du array);
         """
         self.intialisation(self.model,data_index)
@@ -62,11 +89,19 @@ class controller_qt(controller_view):
         self.define_pipeline_browser()
 
     def redefine_graphic_time(self, window):
+        """
+        :param window: -> QWindow > la fenêtre que l'on veut modifier
+        redéfinir le graphique du temps
+        """
         for i in range(len(self.columns_name)):
             window.set_curve(self.dataX, self.dataY, self.columns_name[i])
             self.my_interface.show_graphic(window)
 
     def redefine_graphic_freq(self,window ):
+        """
+        :param window: -> QWindow > la fenêtre que l'on veut modifier
+        redéfinir le graphique de la fréquence
+        """
         for i in range(len(self.columns_name)):
             window.set_curve(self.freq,self.fourier_no_complexe,self.columns_name[i])
         self.my_interface.show_graphic(window)
@@ -76,7 +111,6 @@ class controller_qt(controller_view):
         """
         fonction du controlleur qui appelle les fonctions de la vue pour loader le pipeline
         """
-
         self.my_interface.pipeline_window.define_pipeline_browser(self.model)
         self.my_interface.show_pipeline_browser()
 
@@ -84,7 +118,7 @@ class controller_qt(controller_view):
         """
          Cette fonction remet a jour le pipeline browser en fonction de l endroit ou le slider s arrete
          Il recalcule ensuite les transformations successives faites sur
-         les donnees a l aide de la fonction redefine_graphic()
+         les donnees a l aide de la fonction redefine_graphic_time() et redefine_graphic_freq()
          """
         is_null = True
         plot_index = 0
@@ -106,16 +140,20 @@ class controller_qt(controller_view):
             self.redefine_graphic_freq(self.my_interface.fourier_window)
 
 
-    def define_numpy(self, length, datastructure, column, index=-1):
+    def define_numpy(self, length, data_structure, column):
         """
         :param length: -> int > la quantite de donnees contenue dans le panda pour un parametre
-        :param index: -> int > a -1 par defaut
-        :param name: -> string > nom exacte du parametre de la colonne a transformer en numpy
+        :param data_structure -> la structure de données que l'on transforme en numpy
+        :param column: -> string > nom exacte du parametre de la colonne a transformer en numpy
+        :return:-> numpy
         """
         numpy = [None] * length
         for i in range(0, len(numpy)):
-            numpy[i] = datastructure[i][column]
+            numpy[i] = data_structure[i][column]
         return numpy
 
     def show_DashBoard_window(self):
-        self.my_interface.show_DashBoard_window()
+        """
+        permet d'afficher le dashboard
+        """
+        self.my_interface.show_dashboard_window()

@@ -50,7 +50,7 @@ class graphical_interface():
         self.pipeline_window.setCentralWidget(self.pipeline_window.widget)
         self.pipeline_window.show()
 
-    def show_DashBoard_window(self):
+    def show_dashboard_window(self):
         self.dashboard_window.widget.setLayout(self.dashboard_window.layout_text)
         self.dashboard_window.setCentralWidget(self.dashboard_window.widget)
         self.dashboard_window.show()
