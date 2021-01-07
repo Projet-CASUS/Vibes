@@ -1,16 +1,30 @@
 class events:
-
+    """
+    class permettant d'appeler des evenements pour créer des transformation
+    """
     def __init__(self, controller):
+        """
+        :param controller: -> controller > la référence au controller
+        """
         self.controller = controller
 
     def export_event(self):
+        """
+        Permet d'exporter un fichier en wav
+        """
         self.controller.model.data.export_wav(self.model.data)
 
     def merge_event(self):
+        """
+        permet de prendre une fourchette de donnée modifier et de la réintégrer dans l'ensemble des données
+        """
         data = self.controller.model.data.transformations
         self.controller.Merging(data)
 
     def range_selection_event(self):
+        """
+        permet de prendre une fourchette de données
+        """
         first = 0
         last = len(self.controller.model.data.transformations[-1][-1])
         if self.controller.my_interface.dashboard_window.widget.first.text() != '':
@@ -20,10 +34,9 @@ class events:
         self.controller.time_range_selections(first, last)
 
     def differentiel_event(self):
+        """
+        permet de calculer la différentielle des données temporelles
+        """
         data = self.controller.model.data.transformations[-1]
         self.controller.differential(data)
 
-    def activate_field(self):
-
-        for x in range(0, len(self.controller.my_interface.dashboard_window.layout_text)):
-            self.controller.my_interface.dashboard_window.layout_text.itemAt(x).widget().setEnabled(False)

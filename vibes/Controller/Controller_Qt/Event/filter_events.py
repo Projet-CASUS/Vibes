@@ -67,13 +67,13 @@ class filter_events:
 
     def define_data(self):
         """
-        :return:
+        :return: -> les dernières valuer de transformation dans le pipeline
         """
         return self.controller.model.data.transformations[-1]
 
     def define_cut_off1(self):
         """
-
+        :return: -> la valeur du premier cut-off
         """
         cut_off = 0
         if self.controller.my_interface.dashboard_window.widget.cut_off.text() != '':
@@ -82,7 +82,7 @@ class filter_events:
 
     def define_cut_off2(self):
         """
-
+        :return: -> la valeur du deuxième cut-off utile pour les passes-bandes
         """
         cut_off = 0
         if self.controller.my_interface.dashboard_window.widget.cut_off2.text() != '':
@@ -91,16 +91,9 @@ class filter_events:
 
     def define_att(self):
         """
-
+        :return: -> la valeur de l'atténuation
         """
         att = 0
         if self.controller.my_interface.dashboard_window.widget.attenuation.text() != '':
             att = self.controller.my_interface.dashboard_window.widget.attenuation.text()
         return att
-
-    def activate_field(self):
-        """
-
-        """
-        for x in range(0, len(self.controller.my_interface.dashboard_window.widget.layout_text)):
-            self.controller.my_interface.dashboard_window.layout_text.itemAt(x).widget().setEnabled(False)

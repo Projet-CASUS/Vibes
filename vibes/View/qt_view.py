@@ -27,7 +27,7 @@ class graphical_interface():
 
     def __init__(self):
         """
-        Instantiation des 3 différentes types de fenêtres
+        Instantiation des 4 différentes types de fenêtres
         """
         self.time_window = wrapper_qwt(time_state(QwtPlot()))
         self.fourier_window = wrapper_qwt(freq_state(QwtPlot()))
@@ -51,6 +51,9 @@ class graphical_interface():
         self.pipeline_window.show()
 
     def show_dashboard_window(self):
+        """
+        affichage du dashboard
+        """
         self.dashboard_window.widget.setLayout(self.dashboard_window.layout_text)
         self.dashboard_window.setCentralWidget(self.dashboard_window.widget)
         self.dashboard_window.show()
@@ -60,7 +63,7 @@ class pipeline(QMainWindow):
     Le pipeline est un QMainWindow
     contient des layouts pour placer les objets dans sa fenetre
     contient un widget de type pipeline_content
-    contieent une fonction qui definie le contenue dans le pipeline
+    contient une fonction qui definie le contenue dans le pipeline
     """
     def __init__(self,*args,**kwargs):
         super(pipeline, self).__init__(*args,**kwargs)
@@ -100,59 +103,58 @@ class pipeline_content(QWidget):
         self.pipeline_slider =  QSlider()
 
 class dashboard(QMainWindow):
+   """
+   le dashboard contient toute les QObjects nécessaires au fonctionnement des transformations
+   """
    def __init__(self):
+
        super(dashboard, self).__init__()
 
+       # instantiation du layout
        self.layout_text = QHBoxLayout()
 
+       # instanciation du widget
        self.widget = DashBoard_content()
 
+       #instanciation du menu bar
        self.bar = self.menuBar()
 
-
+       #instanciation des actions dans un menu
        self.file = self.bar.addMenu("File")
        self.export_wav = QAction("export wav", self)
        self.file.addAction(self.export_wav)
 
-
-
+       # instanciation des actions dans un menu
        self.actions = self.bar.addMenu("Actions")
-
        self.differential = QAction("differential", self)
        self.range_selection = QAction("range selection", self)
        self.merge = QAction("merge", self)
-
        self.actions.addAction(self.differential)
        self.actions.addAction(self.range_selection)
        self.actions.addAction(self.merge)
 
-
-
-
+       # instanciation des actions dans un menu
        self.Filters = self.bar.addMenu("Filters")
-
        self.passe_bas = QAction("passe bas", self)
        self.passe_haut = QAction("passe haut", self)
        self.passe_bande = QAction("passe_bande", self)
-
        self.Filters.addAction(self.passe_bas)
        self.Filters.addAction(self.passe_haut)
        self.Filters.addAction(self.passe_bande)
 
-
-
-
+       # instanciation des actions dans un menu
        self.FIR = self.bar.addMenu("Filters FIR")
-
        self.passe_bas_fir = QAction("passe bas fir", self)
        self.passe_haut_fir = QAction("passe haut fir", self)
        self.passe_bande_fir = QAction("passe bande fir", self)
-
        self.FIR.addAction(self.passe_bas_fir)
        self.FIR.addAction(self.passe_haut_fir)
        self.FIR.addAction(self.passe_bande_fir)
 
    def define(self):
+       """
+       setting up the layout
+       """
        self.layout_text.addWidget(self.widget.first_label)
        self.layout_text.addWidget(self.widget.first)
        self.layout_text.addWidget(self.widget.last_label)
@@ -185,15 +187,19 @@ class DashBoard_content(QWidget):
 
 class plot_state(QMainWindow):
     """
-    Classe abstraite qui definit le minimum dans un état d'un graphique
-   :param qwtPlot: -> qwtPlot > Recois un graphique
+    Classe qui definit le minimum dans un état d'un graphique
+    :param qwtPlot: -> qwtPlot > Recois un graphique
     """
-    def __init__(self,qwtPlot):
+    def __init__(self):
         super(plot_state, self).__init__()
         self.qwt_plot = QwtPlot
 
     def set_curve(self,x,y,name):
-
+        """
+        :param x: -> float[] > valeurs représentant l'axe des x
+        :param y: -> float[] > valeurs représentant l'axe des y
+        :param name: -> string > nom de la courbe
+        """
         self.curve.setData(x, y)
         self.curve.attach(self.qwt_plot)
 
@@ -230,11 +236,19 @@ class spectro_state(plot_state):
         self.qwtPlot = QwtPlot(self.name)
 
     def set_curve(self,x,y,name):
+        """
+        :param x: -> float[] > valeurs représentant l'axe des x
+        :param y: -> float[] > valeurs représentant l'axe des y
+        :param name: -> string > nom de la courbe
+        """
         curve = QwtPlotCurve(name)
         curve.setData(self.define(x,200,1), self.define(y,200,1))
         curve.attach(self.qwtPlot)
 
     def define(self, values, sampling_freq):
+        """
+        pas encore implémenter ou utiliser
+        """
         f, t, Sxx = signal.spectrogram(values, sampling_freq)
         return f, t, Sxx
 
