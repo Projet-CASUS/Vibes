@@ -26,8 +26,8 @@ class graphical_interface():
         """
         Instantiation des 4 différentes types de fenêtres
         """
-        self.time_window = wrapper_qwt(time_state(QwtPlot()))
-        self.fourier_window = wrapper_qwt(freq_state(QwtPlot()))
+        self.time_window = wrapper_qwt(time_state())
+        self.fourier_window = wrapper_qwt(freq_state())
         self.pipeline_window = pipeline()
         self.dashboard_window = dashboard()
 
@@ -205,8 +205,8 @@ class time_state(plot_state):
     sous cette état le graphique affiche une courbe en temporelle
     :param qwtPlot: -> qwtPlot > Recois un graphique
     """
-    def __init__(self,qwtPlot):
-        super(time_state, self).__init__(qwtPlot)
+    def __init__(self):
+        super(time_state, self).__init__()
         self.name = "Time"
         self.curve = QwtPlotCurve(self.name)
         self.qwt_plot = QwtPlot(self.name)
@@ -216,8 +216,8 @@ class freq_state(plot_state):
     sous cette etat la graphique affiche une courbe en frequentielle
     :param qwtPlot: -> qwtPlot > Recois un graphique
     """
-    def __init__(self,qwtPlot):
-        super(freq_state, self).__init__(qwtPlot)
+    def __init__(self):
+        super(freq_state, self).__init__()
         self.name = "frequency"
         self.curve = QwtPlotCurve(self.name)
         self.qwt_plot = QwtPlot(self.name)
@@ -227,8 +227,8 @@ class spectro_state(plot_state):
     """
     Pas encore utiliser devrait avoir besoin certaine redefinition lorsqu'on voudra l'utiliser
     """
-    def __init__(self,qwtPlot):
-        super(spectro_state, self).__init__(qwtPlot)
+    def __init__(self):
+        super(spectro_state, self).__init__()
         self.name ="Spectro"
         self.qwtPlot = QwtPlot(self.name)
 
