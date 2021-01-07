@@ -3,12 +3,9 @@ import sys
 from PyQt5.Qt import (QWidget, QMainWindow, QHBoxLayout, QLabel, QVBoxLayout)
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QFrame, QSlider, QApplication, QPushButton, QLineEdit, QAction
-import pyqtgraph as pg
 
-import numpy as np
 
 from qwt import (QwtPlot, QwtPlotCurve, QwtText)
-from scipy import fftpack
 from scipy import signal
 
 

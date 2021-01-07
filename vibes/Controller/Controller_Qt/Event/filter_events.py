@@ -15,8 +15,8 @@ class filter_events:
         data = self.define_data()
         cut_off = self.define_cut_off1()
         att = self.define_att()
-        self.controller.filter2(data, float(cut_off), 0, float(att),
-                                [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_bas")
+        self.controller.filter(data, float(cut_off), 0, float(att),
+                               [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_bas")
 
     def passe_haut_event(self):
         """
@@ -25,8 +25,8 @@ class filter_events:
         data = self.define_data()
         cut_off = self.define_cut_off1()
         att = self.define_att()
-        self.controller.filter2(data, float(cut_off), 0, float(att),
-                                [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_haut")
+        self.controller.filter(data, float(cut_off), 0, float(att),
+                               [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_haut")
 
     def passe_bande_event(self):
         """
@@ -36,8 +36,8 @@ class filter_events:
         cut_off = self.define_cut_off1()
         cut_off2 = self.define_cut_off2()
         att = self.define_att()
-        self.controller.filter2(data, float(cut_off), float(cut_off2), float(att),
-                                [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe],
+        self.controller.filter(data, float(cut_off), float(cut_off2), float(att),
+                               [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe],
                                 "passe_bande")
 
     def fir_passe_bas_event(self):

@@ -65,7 +65,7 @@ class Controller():
         self.controller_qt.redefine_vue()
 
 
-    def filter2(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
+    def filterfilter(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
         """
         :param data: -> transformation > contient la dernière transformation dans le pipeline
         :param index -> int > la position de la transformation dans le pipeline

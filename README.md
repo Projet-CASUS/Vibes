@@ -60,17 +60,37 @@ Toutes ces fonctionnalités ne peuvent être appelées ***uniquement que dans le
 
 > ### Intégrales et dérivées du graphique temporel 
 >
-> - Fonctions à appeler dans le main:
+> - Fonctions à appeler dans le dashboard:
 >    - ***control.differential(control.model.data.transformations[1])***
 >    - ***control.integral(control.model.data.transformations[1])***
->       - L'index passé en argument correspond à ........................................................
+>       - L'index passé en argument correspond à la position dans le pipeline
+>    - L'intégral est encore en développement
 
-## Structure de données
-- ### EN DÉVELOPPEMENT
+> ### Merging
+>
+> - Fonctions à appeler dans le dashboard:
+>    - ***control.Merging(self, data, index=-1)***
+>       - L'index passé en argument correspond à la position dans le pipeline
+>    
+
+> ### Filter
+>
+> - Fonctions à appeler dans le dashboard:
+>    - ***control.filter(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1)***
+>       - L'index passé en argument correspond à la position dans le pipeline
+
+> ### Filter_Fir
+>
+> - Fonctions à appeler dans le dashboard:
+>    - ***control.filter_fir(self, data, sample_rate, cut_off, cut_off2, type, index=-1)***
+>       - L'index passé en argument correspond à la position dans le pipeline
 
 ## Commandes en développement
-- Interface graphique permettant d'ajouter et de modifier les transformations du signal
-- Fonctions de filtres FIR & IIR
+- integrale
+- interpolation
+- position des fenêtres
+- manipulation des num-taps
+- plusieurs y dans les csv (pas toute les transformation le supporte)
 
 ## Problèmes connus
 - ### EN DÉVELOPPEMENT
