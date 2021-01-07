@@ -14,7 +14,6 @@ class Data:
         :param data_file: fichier des données temporelles
         :param transform_func_file: -> fichier de type .xml > contient des fonctions de transformation sauvegardees
         """
-        self.transformations_fourier = []
         if transform_func_file is None:
             """
             import_func_type: -> string > le type de fonction dans la pipeline par exemple: csv
@@ -28,7 +27,7 @@ class Data:
             """
             self.transformations = []
             self.read_hptfx(transform_func_file, data_file)
-            self.currentIndex = 0
+            self.current_index = 0
 
     def read_hptfx(self, funcfile, datafile=None):
         """

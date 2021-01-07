@@ -322,9 +322,9 @@ class Merge(fourier):
         self.last = 0
         self.names = data[-1][0].names
         self.transformations = data
-        self.new_data = self.defineNewData()
+        self.new_data = self.define_new_data()
 
-    def defineNewData(self):
+    def define_new_data(self):
         """
         permet de déterminer la grosseur de la structure de données contenant les données qui encapsule celle modifier
         :return: ->  a grosseur de la structure de données contenant les données qui encapsule celle modifier
@@ -365,7 +365,7 @@ class Filter(fourier):
     Retourne les valeurs filtrees des donnes fournies en parametres
     Cependant ce type de filtre est beaucoup plus efficaces en terme d'atténuation car elle fait toute les modification demander manuellement sur chaque fréquence
     """
-    def __init__(self, data, datafourier, cut_off, cut_off2, attenuation, type):
+    def __init__(self, data, data_fourier, cut_off, cut_off2, attenuation, type):
         """
         :param cut_off: -> float > le cut_off de la plus petite valeur fréquentielle
         :param cut_off2: -> float > le cut_off2 de la plus grande valeur fréquentielle
@@ -373,8 +373,7 @@ class Filter(fourier):
         :param type: -> type > le type de filtre
         :param attenuation: -> float > coefficient d'attenuation des fréquences
         """
-        self.state = True
-        self.dataFourier = datafourier
+        self.data_fourier = data_fourier
         self.names = data[0].names
         self.cut_off = cut_off/2
         self.cut_off2 = cut_off2/2
@@ -386,7 +385,7 @@ class Filter(fourier):
         :param data: -> transformation > contient la dernière transformation dans le pipeline
         :return: -> new_data > retourne les données temporelle filtrée
         """
-        new_data = self.filtering(data,self.dataFourier)
+        new_data = self.filtering(data, self.data_fourier)
         self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(new_data,
                                                                                                       self.names)
         return new_data

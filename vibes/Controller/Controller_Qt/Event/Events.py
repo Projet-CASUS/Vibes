@@ -19,7 +19,7 @@ class events:
         permet de prendre une fourchette de donnée modifier et de la réintégrer dans l'ensemble des données
         """
         data = self.controller.model.data.transformations
-        self.controller.Merging(data)
+        self.controller.merging(data)
 
     def range_selection_event(self):
         """

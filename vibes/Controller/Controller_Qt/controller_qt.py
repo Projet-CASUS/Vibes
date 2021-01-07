@@ -1,6 +1,6 @@
 import vibes.Controller.Controller_Qt.Event.Events as events
 import vibes.Controller.Controller_Qt.Event.filter_events as filter_events
-
+import vibes.View.qt_view as view
 from Vibes.vibes.Controller.controller_view import controller_view
 
 
@@ -8,16 +8,16 @@ class controller_qt(controller_view):
     """
     Control l'orchestration ainsi que les appelles de fonction de la vue nécessaires pour que celle-ci soit mis à jours
     """
-    def __init__(self,model,interface,controller):
+    def __init__(self,model,controller):
         """
         :param model: -> pipeline > le pipeline du controlleur
         :param interface -> graphical_interface > l'interface graphique du controlleur
         :param controller -> controller > l'objet controller
         """
         self.model = model
-        self.my_interface = interface
+        self.my_interface = view.graphical_interface()
         self.my_interface.dashboard_window.define()
-        self.show_DashBoard_window()
+        self.show_dashboard_window()
         self.events = events.events(controller)
         self.filter_events = filter_events.filter_events(controller)
         self.define_connects(model)
@@ -152,7 +152,7 @@ class controller_qt(controller_view):
             numpy[i] = data_structure[i][column]
         return numpy
 
-    def show_DashBoard_window(self):
+    def show_dashboard_window(self):
         """
         permet d'afficher le dashboard
         """

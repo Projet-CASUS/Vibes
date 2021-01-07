@@ -1,5 +1,5 @@
 import vibes
-import vibes.View.qt_view as view
+
 import vibes.Model.model as models
 
 from Vibes.vibes.Controller.Controller_Qt.controller_qt import controller_qt
@@ -15,9 +15,9 @@ class Controller():
         data_file: fichier contenant les donnees
         """
         self.model = models.Model(data_file)
-        self.my_interface = view.graphical_interface()
+
         if(view_type == "controller_qt"):
-            self.controller_qt = controller_qt(self.model,self.my_interface,self)
+            self.controller_qt = controller_qt(self.model,self)
 
     def time_range_selections(self, first, last,index=-1):
         """
@@ -46,7 +46,7 @@ class Controller():
         self.controller_qt.redefine_vue()
 
 
-    def Merging(self, data, index=-1):
+    def merging(self, data, index=-1):
         """
         :param data: -> transformation > contient la dernière transformation dans le pipeline
         :param index -> int > la position de la transformation dans le pipeline
@@ -65,7 +65,7 @@ class Controller():
         self.controller_qt.redefine_vue()
 
 
-    def filterfilter(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
+    def filter_filter(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
         """
         :param data: -> transformation > contient la dernière transformation dans le pipeline
         :param index -> int > la position de la transformation dans le pipeline

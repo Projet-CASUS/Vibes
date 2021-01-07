@@ -111,7 +111,7 @@ class dashboard(QMainWindow):
        self.layout_text = QHBoxLayout()
 
        # instanciation du widget
-       self.widget = DashBoard_content()
+       self.widget = dashboard_content()
 
        #instanciation du menu bar
        self.bar = self.menuBar()
@@ -164,12 +164,12 @@ class dashboard(QMainWindow):
        self.layout_text.addWidget(self.widget.attenuation)
 
 
-class DashBoard_content(QWidget):
+class dashboard_content(QWidget):
     """
     Defini les outils Qt utiliser dans la pipeline
     """
     def __init__(self):
-        super(DashBoard_content, self).__init__()
+        super(dashboard_content, self).__init__()
 
         self.first_label = QLabel("First:")
         self.first = QLineEdit()
