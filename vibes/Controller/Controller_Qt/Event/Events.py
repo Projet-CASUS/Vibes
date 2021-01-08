@@ -2,11 +2,12 @@ class events:
     """
     class permettant d'appeler des evenements pour créer des transformation
     """
-    def __init__(self, controller):
+    def __init__(self, controller, my_interface):
         """
         :param controller: -> controller > la référence au controller
         """
         self.controller = controller
+        self.my_interface = my_interface
 
     def export_event(self):
         """
@@ -27,10 +28,10 @@ class events:
         """
         first = 0
         last = len(self.controller.model.data.transformations[-1][-1])
-        if self.controller.my_interface.dashboard_window.widget.first.text() != '':
-            first = int(self.controller.my_interface.dashboard_window.widget.first.text())
-        if self.controller.my_interface.dashboard_window.widget.last.text() != '':
-            last = int(self.controller.my_interface.dashboard_window.widget.last.text())
+        if self.my_interface.dashboard_window.widget.first.text() != '':
+            first = int(self.my_interface.dashboard_window.widget.first.text())
+        if self.my_interface.dashboard_window.widget.last.text() != '':
+            last = int(self.my_interface.dashboard_window.widget.last.text())
         self.controller.time_range_selections(first, last)
 
     def differentiel_event(self):

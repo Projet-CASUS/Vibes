@@ -18,8 +18,8 @@ class controller_qt(controller_view):
         self.my_interface = view.graphical_interface()
         self.my_interface.dashboard_window.define()
         self.show_dashboard_window()
-        self.events = events.events(controller)
-        self.filter_events = filter_events.filter_events(controller)
+        self.events = events.events(controller, self.my_interface)
+        self.filter_events = filter_events.filter_events(controller, self.my_interface)
         self.define_connects(model)
         self.redefine_vue()
 

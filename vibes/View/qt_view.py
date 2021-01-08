@@ -160,8 +160,8 @@ class dashboard(QMainWindow):
        self.layout_text.addWidget(self.widget.cut_off)
        self.layout_text.addWidget(self.widget.cut_off_label2)
        self.layout_text.addWidget(self.widget.cut_off2)
-       self.layout_text.addWidget(self.widget.attenuation_label)
-       self.layout_text.addWidget(self.widget.attenuation)
+       self.layout_text.addWidget(self.widget.attenuation_num_taps_label)
+       self.layout_text.addWidget(self.widget.attenuation_num_taps)
 
 
 class dashboard_content(QWidget):
@@ -177,10 +177,10 @@ class dashboard_content(QWidget):
         self.last = QLineEdit()
         self.cut_off_label = QLabel("cut_off(1):")
         self.cut_off_label2 = QLabel("cut_off(2):")
-        self.attenuation_label = QLabel("Attenuation:")
+        self.attenuation_num_taps_label = QLabel("Attenuation/Num_Taps:")
         self.cut_off = QLineEdit()
         self.cut_off2 = QLineEdit()
-        self.attenuation = QLineEdit()
+        self.attenuation_num_taps = QLineEdit()
 
 class plot_state(QMainWindow):
     """

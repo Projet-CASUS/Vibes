@@ -2,11 +2,12 @@ class filter_events:
     """
     Contient toute les événements pour filter les données
     """
-    def __init__(self, controller):
+    def __init__(self, controller, my_interface):
         """
         :param controller: -> controller > référence au controller
         """
         self.controller = controller
+        self.my_interface = my_interface
 
     def passe_bas_event(self):
         """
@@ -46,7 +47,8 @@ class filter_events:
         """
         data = self.define_data()
         cut_off = self.define_cut_off1()
-        self.controller.filter_fir(data, data[0].sample_rate, float(cut_off), 0, "passe_bas")
+        num_taps = self.define_att()
+        self.controller.filter_fir(data, data[0].sample_rate, float(cut_off), 0,"passe_bas", int(num_taps))
 
     def fir_passe_haut_event(self):
         """
@@ -54,7 +56,8 @@ class filter_events:
         """
         data = self.define_data()
         cut_off = self.define_cut_off1()
-        self.controller.filter_fir(data, data[0].sample_rate, float(cut_off), 0, "passe_haut")
+        num_taps = self.define_att()
+        self.controller.filter_fir(data, data[0].sample_rate, float(cut_off), 0,"passe_haut", int(num_taps))
 
     def fir_passe_bande_event(self):
         """
@@ -63,7 +66,8 @@ class filter_events:
         data = self.define_data()
         cut_off = self.define_cut_off1()
         cut_off2 = self.define_cut_off2()
-        self.controller.filter_fir(data, data[0].sample_rate, float(cut_off), float(cut_off2), "passe_bande")
+        num_taps = self.define_att()
+        self.controller.filter_fir(data, data[0].sample_rate, float(cut_off), float(cut_off2),"passe_bande", int(num_taps))
 
     def define_data(self):
         """
@@ -76,8 +80,8 @@ class filter_events:
         :return: -> la valeur du premier cut-off
         """
         cut_off = 0
-        if self.controller.my_interface.dashboard_window.widget.cut_off.text() != '':
-            cut_off = self.controller.my_interface.dashboard_window.widget.cut_off.text()
+        if self.my_interface.dashboard_window.widget.cut_off.text() != '':
+            cut_off = self.my_interface.dashboard_window.widget.cut_off.text()
         return cut_off
 
     def define_cut_off2(self):
@@ -85,8 +89,8 @@ class filter_events:
         :return: -> la valeur du deuxième cut-off utile pour les passes-bandes
         """
         cut_off = 0
-        if self.controller.my_interface.dashboard_window.widget.cut_off2.text() != '':
-            cut_off = self.controller.my_interface.dashboard_window.widget.cut_off2.text()
+        if self.my_interface.dashboard_window.widget.cut_off2.text() != '':
+            cut_off = self.my_interface.dashboard_window.widget.cut_off2.text()
         return cut_off
 
     def define_att(self):
@@ -94,6 +98,6 @@ class filter_events:
         :return: -> la valeur de l'atténuation
         """
         att = 0
-        if self.controller.my_interface.dashboard_window.widget.attenuation.text() != '':
-            att = self.controller.my_interface.dashboard_window.widget.attenuation.text()
+        if self.my_interface.dashboard_window.widget.attenuation_num_taps.text() != '':
+            att = self.my_interface.dashboard_window.widget.attenuation_num_taps.text()
         return att

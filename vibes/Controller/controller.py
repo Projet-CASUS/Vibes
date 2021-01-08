@@ -55,17 +55,17 @@ class Controller():
         self.controller_qt.redefine_vue()
 
 
-    def filter_fir(self, data, sample_rate, cut_off, cut_off2, type, index=-1):
+    def filter_fir(self, data, sample_rate, cut_off, cut_off2, type, num_taps, index=-1):
         """
         :param data: -> transformation > contient la dernière transformation dans le pipeline
         :param index -> int > la position de la transformation dans le pipeline
         """
         self.model.data.insert_transformation(vibes.Controller.transform.Filter_Fir, index, sample_rate, cut_off, cut_off2,
-                                              data, type)
+                                              data, type, num_taps)
         self.controller_qt.redefine_vue()
 
 
-    def filter_filter(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
+    def filter(self, data, cut_off, cut_off2, attenuation, fourier, type, index=-1):
         """
         :param data: -> transformation > contient la dernière transformation dans le pipeline
         :param index -> int > la position de la transformation dans le pipeline
