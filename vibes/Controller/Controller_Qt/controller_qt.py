@@ -1,7 +1,7 @@
 import vibes.Controller.Controller_Qt.Event.Events as events
 import vibes.Controller.Controller_Qt.Event.filter_events as filter_events
 import vibes.View.qt_view as view
-from Vibes.vibes.Controller.controller_view import controller_view
+from vibes.Controller.controller_view import controller_view
 
 
 class controller_qt(controller_view):

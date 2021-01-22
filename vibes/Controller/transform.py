@@ -337,7 +337,7 @@ class Merge(fourier):
                 if (position[0].type == "range_selection"):
                     self.first = position[0].first
                 if (self.nb_merge == self.ctp_merge):
-                    newData1 = np.zeros(shape=((len(position[1]) - 1), len(position[-1][0])))
+                    newData1 = np.zeros(shape=((len(position[1])), len(position[-1][0])))
                     for x in range(len(newData1)):
                         newData1[x] = position[-1][x]
                     return newData1

@@ -2,7 +2,7 @@ import vibes
 
 import vibes.Model.model as models
 
-from Vibes.vibes.Controller.Controller_Qt.controller_qt import controller_qt
+from vibes.Controller.Controller_Qt.controller_qt import controller_qt
 
 
 class Controller():
