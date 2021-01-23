@@ -29,6 +29,22 @@ class Data:
             self.read_hptfx(transform_func_file, data_file)
             self.current_index = 0
 
+    def import_csv(self,data_file, file_type='csv', transform_func_file=None):
+        if transform_func_file is None:
+            """
+            import_func_type: -> string > le type de fonction dans la pipeline par exemple: csv
+            transformations: -> transformation[] > ceci est la pipeline browser contenant toute les objets data et leur type de transformation subie.
+            """
+            import_func_type = transform.import_file(file_type=file_type)
+            self.transformations = [[import_func_type, import_func_type(data_file)]]
+        else:
+            """
+            si transform_func_file contient deja des data
+            """
+            self.transformations = []
+            self.read_hptfx(transform_func_file, data_file)
+            self.current_index = 0
+
     def read_hptfx(self, funcfile, datafile=None):
         """
         Peupler la liste transformations à partir d'un fichier hptfx

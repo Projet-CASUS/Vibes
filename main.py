@@ -1,5 +1,7 @@
 import sys
 
+from IPython.external.qt_for_kernel import QtGui
+
 import vibes.Controller.controller as cont
 import os
 import vibes.View.qt_view as view
@@ -10,7 +12,8 @@ app = view.instanciate_qt_application()
 program_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(program_folder)
 
-control = cont.Controller("./test_files/exposant3.csv","controller_qt")
+filename = QtGui.QFileDialog.getOpenFileName()[0]
+control = cont.Controller(filename,"controller_qt")
 
 #control.addTransform(None)
 
