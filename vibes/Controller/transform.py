@@ -99,7 +99,6 @@ class import_file(fourier):
         else:
             return filename
 
-
 class Filter_Fir(fourier):
     """
     Retourne les valeurs filtrees des donnes fournies en parametres

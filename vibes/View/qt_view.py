@@ -249,6 +249,32 @@ class spectro_state(plot_state):
         f, t, Sxx = signal.spectrogram(values, sampling_freq)
         return f, t, Sxx
 
+class bode_plot(plot_state):
+    """
+    Pas encore utiliser devrait avoir besoin certaine redefinition lorsqu'on voudra l'utiliser
+    """
+
+    def __init__(self):
+        super(bode_plot, self).__init__()
+        self.name = "bode"
+        self.qwtPlot = QwtPlot(self.name)
+
+    def set_curve(self, x, y, name):
+        """
+        :param x: -> float[] > valeurs représentant l'axe des x
+        :param y: -> float[] > valeurs représentant l'axe des y
+        :param name: -> string > nom de la courbe
+        """
+        curve = QwtPlotCurve(name)
+        curve.setData(self.define(x, 200, 1), self.define(y, 200, 1))
+        curve.attach(self.qwtPlot)
+
+    def define(self, values, sampling_freq):
+        """
+        pas encore implémenter ou utiliser
+        """
+        f, t, Sxx = signal.spectrogram(values, sampling_freq)
+        return f, t, Sxx
 
 class wrapper_qwt():
     """

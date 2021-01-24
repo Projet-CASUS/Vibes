@@ -74,6 +74,7 @@ class controller_qt(controller_view):
         :return: -> y
         sert à définir les données en y temporelle
         """
+
         for n in range(1, len(self.columns_name)):
             y = self.define_numpy(self.length, model.data.transformations[data_index][1], n)
         return y
