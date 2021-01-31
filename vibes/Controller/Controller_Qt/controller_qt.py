@@ -48,6 +48,7 @@ class controller_qt(controller_view):
         self.my_interface.dashboard_window.export_wav.triggered.connect(self.events.export_event)
 
         self.my_interface.dashboard_window.differential.triggered.connect(self.events.differentiel_event)
+        self.my_interface.dashboard_window.integral.triggered.connect(self.events.integral_event)
         self.my_interface.dashboard_window.range_selection.triggered.connect(self.events.range_selection_event)
         self.my_interface.dashboard_window.merge.triggered.connect(self.events.merge_event)
         self.my_interface.dashboard_window.passe_bas_fir.triggered.connect(self.filter_events.fir_passe_bas_event)

@@ -42,3 +42,8 @@ class events:
         data = self.controller.model.data.transformations[-1]
         self.controller.differential(data)
 
+    def integral_event(self):
+
+        data = self.controller.model.data.transformations[-1]
+        self.controller.integral(data)
+

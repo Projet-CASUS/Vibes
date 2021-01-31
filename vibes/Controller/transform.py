@@ -6,6 +6,7 @@ import scipy
 convolve = np.convolve
 import scipy.signal as signal
 from scipy import fftpack
+from scipy import integrate
 
 
 class fourier:
@@ -248,29 +249,33 @@ class Integral(fourier):
         """
         return self.integral(data[1], self.names)
 
-    def integral(self, data, names):
-        """
-        Derivation numerique
-        !!! -> attention cette methode fait perdre la premiere et la derniere donnee du vecteur
-        TODO Faire recevoir et retourner un vecteur panda
-        :param data: -> vecteur panda > Contient les donnees a deriver
-        :param dt: TODO Louis-Philippe que veux tu dire par "pas de temps" ??
-        :return: -> vecteur panda > vecteur des donnees derivees
-        """
-        dt = 0.001
+    def integral(self,data,names):
+
+        IntegralSum =0;
         integ_list = np.zeros(shape=((len(data) - 0), len(data[1])))
         for x in range(len(data)):
             integ_list[x][0] = data[x][0]
-        hs3 = dt / 3  # h/3
         for x in range(1, len(names)):
-            for i in range(len(data)):
-                if i == 0 or i == (len(data) - 1):  # point 1 ou final : methode des rectangles
-                    integ_list[i][x] = ((data[i][x] * dt))
-                else:  # point médiants : méthode de simpson (plus précis)
-                    # ref: https://en.wikipedia.org/wiki/Simpson's_rule
-                    integ_list[i][x] = (((data[i - 1][x] + 4 * data[i][x] + data[i + 1][x]) * hs3))
-        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe,self.sample_rate = self.fourier(integ_list,
-                                                                                                      self.names)
+            for i in range(len(data)):# point 1 ou final : methode des rectangles
+                    if i!= 0:
+                            if(data[i-1][x] <= data[i][x]):
+                                subsum1 = data[i-1][x] * (data[i][0] - data[i-1][0])
+                                subsum2 = ((data[i][x] - data[i-1][x]) * (data[i][0] - data[i-1][0]))/2
+                                if(i == 0):
+                                    integ_list[i][x] = subsum1 + subsum2
+                                else:
+                                    integ_list[i][x] = subsum1 + subsum2 + integ_list[i-1][x];
+                            else:
+                                subsum1 = data[i][x] * (data[i][0] - data[i-1][0])
+                                subsum2 = ((data[i-1][x] - data[i][x]) *(data[i][0] - data[i-1][0]))/2
+                                if(i == 0):
+                                    integ_list[i][x] = subsum1 + subsum2
+                                else:
+                                    integ_list[i][x] = subsum1 + subsum2 + integ_list[i-1][x];
+
+        self.freq, self.freq_complete, self.fourier_complete, self.fourier_no_complexe, self.sample_rate = self.fourier(
+        integ_list,
+        self.names)
         return integ_list
 
 

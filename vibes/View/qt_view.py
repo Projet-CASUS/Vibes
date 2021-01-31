@@ -124,9 +124,11 @@ class dashboard(QMainWindow):
        # instanciation des actions dans un menu
        self.actions = self.bar.addMenu("Actions")
        self.differential = QAction("differential", self)
+       self.integral = QAction("integral", self)
        self.range_selection = QAction("range selection", self)
        self.merge = QAction("merge", self)
        self.actions.addAction(self.differential)
+       self.actions.addAction(self.integral)
        self.actions.addAction(self.range_selection)
        self.actions.addAction(self.merge)
 
