@@ -10,6 +10,7 @@ class events:
         self.controller = controller
         self.my_interface = my_interface
 
+
     def export_event(self):
         """
         Permet d'exporter un fichier en wav
@@ -46,4 +47,32 @@ class events:
 
         data = self.controller.model.data.transformations[-1]
         self.controller.integral(data)
+
+    def interpolation_event(self):
+
+        data = self.controller.model.data.transformations[-1]
+        self.controller.interpolation(data)
+
+
+
+    def interpolation_event(self):
+
+        data = self.controller.model.data.transformations[-1]
+        self.controller.interpolation(data)
+
+
+
+    def interpolation_event(self):
+
+        data = self.controller.model.data.transformations[-1]
+        self.controller.interpolation(data)
+
+
+
+    def interpolation_event(self):
+
+        data = self.controller.model.data.transformations[-1]
+        self.controller.interpolation(data)
+
+
 

@@ -12,7 +12,7 @@ app = view.instanciate_qt_application()
 program_folder = os.path.dirname(os.path.realpath(__file__))
 os.chdir(program_folder)
 
-filename = "/home/cheebahawkdesktop/Documents/test_files/100.0Hz_20.0sec.csv"
+filename = "/home/cheebahawkdesktop/Documents/test_files/aircraft_takeoff.csv"
 control = cont.Controller(filename,"controller_qt")
 
 #control.addTransform(None)

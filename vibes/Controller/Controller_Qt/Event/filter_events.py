@@ -8,6 +8,7 @@ class filter_events:
         """
         self.controller = controller
         self.my_interface = my_interface
+        self.is_filtered = False
 
     def passe_bas_event(self):
         """
@@ -17,7 +18,7 @@ class filter_events:
         cut_off = self.define_cut_off1()
         att = self.define_att()
         self.controller.filter(data, float(cut_off), 0, float(att),
-                               [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_bas")
+                               [self.controller.model.data.transformations[-1][0].freq_complete,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_bas")
 
     def passe_haut_event(self):
         """
@@ -27,7 +28,7 @@ class filter_events:
         cut_off = self.define_cut_off1()
         att = self.define_att()
         self.controller.filter(data, float(cut_off), 0, float(att),
-                               [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_haut")
+                               [self.controller.model.data.transformations[-1][0].freq_complete,self.controller.model.data.transformations[-1][0].fourier_no_complexe], "passe_haut")
 
     def passe_bande_event(self):
         """
@@ -38,7 +39,7 @@ class filter_events:
         cut_off2 = self.define_cut_off2()
         att = self.define_att()
         self.controller.filter(data, float(cut_off), float(cut_off2), float(att),
-                               [self.controller.model.data.transformations[-1][0].freq,self.controller.model.data.transformations[-1][0].fourier_no_complexe],
+                               [self.controller.model.data.transformations[-1][0].freq_complete,self.controller.model.data.transformations[-1][0].fourier_no_complexe],
                                 "passe_bande")
 
     def fir_passe_bas_event(self):
@@ -101,3 +102,7 @@ class filter_events:
         if self.my_interface.dashboard_window.widget.attenuation_num_taps.text() != '':
             att = self.my_interface.dashboard_window.widget.attenuation_num_taps.text()
         return att
+
+
+
+

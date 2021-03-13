@@ -1,5 +1,6 @@
 import vibes.Controller.Controller_Qt.Event.Events as events
 import vibes.Controller.Controller_Qt.Event.filter_events as filter_events
+import vibes.Controller.Controller_Qt.Event.filter_editing_events as filter_editing_events
 import vibes.View.qt_view as view
 from vibes.Controller.controller_view import controller_view
 
@@ -17,10 +18,13 @@ class controller_qt(controller_view):
         self.model = model
         self.my_interface = view.graphical_interface()
         self.my_interface.dashboard_window.define()
+        self.my_interface.dashboard_filter_editing_window.define()
         self.show_dashboard_window()
         self.events = events.events(controller, self.my_interface)
         self.filter_events = filter_events.filter_events(controller, self.my_interface)
+        self.filter_editing_events = filter_editing_events.filter_editing_events(controller,self.my_interface)
         self.define_connects(model)
+        self.define_connects_filter_editing()
         self.redefine_vue()
 
 
@@ -35,7 +39,7 @@ class controller_qt(controller_view):
         self.dataX = self.define_x_data(model,data_index)
         self.dataY = self.define_y_data(model,data_index)
         self.freq = model.data.transformations[data_index][0].freq
-        self.fourier_no_complexe = model.data.transformations[data_index][0].fourier_no_complexe
+        self.fourier_no_complexe_positive = model.data.transformations[data_index][0].fourier_no_complexe_positive
 
     def define_connects(self,model):
         """
@@ -49,6 +53,7 @@ class controller_qt(controller_view):
 
         self.my_interface.dashboard_window.differential.triggered.connect(self.events.differentiel_event)
         self.my_interface.dashboard_window.integral.triggered.connect(self.events.integral_event)
+        self.my_interface.dashboard_window.interpolation.triggered.connect(self.events.interpolation_event)
         self.my_interface.dashboard_window.range_selection.triggered.connect(self.events.range_selection_event)
         self.my_interface.dashboard_window.merge.triggered.connect(self.events.merge_event)
         self.my_interface.dashboard_window.passe_bas_fir.triggered.connect(self.filter_events.fir_passe_bas_event)
@@ -105,7 +110,7 @@ class controller_qt(controller_view):
         redéfinir le graphique de la fréquence
         """
         for i in range(len(self.columns_name)):
-            window.set_curve(self.freq,self.fourier_no_complexe,self.columns_name[i])
+            window.set_curve(self.freq,self.fourier_no_complexe_positive,self.columns_name[i])
         self.my_interface.show_graphic(window)
 
 
@@ -159,3 +164,18 @@ class controller_qt(controller_view):
         permet d'afficher le dashboard
         """
         self.my_interface.show_dashboard_window()
+
+    def define_bode_plot(self, dataX, dataY):
+        self.my_interface.bode_plot_window.set_curve(dataX,dataY,"Bode_Plot")
+        self.my_interface.show_bode_plot_window()
+        self.my_interface.show_dashboard_filter_editing_window()
+
+    def define_connects_filter_editing(self):
+        self.my_interface.dashboard_filter_editing_window.passe_bas.triggered.connect(self.filter_editing_events.passe_bas_event)
+        self.my_interface.dashboard_filter_editing_window.make_filter.triggered.connect(self.filter_editing_events.make_filter_event)
+
+
+
+
+
+

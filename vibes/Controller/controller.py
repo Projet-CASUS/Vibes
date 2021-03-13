@@ -1,6 +1,7 @@
 import vibes
 
 import vibes.Model.model as models
+import vibes.Model.filter_editor as filter_editor
 
 from vibes.Controller.Controller_Qt.controller_qt import controller_qt
 
@@ -71,6 +72,25 @@ class Controller():
         :param index -> int > la position de la transformation dans le pipeline
         """
         self.model.data.insert_transformation(vibes.Controller.transform.Filter, index, data, fourier, cut_off, cut_off2, attenuation, type)
+        data_out = self.model.data.transformations[-1]
+        data_in = self.model.data.transformations[len(self.model.data.transformations)-2]
+        self.filter_model = filter_editor.filter_editer(data_in,data_out)
+        self.filter_model.get_data_for_graphic()
+        self.controller_qt.define_bode_plot(self.filter_model.freq, self.filter_model.impulsion_db_positive)
+
+
+
+    def modify_filter_response(self,first, last, attenuation,type):
+        self.filter_model.modify_response(first,last,attenuation,type)
+        self.filter_model.get_data_for_graphic()
+        self.controller_qt.define_bode_plot(self.filter_model.freq,self.filter_model.impulsion_db_positive)
+
+    def redefine_filter_data(self,filter_editing):
+        data_modified = self.model.data.transformations[-1]
+        data_modified[0].freq = filter_editing.freq
+        data_modified[0].freq_complete = filter_editing.freq_complete
+        data_modified[0].fourier_no_complexe = filter_editing.vout
+        data_modified[0].fourier_no_complexe_positive = filter_editing.vout_positive
         self.controller_qt.redefine_vue()
 
 
