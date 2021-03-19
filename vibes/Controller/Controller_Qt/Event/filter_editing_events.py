@@ -1,7 +1,7 @@
 class filter_editing_events:
 
-    def __init__(self, controller, my_interface):
-        self.controller = controller
+    def __init__(self, filter_editing_controller, my_interface):
+        self.controller = filter_editing_controller
         self.my_interface = my_interface
 
     def merge_event(self):
@@ -11,7 +11,7 @@ class filter_editing_events:
         pass
 
     def make_filter_event(self):
-        self.controller.redefine_filter_data(self.controller.filter_model)
+        self.controller.redefine_filter_data(self.controller)
 
     def integral_event(self):
         pass

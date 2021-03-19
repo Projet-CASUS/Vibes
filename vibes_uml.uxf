@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>3</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1197</x>
+      <y>186</y>
+      <w>564</w>
+      <h>369</h>
+    </coordinates>
+    <panel_attributes>View
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>213</x>
+      <y>378</y>
+      <w>189</w>
+      <h>135</h>
+    </coordinates>
+    <panel_attributes>Model
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>513</x>
+      <y>72</y>
+      <w>327</w>
+      <h>543</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1455</x>
+      <y>195</y>
+      <w>300</w>
+      <h>351</h>
+    </coordinates>
+    <panel_attributes>qt_view
+--
+bg=red
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1560</x>
+      <y>282</y>
+      <w>72</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>graphical_interface
+--
+time_window: time_state
+fourier_window: freq_state
+pipeline_window: pipeline
+dashboard_window: dashboard
+--
+__init__(self)
+show_graphic(self,window)
+show_pipeline_browser(self)
+show_dashboard_window(self)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1533</x>
+      <y>321</y>
+      <w>33</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>90.0;10.0;60.0;10.0;60.0;60.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1464</x>
+      <y>384</y>
+      <w>87</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;QWidget&gt;&gt;
+pipeline_content
+--
+pipeline_index: int
+pipeline_slider: QSlider
+--
+
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1476</x>
+      <y>354</y>
+      <w>9</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1647</x>
+      <y>210</y>
+      <w>105</w>
+      <h>141</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;QMainWindow&gt;&gt;
+dashboard
+--
+layout_text: QHBoxLayout
+
+widget: DashBoard_content
+
+bar: self.menuBar
+
+file: self.bar.addMenu("File")
+export_wav: QAction
+
+actions: self.bar.addMenu("Actions")
+differential: QAction
+range_selection: QAction
+merge: QAction
+       
+Filters: self.bar.addMenu("Filters")
+passe_bas: QAction
+passe_haut: QAction
+passe_bande: QAction
+
+FIR: self.bar.addMenu("Filters FIR")
+passe_bas_fir: QAction
+passe_haut_fir: QAction
+passe_bande_fir: QAction
+
+--
+__init__(self)
+define(self)
+
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1617</x>
+      <y>213</y>
+      <w>36</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1644</x>
+      <y>357</y>
+      <w>108</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;QWidget&gt;&gt;
+dashboard_content
+--
+first_label: QLabel
+first: QLineEdit
+last_label: QLabel
+last: QLineEdit
+cut_off_label: QLabel
+cut_off_label2: QLabel
+attenuation_label: QLabel
+cut_off: QLineEdit
+cut_off2: QLineEdit
+attenuation: QLineEdit
+--
+
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1632</x>
+      <y>321</y>
+      <w>21</w>
+      <h>87</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0;10.0;270.0;40.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1458</x>
+      <y>240</y>
+      <w>63</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;QMainWindow&gt;&gt;
+plot_state
+--
+qwt_plot: QwtPlot
+--
+__init__(self)
+set_curve(self,x,y,name)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1518</x>
+      <y>261</y>
+      <w>48</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>140.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1458</x>
+      <y>279</y>
+      <w>72</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;plot_state&gt;&gt;
+freq_state
+--
+name: string
+curve: QwtPlotCurve
+qwt_plot: QwtPlot
+--
+
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1539</x>
+      <y>231</y>
+      <w>72</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;plot_state&gt;&gt;
+time_state
+--
+name: string
+curve: QwtPlotCurve
+qwt_plot: QwtPlot
+--
+
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1527</x>
+      <y>294</y>
+      <w>39</w>
+      <h>9</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1575</x>
+      <y>261</y>
+      <w>9</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1518</x>
+      <y>240</y>
+      <w>27</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1473</x>
+      <y>267</y>
+      <w>9</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1458</x>
+      <y>204</y>
+      <w>63</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>wrapper_qwt
+--
+state: plot_state
+--
+set_curve(x,y,name)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1488</x>
+      <y>225</y>
+      <w>9</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>516</x>
+      <y>348</y>
+      <w>138</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+model: Model
+controller_qt: controller_qt
+--
+__init__(self,data_file,view_type)
+time_range_selection(self,first,last,index)
+differential(self,data,index)
+integral(self,data,index)
+merging(self,data,index)
+filter_fir(self, data, sample_rate, cut_off, cut_off2, type, index)
+filterfilter(self, data, cut_off, cut_off2, attenuation, fourier, type, index)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>519</x>
+      <y>420</y>
+      <w>312</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>controller_view
+--
+bg=red
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>522</x>
+      <y>435</y>
+      <w>102</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;controller_view&gt;&gt;
+controller_qt
+--
+self.model: model
+my_interface: view.graphical_interface
+events: events.events
+filter_events: filter_events.filter_events
+length: int
+columns_name: string[]
+dataX: float[]
+dataY: float[]
+freq: float[]
+fourier_no_complexe: float[]
+--
+__init__(self,model,controller)
+initialisation(self,model,data_index)
+define_connects(self,model)
+define_x_data(self,model,data_index)
+define_y_data(self,model,data_index)
+redefine_vue(self,data_index)
+redefine_graphic_time(self,window)
+redefine_graphic_freq(self,window)
+define_pipeline_browser(self)
+update_pipeline(self)
+define_numpy(self,length,data_structure,column)
+show_dashboard_windo(self)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>549</x>
+      <y>330</y>
+      <w>1050</w>
+      <h>318</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;770.0;10.0;1040.0;3480.0;1040.0;3480.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>621</x>
+      <y>405</y>
+      <w>24</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;180.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1461</x>
+      <y>315</y>
+      <w>75</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;QMainWindow&gt;&gt;
+pipeline 
+--
+layout: QVBoxLayout
+layout1: QHBoxLayout
+widget: pipeline_content
+--
+__init__(self)
+define_pipeline_browser(self,model)
+
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>648</x>
+      <y>444</y>
+      <w>174</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Events
+--
+bg=green
+layer=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>654</x>
+      <y>477</y>
+      <w>69</w>
+      <h>69</h>
+    </coordinates>
+    <panel_attributes>filter_events
+--
+controller: controller
+--
+__init__(self,controller)
+passe_bas_event(self)
+passe_haut_event(self)
+passe_bande_event(self)
+fir_passe_bas_event(self)
+fir_passe_haut_event(self)
+fir_passe_bande_event(self)
+define_data(self)
+define_cut_off1(self)
+define_cut_off2(self)
+define_att(self)
+layer=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>651</x>
+      <y>387</y>
+      <w>36</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>100.0;300.0;100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>732</x>
+      <y>492</y>
+      <w>63</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>events
+--
+controller: controller
+--
+__init__(self)
+export_event(self)
+merge_event(self)
+range_selection_event(self)
+differentiel_event(self)
+layer=4</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>651</x>
+      <y>369</y>
+      <w>111</w>
+      <h>129</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>350.0;410.0;350.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>516</x>
+      <y>81</y>
+      <w>315</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>Transform
+--
+bg=blue
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>165</y>
+      <w>66</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>fourier
+--
+fourier(self,data,names)
+defineX(self,data,sample_rate)
+defineY(self,data,count)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>522</x>
+      <y>93</y>
+      <w>63</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;fourier&gt;&gt;
+import_file
+--
+type: string
+names: string[]
+freq: float[]
+freq_complete: float[]
+fourier_complete: float[]
+fourier_no_complexe: float[]
+sample_rate: float
+--
+__init__(self,file_type)
+__call__(self,filename)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>141</y>
+      <w>36</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>696</x>
+      <y>96</y>
+      <w>132</w>
+      <h>93</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;fourier&gt;&gt;
+Filter_Fir
+--
+type: string
+names: string[]
+freq: float[]
+freq_complete: float[]
+fourier_complete: float[]
+fourier_no_complexe: float[]
+sample_rate: float
+num_taps: int
+fir_filter: filters
+cut_off: float
+cut_off2: float
+--
+__init__(self, sample_rate, cut_off, cut_off2, data, type, num_taps=5)
+__call__(self,data)
+passe_bas(self)
+passe_haut(self)
+passe_bande(self)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>159</y>
+      <w>27</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>90</y>
+      <w>66</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;fourier&gt;&gt;
+Differential
+--
+type: string
+names: string[]
+freq: float[]
+freq_complete: float[]
+fourier_complete: float[]
+fourier_no_complexe: float[]
+sample_rate: float
+--
+__init__(self,data)
+__call__(self,data)
+derive(self,data)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>579</x>
+      <y>180</y>
+      <w>39</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>10.0;50.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>642</x>
+      <y>150</y>
+      <w>9</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>525</x>
+      <y>159</y>
+      <w>57</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;fourier&gt;&gt;
+Integrale
+--
+type: string
+names: string[]
+freq: float[]
+freq_complete: float[]
+fourier_complete: float[]
+fourier_no_complexe: float[]
+sample_rate: float
+--
+__init__(self,data)
+__call__(self,data)
+integrale(self,data)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>753</x>
+      <y>213</y>
+      <w>66</w>
+      <h>69</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;fourier&gt;&gt;
+Range_selection
+--
+type: string
+names: string[]
+freq: float[]
+freq_complete: float[]
+fourier_complete: float[]
+fourier_no_complexe: float[]
+sample_rate: float
+first: int
+last: int
+--
+__init__(self,data)
+__call__(self,data)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>675</x>
+      <y>189</y>
+      <w>84</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>260.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>525</x>
+      <y>234</y>
+      <w>66</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;fourier&gt;&gt;
+Merge
+--
+type: string
+names: string[]
+freq: float[]
+freq_complete: float[]
+fourier_complete: float[]
+fourier_no_complexe: float[]
+sample_rate: float
+nb_merge: int
+cpt_merge: int
+cpt_search: int
+first: int
+last: int
+transformation: transformation
+new_data: numpy
+--
+__init__(self,data)
+__call__(self,data)
+define_new_data(self,data)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>189</y>
+      <w>51</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>10.0;150.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>606</x>
+      <y>234</y>
+      <w>129</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;fourier&gt;&gt;
+Filter
+--
+type: string
+names: string[]
+freq: float[]
+freq_complete: float[]
+fourier_complete: float[]
+fourier_no_complexe: float[]
+sample_rate: float
+num_taps: int
+data_fourier: data_fourier
+fir_filter: filters
+cut_off: float
+cut_off2: float
+--
+__init__(self, data, data_fourier, cut_off, cut_off2, attenuation, type)
+__call__(self, data)
+filtering(self, data, data_fourier)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>645</x>
+      <y>189</y>
+      <w>12</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+layer=2</panel_attributes>
+    <additional_attributes>20.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>342</y>
+      <w>240</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+layer=4</panel_attributes>
+    <additional_attributes>10.0;730.0;10.0;880.0;770.0;880.0;780.0;170.0;700.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>249</x>
+      <y>426</y>
+      <w>129</w>
+      <h>51</h>
+    </coordinates>
+    <panel_attributes>Data
+--
+transformations: [[import_func_type,import_func_type(data_file)]]
+current_index: int 
+--
+__init__(self, data_file, file_type, transform_func_file)
+read_hptfx(self, funcfile, datafile)
+insert_transformation(self, cls, index, *args, **kwargs)
+recalculate_data_through_pipeline(self, idx)
+export_wav(self, data, max=np.power(2, 15))
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>399</x>
+      <y>381</y>
+      <w>123</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;390.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1203</x>
+      <y>198</y>
+      <w>249</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>qt_filter
+--
+bg=orange
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1338</x>
+      <y>228</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_object: Class_
+--
+id: Long="36548"
+[waiting for message]
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1227</x>
+      <y>330</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_object: Class_
+--
+id: Long="36548"
+[waiting for message]
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1293</x>
+      <y>306</y>
+      <w>63</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>_object: Class_
+--
+id: Long="36548"
+[waiting for message]
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1224</x>
+      <y>228</y>
+      <w>63</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;QMainWindow&gt;&gt;
+bode_plot
+--
+qwt_plot:QwtPlot
+--
+_init_(self)
+set_curve(self,x,y,name)
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1341</x>
+      <y>333</y>
+      <w>63</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_object: Class_
+--
+id: Long="36548"
+[waiting for message]
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

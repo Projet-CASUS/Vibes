@@ -1,10 +1,10 @@
 import vibes
 
 import vibes.Model.model as models
+import vibes.Model.filter_editing_model as filter_editing_model
 import vibes.Model.filter_editor as filter_editor
-
+import vibes.Controller.filter_editing_controller as filter_editing_controller
 from vibes.Controller.Controller_Qt.controller_qt import controller_qt
-
 
 class Controller():
     """
@@ -16,9 +16,11 @@ class Controller():
         data_file: fichier contenant les donnees
         """
         self.model = models.Model(data_file)
-
+        self.filter_editing_controller = filter_editing_controller.filter_editing_controller(data_file)
         if(view_type == "controller_qt"):
             self.controller_qt = controller_qt(self.model,self)
+        self.filter_editing_controller.set_view_controller(self.controller_qt)
+        self.filter_editing_controller.set_controller(self)
 
     def time_range_selections(self, first, last,index=-1):
         """
@@ -26,7 +28,7 @@ class Controller():
         :param last: -> la deuxième sélection de donnée dans la structure
         """
         self.model.data.insert_transformation(vibes.Controller.transform.Range_selection, index, first, last,
-                                              self.model.data.transformations[0])
+                                                self.model.data.transformations[0])
         self.controller_qt.redefine_vue()
 
     def differential(self, data, index=-1):
@@ -61,7 +63,8 @@ class Controller():
         :param data: -> transformation > contient la dernière transformation dans le pipeline
         :param index -> int > la position de la transformation dans le pipeline
         """
-        self.model.data.insert_transformation(vibes.Controller.transform.Filter_Fir, index, sample_rate, cut_off, cut_off2,
+        self.model.data.insert_transformation(vibes.Controller.transform.Filter_Fir, index,
+                                              sample_rate, cut_off, cut_off2,
                                               data, type, num_taps)
         self.controller_qt.redefine_vue()
 
@@ -74,23 +77,7 @@ class Controller():
         self.model.data.insert_transformation(vibes.Controller.transform.Filter, index, data, fourier, cut_off, cut_off2, attenuation, type)
         data_out = self.model.data.transformations[-1]
         data_in = self.model.data.transformations[len(self.model.data.transformations)-2]
-        self.filter_model = filter_editor.filter_editer(data_in,data_out)
-        self.filter_model.get_data_for_graphic()
-        self.controller_qt.define_bode_plot(self.filter_model.freq, self.filter_model.impulsion_db_positive)
-
-
-
-    def modify_filter_response(self,first, last, attenuation,type):
-        self.filter_model.modify_response(first,last,attenuation,type)
-        self.filter_model.get_data_for_graphic()
-        self.controller_qt.define_bode_plot(self.filter_model.freq,self.filter_model.impulsion_db_positive)
-
-    def redefine_filter_data(self,filter_editing):
-        data_modified = self.model.data.transformations[-1]
-        data_modified[0].freq = filter_editing.freq
-        data_modified[0].freq_complete = filter_editing.freq_complete
-        data_modified[0].fourier_no_complexe = filter_editing.vout
-        data_modified[0].fourier_no_complexe_positive = filter_editing.vout_positive
-        self.controller_qt.redefine_vue()
-
-
+        self.filter_editing_model = filter_editing_model.filter_editing_model(data_in, data_out)
+        self.filter_editing_model.data.transformations[-1][0].set_data_for_graphic()
+        self.controller_qt.define_bode_plot(self.filter_editing_model.data.transformations[-1][0].freq, self.filter_editing_model.data.transformations[-1][0].impulsion_db_positive)
+        self.filter_editing_controller.send_transformation(self.filter_editing_model)

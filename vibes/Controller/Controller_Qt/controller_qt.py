@@ -3,6 +3,7 @@ import vibes.Controller.Controller_Qt.Event.filter_events as filter_events
 import vibes.Controller.Controller_Qt.Event.filter_editing_events as filter_editing_events
 import vibes.View.qt_view as view
 from vibes.Controller.controller_view import controller_view
+import vibes.Controller.filter_editing_controller as filter_editing_controller
 
 
 class controller_qt(controller_view):
@@ -22,7 +23,7 @@ class controller_qt(controller_view):
         self.show_dashboard_window()
         self.events = events.events(controller, self.my_interface)
         self.filter_events = filter_events.filter_events(controller, self.my_interface)
-        self.filter_editing_events = filter_editing_events.filter_editing_events(controller,self.my_interface)
+        self.filter_editing_events = filter_editing_events.filter_editing_events(controller.filter_editing_controller,self.my_interface)
         self.define_connects(model)
         self.define_connects_filter_editing()
         self.redefine_vue()
