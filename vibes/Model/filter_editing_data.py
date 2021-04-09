@@ -10,7 +10,7 @@ DEFAULT_HPTFX = "default.hptfx"
 
 class Data:
 
-    def __init__(self, data_in, data_out, transform_func_file=None):
+    def __init__(self, data_in, data_out, fc1, fc2, type):
         """
         Initialise la classe de Data
         :param data_file: fichier des données temporelles
@@ -21,7 +21,7 @@ class Data:
         transformations: -> transformation[] > ceci est la pipeline browser contenant toute les objets data et leur type de transformation subie.
         """
         import_func_type = filter_editor.filter_editor()
-        self.transformations = [[import_func_type, import_func_type(data_in,data_out)]]
+        self.transformations = [[import_func_type, import_func_type(data_in,data_out,fc1, fc2, type)]]
 
     def insert_transformation(self, cls, index=-1):
         """

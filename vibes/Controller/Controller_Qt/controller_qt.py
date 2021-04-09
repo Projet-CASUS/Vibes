@@ -166,14 +166,18 @@ class controller_qt(controller_view):
         """
         self.my_interface.show_dashboard_window()
 
-    def define_bode_plot(self, dataX, dataY):
-        self.my_interface.bode_plot_window.set_curve(dataX,dataY,"Bode_Plot")
-        self.my_interface.show_bode_plot_window()
+    def define_plot(self, dataX, dataY, window_type, name):
+        window_type.set_curve(dataX,dataY,name)
+        window_type.qwt_plot.replot()
+        window_type.qwt_plot.show()
         self.my_interface.show_dashboard_filter_editing_window()
 
     def define_connects_filter_editing(self):
         self.my_interface.dashboard_filter_editing_window.passe_bas.triggered.connect(self.filter_editing_events.passe_bas_event)
+        self.my_interface.dashboard_filter_editing_window.passe_haut.triggered.connect(self.filter_editing_events.passe_haut_event)
         self.my_interface.dashboard_filter_editing_window.make_filter.triggered.connect(self.filter_editing_events.make_filter_event)
+        self.my_interface.dashboard_filter_editing_window.bode_plot.triggered.connect(self.filter_editing_events.activate_bode_plot_event)
+        self.my_interface.dashboard_filter_editing_window.phase_plot.triggered.connect(self.filter_editing_events.activate_phase_plot_event)
 
 
 

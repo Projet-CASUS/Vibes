@@ -77,7 +77,8 @@ class Controller():
         self.model.data.insert_transformation(vibes.Controller.transform.Filter, index, data, fourier, cut_off, cut_off2, attenuation, type)
         data_out = self.model.data.transformations[-1]
         data_in = self.model.data.transformations[len(self.model.data.transformations)-2]
-        self.filter_editing_model = filter_editing_model.filter_editing_model(data_in, data_out)
+        self.filter_editing_model = filter_editing_model.filter_editing_model(data_in, data_out,cut_off, cut_off2, type)
         self.filter_editing_model.data.transformations[-1][0].set_data_for_graphic()
-        self.controller_qt.define_bode_plot(self.filter_editing_model.data.transformations[-1][0].freq, self.filter_editing_model.data.transformations[-1][0].impulsion_db_positive)
+        self.controller_qt.show_dashboard_window()
+        self.controller_qt.define_plot(self.filter_editing_model.data.transformations[-1][0].freq, self.filter_editing_model.data.transformations[-1][0].impulsion_db_positive,self.controller_qt.my_interface.bode_plot_window,"bode plot")
         self.filter_editing_controller.send_transformation(self.filter_editing_model)

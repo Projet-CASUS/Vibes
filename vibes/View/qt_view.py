@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QFrame, QSlider, QApplication, QPushButton, QLineEdit, QAction
 
 
-from qwt import (QwtPlot, QwtPlotCurve, QwtText)
+from qwt import (QwtPlot, QwtPlotCurve, QwtText, QwtLogScaleEngine)
 from scipy import signal
 
 
@@ -31,6 +31,7 @@ class graphical_interface():
         self.pipeline_window = pipeline()
         self.dashboard_window = dashboard()
         self.bode_plot_window = bode_plot()
+        self.phase_plot_window = phase_plot()
         self.dashboard_filter_editing_window = dashboard_filter_editing()
 
     def show_graphic(self,window):
@@ -66,6 +67,10 @@ class graphical_interface():
     def show_bode_plot_window(self):
         self.bode_plot_window.qwt_plot.replot()
         self.bode_plot_window.qwt_plot.show()
+
+    def show_phase_plot_window(self):
+        self.phase_plot_window.qwt_plot.replot()
+        self.phase_plot_window.qwt_plot.show()
 
 class pipeline(QMainWindow):
     """
@@ -235,218 +240,14 @@ class dashboard_filter_editing(QMainWindow):
        self.Filters.addAction(self.passe_haut)
        self.Filters.addAction(self.passe_bande)
 
-   def define(self):
-       """
-       setting up the layout
-       """
-       self.layout_text.addWidget(self.widget.first_label)
-       self.layout_text.addWidget(self.widget.first)
-       self.layout_text.addWidget(self.widget.last_label)
-       self.layout_text.addWidget(self.widget.last)
-       self.layout_text.addWidget(self.widget.cut_off_label)
-       self.layout_text.addWidget(self.widget.cut_off)
-       self.layout_text.addWidget(self.widget.cut_off_label2)
-       self.layout_text.addWidget(self.widget.cut_off2)
-       self.layout_text.addWidget(self.widget.attenuation_num_taps_label)
-       self.layout_text.addWidget(self.widget.attenuation_num_taps)
+       self.typeOfPlot = self.bar.addMenu("Type of plot")
+       self.bode_plot = QAction("bode plot", self)
+       self.phase_plot = QAction("phase plot", self)
+       self.pole_plot = QAction("pole plot", self)
+       self.typeOfPlot.addAction(self.bode_plot)
+       self.typeOfPlot.addAction(self.phase_plot)
+       self.typeOfPlot.addAction(self.pole_plot)
 
-class dashboard_content_filter_editing(QWidget):
-    """
-    Defini les outils Qt utiliser dans la pipeline
-    """
-    def __init__(self):
-        super(dashboard_content_filter_editing, self).__init__()
-
-        self.first_label = QLabel("First:")
-        self.first = QLineEdit()
-        self.last_label = QLabel("Last:")
-        self.last = QLineEdit()
-        self.cut_off_label = QLabel("cut_off(1):")
-        self.cut_off_label2 = QLabel("cut_off(2):")
-        self.attenuation_num_taps_label = QLabel("Attenuation/Num_Taps:")
-        self.cut_off = QLineEdit()
-        self.cut_off2 = QLineEdit()
-        self.attenuation_num_taps = QLineEdit()
-
-class dashboard_filter_editing(QMainWindow):
-   """
-   le dashboard contient toute les QObjects nécessaires au fonctionnement des transformations
-   """
-   def __init__(self):
-
-       super(dashboard_filter_editing, self).__init__()
-
-       # instantiation du layout
-       self.layout_text = QHBoxLayout()
-
-       # instanciation du widget
-       self.widget = dashboard_content_filter_editing()
-
-       #instanciation du menu bar
-       self.bar = self.menuBar()
-
-       #instanciation des actions dans un menu
-
-
-       # instanciation des actions dans un menu
-       self.actions = self.bar.addMenu("Actions")
-       self.make_filter = QAction("make filter", self)
-       self.range_selection = QAction("range selection", self)
-       self.merge = QAction("merge", self)
-       self.actions.addAction(self.make_filter)
-       self.actions.addAction(self.range_selection)
-       self.actions.addAction(self.merge)
-
-       # instanciation des actions dans un menu
-       self.Filters = self.bar.addMenu("Filters")
-       self.passe_bas = QAction("passe bas", self)
-       self.passe_haut = QAction("passe haut", self)
-       self.passe_bande = QAction("passe_bande", self)
-       self.Filters.addAction(self.passe_bas)
-       self.Filters.addAction(self.passe_haut)
-       self.Filters.addAction(self.passe_bande)
-
-   def define(self):
-       """
-       setting up the layout
-       """
-       self.layout_text.addWidget(self.widget.first_label)
-       self.layout_text.addWidget(self.widget.first)
-       self.layout_text.addWidget(self.widget.last_label)
-       self.layout_text.addWidget(self.widget.last)
-       self.layout_text.addWidget(self.widget.cut_off_label)
-       self.layout_text.addWidget(self.widget.cut_off)
-       self.layout_text.addWidget(self.widget.cut_off_label2)
-       self.layout_text.addWidget(self.widget.cut_off2)
-       self.layout_text.addWidget(self.widget.attenuation_num_taps_label)
-       self.layout_text.addWidget(self.widget.attenuation_num_taps)
-
-class dashboard_content_filter_editing(QWidget):
-    """
-    Defini les outils Qt utiliser dans la pipeline
-    """
-    def __init__(self):
-        super(dashboard_content_filter_editing, self).__init__()
-
-        self.first_label = QLabel("First:")
-        self.first = QLineEdit()
-        self.last_label = QLabel("Last:")
-        self.last = QLineEdit()
-        self.cut_off_label = QLabel("cut_off(1):")
-        self.cut_off_label2 = QLabel("cut_off(2):")
-        self.attenuation_num_taps_label = QLabel("Attenuation/Num_Taps:")
-        self.cut_off = QLineEdit()
-        self.cut_off2 = QLineEdit()
-        self.attenuation_num_taps = QLineEdit()
-
-class dashboard_filter_editing(QMainWindow):
-   """
-   le dashboard contient toute les QObjects nécessaires au fonctionnement des transformations
-   """
-   def __init__(self):
-
-       super(dashboard_filter_editing, self).__init__()
-
-       # instantiation du layout
-       self.layout_text = QHBoxLayout()
-
-       # instanciation du widget
-       self.widget = dashboard_content_filter_editing()
-
-       #instanciation du menu bar
-       self.bar = self.menuBar()
-
-       #instanciation des actions dans un menu
-
-
-       # instanciation des actions dans un menu
-       self.actions = self.bar.addMenu("Actions")
-       self.make_filter = QAction("make filter", self)
-       self.range_selection = QAction("range selection", self)
-       self.merge = QAction("merge", self)
-       self.actions.addAction(self.make_filter)
-       self.actions.addAction(self.range_selection)
-       self.actions.addAction(self.merge)
-
-       # instanciation des actions dans un menu
-       self.Filters = self.bar.addMenu("Filters")
-       self.passe_bas = QAction("passe bas", self)
-       self.passe_haut = QAction("passe haut", self)
-       self.passe_bande = QAction("passe_bande", self)
-       self.Filters.addAction(self.passe_bas)
-       self.Filters.addAction(self.passe_haut)
-       self.Filters.addAction(self.passe_bande)
-
-   def define(self):
-       """
-       setting up the layout
-       """
-       self.layout_text.addWidget(self.widget.first_label)
-       self.layout_text.addWidget(self.widget.first)
-       self.layout_text.addWidget(self.widget.last_label)
-       self.layout_text.addWidget(self.widget.last)
-       self.layout_text.addWidget(self.widget.cut_off_label)
-       self.layout_text.addWidget(self.widget.cut_off)
-       self.layout_text.addWidget(self.widget.cut_off_label2)
-       self.layout_text.addWidget(self.widget.cut_off2)
-       self.layout_text.addWidget(self.widget.attenuation_num_taps_label)
-       self.layout_text.addWidget(self.widget.attenuation_num_taps)
-
-class dashboard_content_filter_editing(QWidget):
-    """
-    Defini les outils Qt utiliser dans la pipeline
-    """
-    def __init__(self):
-        super(dashboard_content_filter_editing, self).__init__()
-
-        self.first_label = QLabel("First:")
-        self.first = QLineEdit()
-        self.last_label = QLabel("Last:")
-        self.last = QLineEdit()
-        self.cut_off_label = QLabel("cut_off(1):")
-        self.cut_off_label2 = QLabel("cut_off(2):")
-        self.attenuation_num_taps_label = QLabel("Attenuation/Num_Taps:")
-        self.cut_off = QLineEdit()
-        self.cut_off2 = QLineEdit()
-        self.attenuation_num_taps = QLineEdit()
-
-class dashboard_filter_editing(QMainWindow):
-   """
-   le dashboard contient toute les QObjects nécessaires au fonctionnement des transformations
-   """
-   def __init__(self):
-
-       super(dashboard_filter_editing, self).__init__()
-
-       # instantiation du layout
-       self.layout_text = QHBoxLayout()
-
-       # instanciation du widget
-       self.widget = dashboard_content_filter_editing()
-
-       #instanciation du menu bar
-       self.bar = self.menuBar()
-
-       #instanciation des actions dans un menu
-
-
-       # instanciation des actions dans un menu
-       self.actions = self.bar.addMenu("Actions")
-       self.make_filter = QAction("make filter", self)
-       self.range_selection = QAction("range selection", self)
-       self.merge = QAction("merge", self)
-       self.actions.addAction(self.make_filter)
-       self.actions.addAction(self.range_selection)
-       self.actions.addAction(self.merge)
-
-       # instanciation des actions dans un menu
-       self.Filters = self.bar.addMenu("Filters")
-       self.passe_bas = QAction("passe bas", self)
-       self.passe_haut = QAction("passe haut", self)
-       self.passe_bande = QAction("passe_bande", self)
-       self.Filters.addAction(self.passe_bas)
-       self.Filters.addAction(self.passe_haut)
-       self.Filters.addAction(self.passe_bande)
 
    def define(self):
        """
@@ -506,6 +307,20 @@ class bode_plot(plot_state):
         self.name = "Bode"
         self.curve = QwtPlotCurve(self.name)
         self.qwt_plot = QwtPlot(self.name)
+
+        #self.qwt_plot.setAxisScaleEngine(QwtPlot.xBottom, QwtLogScaleEngine())
+        #self.qwt_plot.setAxisScale(QwtPlot.xBottom, 0.0, 1000.0)
+class phase_plot(plot_state):
+
+    def __init__(self):
+        super(phase_plot,self).__init__()
+        self.name = "Phase"
+        self.curve = QwtPlotCurve(self.name)
+        self.qwt_plot = QwtPlot(self.name)
+
+        #qwtScale = QwtLogScaleEngine()
+        #qwtScale.autoScale(100, 0.0, 1000.0, 1.0)
+        #self.qwt_plot.setAxisScaleEngine(QwtPlot.xBottom, qwtScale)
 
 class time_state(plot_state):
     """

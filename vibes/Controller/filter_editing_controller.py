@@ -24,11 +24,18 @@ class filter_editing_controller():
     def set_controller(self,controller):
         self.controller = controller
 
-    def modify_filter_response(self,first, last, attenuation,type):
-        self.controller.filter_editing_model.data.insert_transformation(filter_editor.filter_editor_bode,-1)
+    def modify_filter_response(self,first, last, attenuation,type, editor_type,window_type,name):
+        self.controller.filter_editing_model.data.insert_transformation(editor_type,-1)
         self.controller.filter_editing_model.data.transformations[-1][0].modify_response(first,last,attenuation,type)
         self.controller.filter_editing_model.data.transformations[-1][0].get_data_for_graphic()
-        self.controller_qt.define_bode_plot(self.controller.filter_editing_model.data.transformations[-1][0].freq,self.controller.filter_editing_model.data.transformations[-1][0].impulsion_db_positive)
+        self.controller_qt.define_plot(self.controller.filter_editing_model.data.transformations[-1][0].freq,self.controller.filter_editing_model.data.transformations[-1][0].impulsion_db_positive,window_type,name)
+
+    def make_plot(self, editor_type,window_type,name):
+        self.controller.filter_editing_model.data.insert_transformation(editor_type, -1)
+        self.controller.filter_editing_model.data.transformations[-1][0].get_data_for_graphic()
+        self.controller_qt.define_plot(self.controller.filter_editing_model.data.transformations[-1][0].freq,
+                                       self.controller.filter_editing_model.data.transformations[-1][
+                        0].impulsion_db_positive, window_type, name)
 
     def redefine_filter_data(self,filter_editing):
         data_modified = self.model.data.transformations[-1]
