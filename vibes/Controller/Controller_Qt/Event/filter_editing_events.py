@@ -1,12 +1,14 @@
 from vibes.Model import filter_editor
-
+from casus.filter_editor.editors import bode_plot_editor as bode_plot_editor
+from casus.filter_editor.editors import phase_plot_editor as phase_plot_editor
+from casus.filter_editor.editors import pole_plot_editor as pole_plot_editor
 
 class filter_editing_events:
 
     def __init__(self, filter_editing_controller, my_interface):
         self.controller = filter_editing_controller
         self.my_interface = my_interface
-        self.type = filter_editor.filter_editor_bode
+        self.type = bode_plot_editor.bode_plot_editor
         self.window = self.my_interface.bode_plot_window
         self.name = "bode plot"
 
@@ -26,14 +28,14 @@ class filter_editing_events:
         pass
 
     def activate_phase_plot_event(self):
-        self.type = filter_editor.filter_editor_phase
+        self.type = phase_plot_editor.phase_plot_editor
         self.window = self.my_interface.phase_plot_window
         self.name = "phase plot"
         self.my_interface.bode_plot_window.qwt_plot.close()
         self.controller.make_plot(self.type,self.window,self.name)
 
     def activate_bode_plot_event(self):
-        self.type = filter_editor.filter_editor_bode
+        self.type = bode_plot_editor.bode_plot_editor
         self.window = self.my_interface.bode_plot_window
         self.name = "bode plot"
         self.my_interface.phase_plot_window.qwt_plot.close()

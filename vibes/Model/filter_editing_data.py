@@ -4,7 +4,9 @@ import wave, struct
 import numpy as np
 
 import vibes.Model.filter_editor as filter_editor
-
+from casus.filter_editor.editors import bode_plot_editor as bode_plot_editor
+from casus.filter_editor.editors import phase_plot_editor as phase_plot_editor
+from casus.filter_editor.editors import pole_plot_editor as pole_plot_editor
 DEFAULT_HPTFX = "default.hptfx"
 
 
@@ -21,7 +23,9 @@ class Data:
         transformations: -> transformation[] > ceci est la pipeline browser contenant toute les objets data et leur type de transformation subie.
         """
         import_func_type = filter_editor.filter_editor()
-        self.transformations = [[import_func_type, import_func_type(data_in,data_out,fc1, fc2, type)]]
+        import_func_type(data_in, data_out, fc1, fc2, type, bode_plot_editor.bode_plot_editor)
+        self.transformations = [import_func_type]
+        print("")
 
     def insert_transformation(self, cls, index=-1):
         """
@@ -33,10 +37,11 @@ class Data:
         :return:
         """
         func = cls()
+        func.stand_in(self.transformations[index])
         if index == -1:
-            self.transformations.append([func, func(self.transformations[index])])
+            self.transformations.append(func)
         else:
-            self.transformations.insert(index, [func, func(self.transformations[index])])
+            self.transformations.insert(index, func)
             self.recalculate_data_through_pipeline(index)
 
     def recalculate_data_through_pipeline(self, idx=0):
@@ -46,4 +51,4 @@ class Data:
         :param idx: Endroit à partir du quel on recalcule
         """
         for i in range(idx, len(self.transformations)):
-            self.transformations[i][1] = self.transformations[i][0](self.transformations[i - 1][1])
+            self.transformations[i] = self.transformations[i](self.transformations[i - 1])
